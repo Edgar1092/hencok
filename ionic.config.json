@@ -1,0 +1,7 @@
+{
+  "name": "hencok",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
