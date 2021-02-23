@@ -24,3 +24,15 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+ion-grid.bg-home{
+    background-image:url("./assets/img/slide_1.jpg");
+    background-size: cover;
+    background-position: center;
+}
+ion-icon.logo{
+    font-size: 50px;
+}
+.text-bold{
+    font-weight: 700;
+}
