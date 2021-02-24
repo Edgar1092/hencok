@@ -13,7 +13,15 @@ const routes: Routes = [
   {
     path: 'cars',
     loadChildren: () => import('./cars/cars.module').then( m => m.CarsPageModule)
+  },  {
+    path: 'yates',
+    loadChildren: () => import('./yates/yates.module').then( m => m.YatesPageModule)
+  },
+  {
+    path: 'menu',
+    loadChildren: () => import('./menu/menu.module').then( m => m.MenuPageModule)
   }
+
 ];
 @NgModule({
   imports: [

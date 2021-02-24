@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: 'app.component.html',
-  styleUrls: ['app.component.scss'],
+  selector: 'app-menu',
+  templateUrl: './menu.page.html',
+  styleUrls: ['./menu.page.scss'],
 })
-export class AppComponent {
+export class MenuPage implements OnInit {
   public selectedIndex = 0;
   public appPages = [
     {
@@ -33,7 +33,11 @@ export class AppComponent {
       url: '',
       icon: 'call'
     },  
-
   ];
-  constructor() {}
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+
 }
