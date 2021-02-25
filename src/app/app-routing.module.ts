@@ -20,6 +20,14 @@ const routes: Routes = [
   {
     path: 'menu',
     loadChildren: () => import('./menu/menu.module').then( m => m.MenuPageModule)
+  },
+  {
+    path: 'rentarcars',
+    loadChildren: () => import('./rentarcars/rentarcars.module').then( m => m.RentarcarsPageModule)
+  },
+  {
+    path: 'detallescars',
+    loadChildren: () => import('./detallescars/detallescars.module').then( m => m.DetallescarsPageModule)
   }
 
 ];
