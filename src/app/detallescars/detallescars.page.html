@@ -1,15 +1,21 @@
 <ion-header class="ion-no-border">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button icon="chevron-back" defaultHref="home"></ion-back-button>
+      <ion-back-button icon="chevron-back" defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-menu-button color="light"></ion-menu-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
+
+
 <ion-content [fullscreen]="true">
+
   <div class="ion-padding">
 
-    <ion-card class="ion-margin-bottom">
+    <ion-card class="ion-margin-bottom"> 
       <ion-img src="assets/img/rolls-royce-wraith.png"></ion-img>
       <ion-card-content>
         <ion-row>
@@ -25,18 +31,18 @@
               <span> (12.5K)</span>
             </ion-card-subtitle>
           </ion-col>
-          <ion-col size="4" class="ion-text-right">
-            <ion-button fill="clear" color="dark" routerLink="/details">
+          <ion-col size="4" class="ion-text-center">
+            <ion-button fill="clear" color="dark">
               <ion-icon slot="icon-only" name="speedometer-outline"></ion-icon>
             </ion-button>
           </ion-col>
-          <ion-col size="4" class="ion-text-right">
-            <ion-button fill="clear" color="dark" routerLink="/details">
+          <ion-col size="4" class="ion-text-center">
+            <ion-button fill="clear" color="dark">
               <ion-icon slot="icon-only" name="snow"></ion-icon>
             </ion-button>
           </ion-col>
-          <ion-col size="4" class="ion-text-right">
-            <ion-button fill="clear" color="dark" routerLink="/details">
+          <ion-col size="4" class="ion-text-center">
+            <ion-button fill="clear" color="dark">
               <ion-icon slot="icon-only" name="person-outline"></ion-icon>
             </ion-button>
           </ion-col>
@@ -107,4 +113,5 @@
 
   </div>
 </ion-content>
+
 

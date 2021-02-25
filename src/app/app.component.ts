@@ -1,9 +1,4 @@
 import { Component } from '@angular/core';
-import { Platform } from '@ionic/angular'
-
-
-
-
 
 
 @Component({
@@ -21,7 +16,7 @@ export class AppComponent {
     },
     {
       title: 'Flota',
-      url: '',
+      url: '/rentarcars',
       icon: 'car-sport'
     },
     {

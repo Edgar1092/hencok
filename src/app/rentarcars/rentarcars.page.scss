@@ -1,5 +1,5 @@
 ion-item {
-  --background: rgba(51, 51, 51, 0.10) ;
+  --background: #333333 ;
     h2 {
       font-weight: bold;
       font-size: 20px;
@@ -7,7 +7,7 @@ ion-item {
     }
   }
   
-  ion-item:last-of-type {
+  ion-toolbar:last-of-type {
     div {
       padding-bottom: 20px;
     }
