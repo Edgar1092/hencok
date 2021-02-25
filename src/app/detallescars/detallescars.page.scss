@@ -48,3 +48,6 @@ ion-item {
     }
 
 }
+ion-content::part(scroll){
+    z-index: initial;
+}
