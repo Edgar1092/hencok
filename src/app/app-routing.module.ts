@@ -13,7 +13,8 @@ const routes: Routes = [
   {
     path: 'cars',
     loadChildren: () => import('./cars/cars.module').then( m => m.CarsPageModule)
-  },  {
+  },
+  {
     path: 'yates',
     loadChildren: () => import('./yates/yates.module').then( m => m.YatesPageModule)
   },
@@ -26,7 +27,7 @@ const routes: Routes = [
     loadChildren: () => import('./rentarcars/rentarcars.module').then( m => m.RentarcarsPageModule)
   },
   {
-    path: 'detallescars',
+    path: 'detallescars/:code',
     loadChildren: () => import('./detallescars/detallescars.module').then( m => m.DetallescarsPageModule)
   }
 

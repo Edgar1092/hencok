@@ -37,7 +37,9 @@ export class AppComponent {
 
   ];
   constructor() {
-  
+
+  //  http.get('https://hencok.mybooking.es/api/booking/frontend/products').subscribe(console.log);
+    
   }
 
 }

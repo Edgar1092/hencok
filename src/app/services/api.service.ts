@@ -29,4 +29,9 @@ export class ApiService implements CanActivate{
     return this.http.get<any>(
     environment.apiUrlCars + "/api/booking/frontend/products");
   }
+
+  carsdetail(code){
+    return this.http.get<any>(
+    environment.apiUrlCars + "/api/booking/frontend/products"+"/"+ code);
+  }
 }
