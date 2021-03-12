@@ -1,5 +1,5 @@
-<ion-header>
-  <ion-toolbar color="grey">
+<ion-header >
+  <ion-toolbar class="color-fondo">
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/" icon="chevron-back"></ion-back-button>
     </ion-buttons>
@@ -10,72 +10,75 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-<ion-grid class="bg-home">
-  <ion-row >
-    <ion-col size="12" class="ion-text-center ion-padding-vertical">
-      <h3 class="ion-text-center"><ion-text color="light">¿Sabes cuál va a ser el coche de lujo que quieres conducir?</ion-text></h3>
-      <p class="ion-text-center ion-color-light"><ion-text color="light">Deja de darle vueltas a la cabeza</ion-text></p>
-      <ion-button fill="outline" color="light" routerLink="/rentarcars"><ion-icon slot="start" name="car-sport-outline"></ion-icon>Ver flota</ion-button>
-      <ion-button color="vino">Contacta</ion-button>
-    </ion-col>
-  </ion-row>
-</ion-grid>
-<ion-grid>
-  <ion-row>
-    <ion-col size="12" class="ion-padding">
-      <ion-card>
-        <ion-card-content>
-          <ion-list lines="none">
-            <ion-item>
-              <ion-label>Lugar de entrega</ion-label>
-              <ion-select doneText="Ok" cancelText="Cancelar" placeholder="Seleccione...">
-                <ion-select-option value="1">Ibiza</ion-select-option>
-                <ion-select-option value="2">Madrid</ion-select-option>
-              </ion-select>
-            </ion-item>
-            <ion-item>
-              <ion-label>Fecha de entrega</ion-label>
-              <ion-datetime doneText="Ok" cancelText="Cancelar" displayFormat="DD/MM/YYYY" placeholder="DD/MM/YYYY"></ion-datetime>
-            </ion-item>
-            <ion-item>
-              <ion-label>Hora</ion-label>
-              <ion-datetime doneText="Ok" cancelText="Cancelar" displayFormat="HH:mm" placeholder="HH:mm"></ion-datetime>
-            </ion-item>
-            <ion-item>
-              <ion-label>Lugar de devolucion</ion-label>
-              <ion-select doneText="Ok" cancelText="Cancelar" placeholder="Seleccione...">
-                <ion-select-option value="1">Ibiza</ion-select-option>
-                <ion-select-option value="2">Madrid</ion-select-option>
-              </ion-select>
-            </ion-item>
-            <ion-item>
-              <ion-label>Fecha de devolucion</ion-label>
-              <ion-datetime doneText="Ok" cancelText="Cancelar" displayFormat="DD/MM/YYYY" placeholder="DD/MM/YYYY"></ion-datetime>
-            </ion-item>
-            <ion-item>
-              <ion-label>Hora</ion-label>
-              <ion-datetime doneText="Ok" cancelText="Cancelar" displayFormat="HH:mm" placeholder="HH:mm"></ion-datetime>
-            </ion-item>
-          </ion-list>
-          <ion-button expand="block" color="vino">Buscar</ion-button>
-        </ion-card-content>
-      </ion-card>
-    </ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col size="12">
-      <h1 class="ion-text-center text-bold">ÚLTIMOS <ion-text color="vino">MODELOS</ion-text></h1>
-      <p class="ion-text-center">Descubre los últimos modelos que tenemos preparados para tu disfrute.</p>
-    </ion-col>
-    <ion-col size="12" class="ion-text-center">
-      <img src="/assets/img/rolls-royce-wraith.png">
-      <h2 class="text-bold"><ion-text color="vino">Rolls Royce Wraith</ion-text></h2>
-    </ion-col>
-    <ion-col size="12" class="ion-text-center">
-      <img src="/assets/img/lamborghini-aventador.png">
-      <h2 class="text-bold"><ion-text color="vino">Lamborghini Aventador</ion-text></h2>
-    </ion-col>
-  </ion-row>
-</ion-grid>
+
+<ion-content class="color-fondo">
+  <ion-grid>   
+    <ion-row>
+      <ion-col size="12" class="ion-padding">
+          <img src="/assets/img/logo-hencok2.png">
+          <ion-button class="btn1" routerLink="/cars">Log in</ion-button>  
+        <h2 class="ion-text-left"><ion-text class="text-color text1">Hencok Coches</ion-text></h2>
+        <h1 class="ion-text-left text-centro"><ion-text>Reserva tu Vehiculo</ion-text></h1>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" class="ion-padding">
+        <ion-card>
+          <ion-card-content>
+            <ion-list lines="none">
+              <ion-item>
+                <ion-label>Lugar de entrega</ion-label>
+                <ion-select doneText="Ok" cancelText="Cancelar" placeholder="Seleccione...">
+                  <ion-select-option value="1">Ibiza</ion-select-option>
+                  <ion-select-option value="2">Madrid</ion-select-option>
+                </ion-select>
+              </ion-item>
+              <ion-item>
+                <ion-label>Fecha de entrega</ion-label>
+                <ion-datetime doneText="Ok" cancelText="Cancelar" displayFormat="DD/MM/YYYY" placeholder="DD/MM/YYYY"></ion-datetime>
+              </ion-item>
+              <ion-item>
+                <ion-label>Hora</ion-label>
+                <ion-datetime doneText="Ok" cancelText="Cancelar" displayFormat="HH:mm" placeholder="HH:mm"></ion-datetime>
+              </ion-item>
+              <ion-item>
+                <ion-label>Lugar de devolucion</ion-label>
+                <ion-select doneText="Ok" cancelText="Cancelar" placeholder="Seleccione...">
+                  <ion-select-option value="1">Ibiza</ion-select-option>
+                  <ion-select-option value="2">Madrid</ion-select-option>
+                </ion-select>
+              </ion-item>
+              <ion-item>
+                <ion-label>Fecha de devolucion</ion-label>
+                <ion-datetime doneText="Ok" cancelText="Cancelar" displayFormat="DD/MM/YYYY" placeholder="DD/MM/YYYY"></ion-datetime>
+              </ion-item>
+              <ion-item>
+                <ion-label>Hora</ion-label>
+                <ion-datetime doneText="Ok" cancelText="Cancelar" displayFormat="HH:mm" placeholder="HH:mm"></ion-datetime>
+              </ion-item>
+            </ion-list>
+            <ion-button expand="block" color="vino">Buscar</ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <h1 class="ion-text-center text-bold">ÚLTIMOS <ion-text color="vino">MODELOS</ion-text></h1>
+        <p class="ion-text-center">Descubre los últimos modelos que tenemos preparados para tu disfrute.</p>
+      </ion-col>
+      <ion-col size="12" class="ion-text-center">
+        <img src="/assets/img/rolls-royce-wraith.png">
+        <h2 class="text-bold"><ion-text color="vino">Rolls Royce Wraith</ion-text></h2>
+      </ion-col>
+      <ion-col size="12" class="ion-text-center">
+        <img src="/assets/img/lamborghini-aventador.png">
+        <h2 class="text-bold"><ion-text color="vino">Lamborghini Aventador</ion-text></h2>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
