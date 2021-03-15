@@ -3,10 +3,6 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'flota',
-    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
-  },
-  {
     path: '',
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
@@ -29,7 +25,15 @@ const routes: Routes = [
   {
     path: 'detallescars/:code',
     loadChildren: () => import('./detallescars/detallescars.module').then( m => m.DetallescarsPageModule)
+  },  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'signin',
+    loadChildren: () => import('./signin/signin.module').then( m => m.SigninPageModule)
   }
+
 
 ];
 @NgModule({

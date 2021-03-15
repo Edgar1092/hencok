@@ -1,0 +1,45 @@
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" class="ion-padding padding-rl">
+        <ion-row>
+          <ion-col size="8">
+            <img src="/assets/img/logo-hencok2.png">
+          </ion-col>
+          <ion-col size="4" class="ion-padding-vertical ion-text-right">
+            <ion-button fill="clear" color="vino"><ion-icon slot="icon-only" name="menu"></ion-icon></ion-button>  
+          </ion-col>
+        </ion-row>
+        <ion-row class="titulos">
+          <h5 class="ion-text-left text-bold margin-b-0 width-100"><ion-text color="vino">Bienvenido/a a Hencok</ion-text></h5>
+          <h1 class="ion-text-left text-bold margin-t-10 margin-b-0 width-100"><ion-text>Regístrate</ion-text></h1><br>
+          <ion-button fill="clear" color="vino" routerLink="/login">¿Ya posees cuenta? Inicia sesion</ion-button>
+        </ion-row>
+        <ion-row class="form">
+          <ion-col size="12">
+            <ion-list lines="none">
+              <ion-item>
+                <ion-input placeholder="Nombres y Apellidos"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-input placeholder="email@email.com"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-input placeholder="Contraseña"></ion-input>
+              </ion-item>
+            </ion-list>
+            <ion-button expand="block" color="vino">Registrarse</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
+    <h6 class="ion-text-center footer">
+      <ion-text class="texto-footer " color="vino" (click)="go('')">Politica de Privacidad</ion-text>
+      <ion-text color="vino"> | </ion-text>
+      <ion-text class="texto-footer " color="vino" (click)="go('')">Aviso Legal</ion-text>
+    </h6>
+  </ion-grid>
+</ion-content>
+
