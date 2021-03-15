@@ -110,6 +110,15 @@
   --ion-color-shade: var(--ion-color-vino-shade);
   --ion-color-tint: var(--ion-color-vino-tint);
 }
+
+.ion-color-rojoh{
+  --ion-color-base: var(--ion-color-rojoh);
+  --ion-color-base-rgb: var(--ion-color-rojoh-rgb);
+  --ion-color-contrast: var(--ion-color-rojoh-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-rojoh-contrast-rgb);
+  --ion-color-shade: var(--ion-color-rojoh-shade);
+  --ion-color-tint: var(--ion-color-rojoh-tint);
+}
 // @media (prefers-color-scheme: dark) {
 //   /*
 //    * Dark Colors
