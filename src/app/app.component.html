@@ -1,15 +1,32 @@
 <ion-app>
   <ion-split-pane contentId="main-content">
 
-    <ion-menu contentId="main-content" side="end" type="overlay" menuId="menu">
+    <ion-menu contentId="main-content" side="end" type="overlay" menuId="menu" class="my-custom-menu">
       <ion-content>
         <ion-list id="menu-list">
           
-          <ion-title class="ion-text-center" color="white">Menu</ion-title>
-
-          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
-            <ion-item (click)="selectedIndex = i" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" [class.selected]="selectedIndex == i">
-              <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
+          <ion-row>
+            <ion-col size="8">
+              <img src="/assets/img/HENCOK-logo2.png">
+            </ion-col>
+            <ion-col size="4" class="ion-text-right">
+              <ion-button fill="clear" color="vino" (click)="closeMenu()"><ion-icon slot="icon-only" name="close" class="fs-close"></ion-icon></ion-button>   
+            </ion-col>
+          </ion-row>
+          <ion-row class="titulos-avatar">
+            <ion-item button class="avatar" (click)="closeMenu()">
+               <ion-avatar slot="start">
+                <img src="/assets/img/user.png">
+              </ion-avatar> 
+              <ion-label>
+                <ion-text color="vino">Bienvenido invitado</ion-text><br>
+                <ion-button fill="clear" color="vino" routerLink="/login">Accede</ion-button> <ion-text color="vino"> o </ion-text> <ion-button fill="clear" color="vino" routerLink="/signin">Registrate</ion-button>
+              </ion-label>
+            </ion-item>
+          </ion-row>
+          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index" class="list-menu">
+            <ion-item (click)="selectedIndex = i" routerDirection="root" [routerLink]="[p.url]" detail="false" [class.selected]="selectedIndex == i">
+              <ion-icon slot="end" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
               <ion-label>{{ p.title }}</ion-label>
             </ion-item>
           </ion-menu-toggle>

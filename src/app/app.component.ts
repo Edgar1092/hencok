@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-root',
@@ -10,36 +10,29 @@ export class AppComponent {
   public selectedIndex = 0;
   public appPages = [
     {
-      title: 'Inicio',
-      url: '',
-      icon: 'play'
+      title: 'Tu perfil',
+      url: '/perfil',
+      icon: 'chevron-forward'
     },
     {
-      title: 'Flota',
+      title: 'Barcos',
       url: '/rentarcars',
-      icon: 'car-sport'
+      icon: 'chevron-forward'
     },
     {
-      title: 'Servicios',
-      url: '',
-      icon: 'construct'
-    },
-    {
-      title: 'Somos Hencok',
-      url: '',
-      icon: 'chatbubbles'
-    },
-    {
-      title: 'Contacto',
-      url: '',
-      icon: 'call'
-    },  
+      title: 'Coches',
+      url: '/rentarcars',
+      icon: 'chevron-forward'
+    } 
 
   ];
-  constructor() {
+  constructor(private menu: MenuController) {
 
   //  http.get('https://hencok.mybooking.es/api/booking/frontend/products').subscribe(console.log);
     
+  }
+  closeMenu(){
+    this.menu.close();
   }
 
 }

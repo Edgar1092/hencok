@@ -19,7 +19,8 @@ carro: any={};
     private service: ApiService,
     private route: ActivatedRoute,
     private router: Router,
-    private loadingController: LoadingController
+    private loadingController: LoadingController,
+    private navCtrl: NavController
     ) { }
 
   ngOnInit() {
@@ -41,5 +42,8 @@ carro: any={};
         console.log(err);
         loading.dismiss();
       });
+  }
+  back(){
+    this.navCtrl.back();
   }
 }

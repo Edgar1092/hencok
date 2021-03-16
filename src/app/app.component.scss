@@ -5,8 +5,11 @@
   // }
   ion-menu{
     ion-content{
-        --ion-background-color:#232628
+        --ion-background-color:#232628;
+        --background:#232628;
     }
+    --background:#232628;
+    opacity: 0.95;
   }
 
   ion-item{
@@ -29,7 +32,7 @@
   }
   
   ion-menu.md ion-list {
-    padding: 20px 0;
+    padding: 35px;
   }
   
   ion-menu.md ion-note {
@@ -41,9 +44,9 @@
     padding-left: 10px;
   }
   
-  ion-menu.md ion-list#menu-list {
-    border-bottom: 1px solid var(--ion-color-step-150, #d7d8da);
-  }
+  // ion-menu.md ion-list#menu-list {
+  //   border-bottom: 1px solid var(--ion-color-step-150, #d7d8da);
+  // }
   
   ion-menu.md ion-list#menu-list ion-list-header {
     font-size: 22px;
@@ -68,21 +71,12 @@
     border-radius: 4px;
   }
   
-  ion-menu.md ion-item.selected {
-    --background: rgba(var(--ion-color-primary-rgb), 0.14);
-  }
-  
-  ion-menu.md ion-item.selected ion-icon {
-    color: var(--ion-color-primary);
-    color: #757575;
-  }
-  
   ion-menu.md ion-item ion-icon {
-    color: #616e7e;
+    color: #eee;
   }
   
   ion-menu.md ion-item ion-label {
-    font-weight: 500;
+    font-weight: 700;
   }
   
   ion-menu.ios ion-content {
@@ -90,7 +84,7 @@
   }
   
   ion-menu.ios ion-list {
-    padding: 20px 0 0 0;
+    padding: 35px;
   }
   
   ion-menu.ios ion-note {
@@ -110,7 +104,7 @@
   
   ion-menu.ios ion-item ion-icon {
     font-size: 24px;
-    color: #73849a;
+    color: #eee;
   }
   
   ion-menu.ios ion-list#labels-list ion-list-header {
@@ -142,8 +136,35 @@
     font-weight: 600px;
     color: white;
     margin-bottom: 5%;
-    font-size: 25px;
+    font-size: 45px;
   }
   ion-menu{
-    --width: 250px;
+    --width: 100%;
+  }
+  .avatar ion-label{
+    font-size: 16px;
+  }
+  .avatar ion-button{
+    text-decoration: underline #BA0C2F;  
+    font-size: 16px;
+  }
+  .avatar ion-button::part(native){
+    padding: 0;
+  }
+  .avatar ion-avatar{
+    width: 50px;
+    height: 50px;
+  }
+  .avatar ion-icon{
+    font-size: 30px;
+  }
+  .list-menu ion-label{
+    font-size: 30px;
+  }
+  .list-menu ion-item{
+    border-bottom: 1px solid #eee;
+  }
+  .titulos-avatar{
+    margin-top: 40px;
+    margin-bottom: 40px;
   }
