@@ -1,72 +1,92 @@
-<ion-header class="ion-no-border">
-
-<ion-toolbar color="grey">
-
-   <ion-item lines="none">
-      <ion-buttons slot="start">
-        <ion-back-button icon="chevron-back" defaultHref="/" color="light"></ion-back-button>
-      </ion-buttons>
-      <ion-buttons slot="end">
-        <ion-menu-button color="light"></ion-menu-button>
-      </ion-buttons>
-    </ion-item>
-    
-    <ion-item lines="none">
-      <div class="ion-padding-start ion-padding-bottom">
-        <ion-label>
-          <h2>Filtro</h2>
-        </ion-label>
-        <ion-row class="ion-align-items-center">
-          <ion-col size="10">
-            <ion-searchbar searchIcon="search-outline" placeholder="Buscar"></ion-searchbar>
-          </ion-col>
-          <ion-col size="2">
-            <ion-button color="light" fill="clear">
-              <ion-icon slot="icon-only" name="options-outline"></ion-icon>
-            </ion-button>
-          </ion-col>
-        </ion-row>
-      </div>
-    </ion-item>
-
-</ion-toolbar>
-</ion-header>
 
 <ion-content [fullscreen]="true">
-  <div class="ion-padding">
 
-    <ion-row class="ion-align-items-center ion-padding-horizontal">
-      <ion-col size="6">
-        <h5></h5>
-      </ion-col>
-      <ion-col size="6" class="ion-text-right">
-        <ion-button fill="clear" color="dark">
-          <ion-icon slot="icon-only" name="ellipsis-horizontal"></ion-icon>
-        </ion-button>
+  <ion-grid>  
+    <ion-row>
+       <ion-col size="12" class="ion-padding">
+         <ion-button class="ico1" fill="clear" size="small" color="vino" (click)="back()">
+          <ion-icon  name="chevron-back-outline" color="vino"></ion-icon>
+         </ion-button> 
+
+         <ion-button class="ico2" fill="clear" color="vino" size="small">       
+          <ion-icon  src="/assets/img/hencok-logomenu1.svg"></ion-icon>   
+         </ion-button> 
+          <ion-img class="imagen-logo btn-c" src="/assets/img/logo-hencok2.png"></ion-img>        
       </ion-col>
     </ion-row>
+  </ion-grid> 
 
-   
+  <ion-grid class="form margin-l-20">   
+    <ion-row>
+      <ion-col size="12" class="ion-padding">  
+        <h5 class="ion-text-left"><ion-text class="ion-text-left text-bold margin-b-0" color="vino">Hencok Coches</ion-text></h5>
+        <h1 class="ion-text-left text-bold margin-t-10 margin-b-0"><ion-text>Nuestra Flota</ion-text></h1>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
-      <ion-card *ngFor="let carros of cars">
-        <ion-card-header>
-        </ion-card-header>
-        <ion-card-content>
-          <ion-img [src]="carros.photo_path"></ion-img>
 
-          <ion-row>
-            <ion-col size="8">
-              <ion-card-title>{{carros.name}}</ion-card-title>
-              <ion-card-subtitle color="danger">desde {{carros.from_price}}€</ion-card-subtitle>
-            </ion-col>
-            <ion-col size="4" class="ion-text-right">
-              <ion-button fill="clear" color="dark" size="large" routerLink="/detallescars/{{carros.code}}">
-                <ion-icon slot="icon-only" name="chevron-forward-circle-outline"></ion-icon>
-              </ion-button>
-            </ion-col>
-          </ion-row>
-        </ion-card-content>
-      </ion-card>
-  </div>
+<ion-col size="12" *ngFor="let carros of cars">
+  <ion-img [src]="carros.photo_path" class="ion-padding"></ion-img>
+  <ion-item class="color-fondo" lines="none">
+    <h3 class="ion-text-left text-bold">
+      <ion-text class="text-bold titulo-c">
+        {{carros.name}}
+      </ion-text>
+    </h3>
+     <ion-button slot="end" class="texto-m" size="default"  color="vino" routerLink="/detallescars/{{carros.code}}">
+        desde {{carros.from_price}}€
+     </ion-button>
+  </ion-item>
+</ion-col>
+
+
+
+  <!-- <ion-card *ngFor="let carros of cars" class="color-fondo sin-sombra">
+    <ion-card-content>
+      <ion-img [src]="carros.photo_path" class="ion-padding"></ion-img>
+      <ion-row>
+        <ion-col size="8" class="titulo-c">
+          <h1 class="ion-text-left text-bold margin-t-10 margin-b-0">
+            <ion-text class="text-bold titulo-c">
+              {{carros.name}}
+            </ion-text>
+          </h1>
+        </ion-col>
+        <ion-col size="8">
+          <ion-button class="texto-m"  color="vino"  routerLink="/detallescars/{{carros.code}}">
+            desde {{carros.from_price}}€
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card> -->
+
+<!-- 
+<ion-grid>
+  <ion-row>
+    <ion-col size="12">
+      <ion-list *ngFor="let carros of cars" lines="none">
+        <ion-col size="8">
+          <ion-img [src]="carros.photo_path" class="ion-padding"></ion-img>
+          <h2 class="text-bold ion-text-center">
+            <ion-text class="">{{carros.name}}</ion-text>   
+          </h2>
+          <h1 class="ion-text-center boton-precio">
+          <ion-button size="large" color="vino" class="boton-precio">{{carros.from_price}}€</ion-button>
+          </h1>
+         </ion-col>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+</ion-grid> -->
+
+<ion-grid class="espacio">
+  <h6 class="ion-text-center">
+    <ion-text class="texto-footer text-color" (click)="go('')">Politica de Privacidad</ion-text>
+    <ion-text class="text-color"> | </ion-text>
+    <ion-text class="texto-footer text-color" (click)="go('')">Aviso Legal</ion-text>
+  </h6>
+</ion-grid>
+
 </ion-content>
-<!-- (click)="prueba(carros.code)" -->
