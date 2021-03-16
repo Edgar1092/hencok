@@ -6,7 +6,12 @@ ion-item{
     --border-width: 1px;
      }
 
+ion-select::part(icon) {
 
+    display: none !important;
+    
+}
+       
 .ico1{
     
     float: left;
@@ -53,4 +58,8 @@ ion-item{
 .espacio{
     margin-top: 10px;
     margin-bottom: 20px;
+}
+
+.form{
+    margin-top: 40px;
 }

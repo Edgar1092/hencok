@@ -32,6 +32,10 @@ export class RentarcarsPage implements OnInit {
   () => console.log('error')
       );
   }
+
+  back(){
+    this.navCtrl.back();
+  }
   // prueba(code){
   //   this.service.carsdetail(code).subscribe(
   //     (data) =>{

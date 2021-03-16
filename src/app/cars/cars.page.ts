@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavParams,LoadingController,NavController, AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-cars',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CarsPage implements OnInit {
 
-  constructor() { }
+  constructor(
+    private navCtrl: NavController
+  ) { }
 
   ngOnInit() {
+    
   }
-
+  back(){
+    this.navCtrl.back();
+  }
 }
