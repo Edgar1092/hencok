@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavParams,LoadingController,NavController, AlertController } from '@ionic/angular';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-cars',
@@ -9,7 +10,8 @@ import { NavParams,LoadingController,NavController, AlertController } from '@ion
 export class CarsPage implements OnInit {
 
   constructor(
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private menu: MenuController
   ) { }
 
   ngOnInit() {
@@ -17,5 +19,9 @@ export class CarsPage implements OnInit {
   }
   back(){
     this.navCtrl.back();
+  }
+
+  openMenu(){
+    this.menu.open('menu');
   }
 }

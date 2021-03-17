@@ -1,0 +1,21 @@
+.titulos ion-button::part(native){
+    padding: 0;
+}
+.titulos ion-button{
+    text-decoration: underline #BA0C2F;  
+}
+ion-list{
+    background: transparent;
+}
+ion-item{
+    --background: transparent;
+    border: 1px solid #000;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+ion-button{
+    --border-radius: 10px;
+}
+.form{
+    margin-top: 40px;
+}

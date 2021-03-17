@@ -1,8 +1,9 @@
 
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
-import { NavParams,LoadingController,NavController, AlertController } from '@ionic/angular';
+import { NavParams, LoadingController, NavController, AlertController, MenuController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
+
 
 
 
@@ -20,7 +21,8 @@ carro: any={};
     private route: ActivatedRoute,
     private router: Router,
     private loadingController: LoadingController,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private menu: MenuController
     ) { }
 
   ngOnInit() {
@@ -45,5 +47,8 @@ carro: any={};
   }
   back(){
     this.navCtrl.back();
+  }
+  openMenu(){
+    this.menu.open('menu');
   }
 }
