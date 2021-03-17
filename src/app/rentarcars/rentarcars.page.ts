@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild  } from '@angular/core';
 import { ApiService } from '../services/api.service';
-import { NavParams,LoadingController,NavController, AlertController } from '@ionic/angular';
+import { NavParams, NavController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
-
+import { IonInfiniteScroll } from '@ionic/angular';
 
 @Component({
   selector: 'app-rentarcars',
@@ -10,9 +10,12 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./rentarcars.page.scss'],
 })
 export class RentarcarsPage implements OnInit {
-
+  @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
   cars=[];
-
+  spinner = false
+  offset = 0
+  limit = 10
+  total = 0
   constructor(
     private navCtrl: NavController, 
     private service: ApiService,
@@ -24,29 +27,65 @@ export class RentarcarsPage implements OnInit {
   }
 
   obetenerCarros(){
- this.service.cars().subscribe(
-  (response: any) => {
-    console.log(response);
-    this.cars = response.data; 
-  },
-  () => console.log('error')
-      );
+    this.spinner = true;
+    this.offset=0
+    let params = {limit:this.limit, offset:0};
+    this.service.cars(params).subscribe(
+      (response: any) => {
+        this.spinner = false
+        console.log(response);
+        this.cars = response.data; 
+        this.total = response.total
+      },
+      (error) => {
+        this.spinner = false
+        console.log('error')
+      });
   }
 
   back(){
     this.navCtrl.back();
   }
-  // prueba(code){
-  //   this.service.carsdetail(code).subscribe(
-  //     (data) =>{
-  //       this.router.navigate(['/detallescars/code']);
-  //        console.log(data);
-  //     },
-  //     (error)=>{console.log(error);}
-      
-      
-  //     );
-  // }
+  doRefresh(event) {
+    console.log('Begin async operation');
+    this.offset=0
+    let params = {limit:this.limit, offset:0};
+    this.service.cars(params).subscribe(
+      (response: any) => {
+        event.target.complete();
+        console.log(response);
+        this.cars = response.data;
+        this.total = response.total 
+      },
+      (error) => {
+        event.target.complete();
+        console.log('error')
+      });
+  }
+
+  doInfinite(event){
+    if(this.cars.length < this.total){
+      this.offset+=10;
+      let params = {limit:this.limit, offset:this.offset};
+      setTimeout(() => {
+        this.service.cars(params).subscribe(
+          (response: any) => {
+            let d = JSON.parse(JSON.stringify(response.data)) 
+            console.log(d);
+            d.forEach((element,index) => {
+              this.cars.push(element)
+            });
+            event.target.complete();
+          },
+          (error) => {
+            event.target.complete();
+            console.log('error')
+          });
+      }, 1000);
+    }else{
+      event.target.complete();
+    }
+  }
     
 }
 

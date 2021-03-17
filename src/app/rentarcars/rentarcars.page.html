@@ -1,6 +1,8 @@
 
 <ion-content [fullscreen]="true">
-
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content refreshingSpinner="crescent"></ion-refresher-content>
+  </ion-refresher>
   <ion-grid>  
     <ion-row>
        <ion-col size="12" class="ion-padding">
@@ -25,23 +27,27 @@
     </ion-row>
   </ion-grid>
 
-
-<ion-col size="12" *ngFor="let carros of cars">
-  <ion-img [src]="carros.photo_path" class="ion-padding"></ion-img>
-  <ion-item class="color-fondo" lines="none">
-    <h3 class="ion-text-left text-bold">
-      <ion-text class="text-bold titulo-c">
-        {{carros.name}}
-      </ion-text>
-    </h3>
-     <ion-button slot="end" class="texto-m" size="default"  color="vino" routerLink="/detallescars/{{carros.code}}">
-        desde {{carros.from_price}}€
-     </ion-button>
-  </ion-item>
-</ion-col>
-
-
-
+<ion-grid>
+  <ion-row>
+    <ion-col size="12" class="ion-text-center"><ion-spinner *ngIf="spinner" name="crescent" ></ion-spinner></ion-col>
+    <ion-col size="12" *ngFor="let carros of cars">
+      <ion-img [src]="carros.photo_path" class="ion-padding"></ion-img>
+      <ion-item class="color-fondo" lines="none">
+        <h3 class="ion-text-left text-bold">
+          <ion-text class="text-bold titulo-c">
+            {{carros.name}}
+          </ion-text>
+        </h3>
+         <ion-button slot="end" class="texto-m" size="default"  color="vino" routerLink="/detallescars/{{carros.code}}">
+            desde {{carros.from_price}}€
+         </ion-button>
+      </ion-item>
+    </ion-col>
+    <ion-col size="12" *ngIf="!spinner && cars && cars.length == 0">
+      <h5 class="ion-text-center text-bold">No hay datos para mostrar</h5>
+    </ion-col>
+  </ion-row>
+</ion-grid>
   <!-- <ion-card *ngFor="let carros of cars" class="color-fondo sin-sombra">
     <ion-card-content>
       <ion-img [src]="carros.photo_path" class="ion-padding"></ion-img>
@@ -88,5 +94,10 @@
     <ion-text class="texto-footer text-color" (click)="go('')">Aviso Legal</ion-text>
   </h6>
 </ion-grid>
-
+<ion-infinite-scroll threshold="100px" (ionInfinite)="doInfinite($event)">
+  <ion-infinite-scroll-content
+    loadingSpinner="crescent"
+    loadingText="">
+  </ion-infinite-scroll-content>
+</ion-infinite-scroll>
 </ion-content>

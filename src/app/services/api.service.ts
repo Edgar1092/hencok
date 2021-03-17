@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpParams} from '@angular/common/http';
+import { Observable, of } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
 import { CanActivate } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { environment } from "../../environments/environment";
@@ -17,21 +19,54 @@ export class ApiService implements CanActivate{
     if (token && usuario) {
         return true;
     } else {
-      this.navCtrl.navigateRoot('/home');
+      this.navCtrl.navigateRoot('/login');
       return false;  
     }
   }
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+
+      // TODO: send the error to remote logging infrastructure
+      console.error(error); // log to console instead
+
+      // TODO: better job of transforming error for user consumption
+      this.log(`${operation} failed: ${error.message}`);
+
+      // Let the app keep running by returning an empty result.
+      return of(result as T);
+    };
+  }
+
+  /** Log a HeroService message with the MessageService */
+  private log(message: string) {
+    console.log(message);
+  }
+
   login(data){
     return this.http.post<any>(
     environment.apiUrlCars + "/api/auth/login", data);
   }
-  cars(){
-    return this.http.get<any>(
-    environment.apiUrlCars + "/api/booking/frontend/products");
+  cars(params?) : Observable<any>{
+    let parseParams = new HttpParams();
+    if (params) {
+      Object.keys(params).forEach(p => {
+        parseParams = parseParams.append(p, params[p]);
+      });
+    }
+    return this.http.get(
+      environment.apiUrlCars + "/api/booking/frontend/products", {params : parseParams})
+      .pipe(
+        tap(_ => this.log('response received')),
+        catchError(this.handleError('cars', []))
+      );
   }
 
-  carsdetail(code){
+  carsdetail(code) : Observable<any>{
     return this.http.get<any>(
-    environment.apiUrlCars + "/api/booking/frontend/products/"+ code);
+    environment.apiUrlCars + "/api/booking/frontend/products/"+ code)
+    .pipe(
+      tap(_ => this.log('response received')),
+      catchError(this.handleError('carsdetail', []))
+    );
   }
 }
