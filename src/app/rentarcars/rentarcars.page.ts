@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild  } from '@angular/core';
 import { ApiService } from '../services/api.service';
-import { NavParams, NavController } from '@ionic/angular';
+import { NavParams, LoadingController, NavController, AlertController, MenuController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IonInfiniteScroll } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-rentarcars',
@@ -20,6 +21,7 @@ export class RentarcarsPage implements OnInit {
     private navCtrl: NavController, 
     private service: ApiService,
     private router: Router,
+    private menu:MenuController
     ) { }
 
   ngOnInit() {
@@ -86,6 +88,11 @@ export class RentarcarsPage implements OnInit {
       event.target.complete();
     }
   }
+
+  openMenu(){
+    this.menu.open('menu');
+  }
+
     
 }
 
