@@ -15,10 +15,6 @@
   ion-item{
     color: #f3f3f3;
   }
-
-
- 
-
   img{
     display:block;
     margin:auto;
@@ -167,4 +163,10 @@
   .titulos-avatar{
     margin-top: 40px;
     margin-bottom: 40px;
+  }
+
+.texto1{
+  white-space: nowrap;  
+  overflow: hidden;
+  text-overflow: clip;
   }

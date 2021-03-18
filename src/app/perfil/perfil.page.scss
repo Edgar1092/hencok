@@ -19,3 +19,10 @@ ion-button{
 .form{
     margin-top: 40px;
 }
+
+.btn{
+    --border-radius: 10px 10px 10px 10px;
+    --background: #BA0C2F;
+    height: 50px;
+    font-weight: 700;
+ }

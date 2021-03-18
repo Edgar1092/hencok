@@ -1,14 +1,12 @@
 <ion-content>
   <ion-grid>
     <ion-row>
-
       <ion-col size="12" class="ion-padding padding-rl">
-
         <ion-row>
           <ion-col size="8">
             <img src="/assets/img/logo-hencok2.png">
           </ion-col>
-          <ion-col size="4" class="ion-padding-vertical ion-text-right">
+          <ion-col size="4" class="ion-text-right">
             <ion-button fill="clear" color="vino" (click)="openMenu()"><ion-icon slot="icon-only" src="/assets/img/hencok-logomenu1.svg"></ion-icon></ion-button>  
           </ion-col>
         </ion-row>
@@ -16,12 +14,13 @@
         <ion-row class="titulos">
           <h5 class="ion-text-left text-bold margin-b-0"><ion-text color="vino">Bienvenido/a a Hencok</ion-text></h5>
           <h1 class="ion-text-left text-bold margin-t-10 margin-b-0"><ion-text>Accede a tu panel de control</ion-text></h1>
-          <ion-button fill="clear" color="vino" routerLink="/signin">¿No tienes cuenta? Registrate</ion-button>
+          <h5 class="ion-text-center">
+            <ion-text class="texto-footer" color="vino" (click)="gotosignin()">¿No tienes Cuenta? Registrate </ion-text>
+          </h5>        
         </ion-row>
         
         <ion-row class="form">
           <ion-col size="12">
-
             <ion-list lines="none">
               <ion-item>
                 <ion-input placeholder="Email"></ion-input>
@@ -30,20 +29,18 @@
                 <ion-input placeholder="Contraseña"></ion-input>
               </ion-item>
             </ion-list>
-
-            <ion-button expand="block" color="vino">Entrar</ion-button>
+            <ion-button expand="block" color="vino" class="btn">Entrar</ion-button>
           </ion-col>
         </ion-row>
-
+        
       </ion-col>
-
     </ion-row>
   </ion-grid>
+
   <ion-grid>
     <h6 class="ion-text-center footer">
-      <ion-text class="texto-footer" color="vino" (click)="go('')">Politica de Privacidad</ion-text>
-      <ion-text color="vino"> | </ion-text>
-      <ion-text class="texto-footer" color="vino" (click)="go('')">Aviso Legal</ion-text>
+      <ion-text class="texto-footer" color="vino" (click)="go('')">¿Has olvidado tu contraseña?</ion-text>
     </h6>
   </ion-grid>
+  
 </ion-content>

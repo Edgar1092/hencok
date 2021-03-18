@@ -14,7 +14,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class DetallescarsPage implements OnInit {
 
-carro: any={};
+cars: any={};
+spinner = false;
+offset = 0
+limit = 10
+total = 0
 
   constructor(
     private service: ApiService,
@@ -30,21 +34,35 @@ carro: any={};
 
   }
   
-  async getClassroom() {
-    const loading = await this.loadingController.create({
-      // content: 'Loading'
-    });
-    await loading.present();
-    await this.service.carsdetail(this.route.snapshot.paramMap.get('code'))
+  async getClassroom(){
+    // const loading = await this.loadingController.create({
+    //   // content: 'Loading'
+    // });
+    // await loading.present();
+    // await 
+    this.spinner = true;
+    this.service.carsdetail(this.route.snapshot.paramMap.get('code'))
       .subscribe(res => {
+        this.spinner = false
         console.log(res);
-        this.carro = res;
-        loading.dismiss();
+        this.cars = res;
+        // loading.dismiss();
       }, err => {
+        this.spinner = false
         console.log(err);
-        loading.dismiss();
+        // loading.dismiss();
       });
   }
+
+  doRefresh(event) {
+    console.log('Begin async operation');
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      event.target.complete();
+    });
+  }
+
   back(){
     this.navCtrl.back();
   }

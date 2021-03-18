@@ -1,22 +1,24 @@
 
 <ion-content [fullscreen]="true">
+
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content refreshingSpinner="crescent"></ion-refresher-content>
   </ion-refresher>
-  <ion-grid>  
-    <ion-row>
-       <ion-col size="12" class="ion-padding">
-         <ion-button class="ico1" fill="clear" size="small" color="vino" (click)="back()">
-          <ion-icon  name="chevron-back-outline" color="vino"></ion-icon>
-         </ion-button> 
 
-         <ion-button class="ico2" fill="clear" color="vino" size="small"(click)="openMenu()">        
-          <ion-icon  src="/assets/img/hencok-logomenu1.svg"></ion-icon>   
-         </ion-button> 
-          <ion-img class="imagen-logo btn-c" src="/assets/img/logo-hencok2.png"></ion-img>        
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" class="margin-t-10">
+        <ion-button class="ico1" fill="clear" size="small" color="vino" (click)="back()">
+          <ion-icon name="chevron-back-outline" color="vino"></ion-icon>
+        </ion-button>
+
+        <ion-button class="ico2" fill="clear" color="vino" size="small" (click)="openMenu()">
+          <ion-icon src="/assets/img/hencok-logomenu1.svg"></ion-icon>
+        </ion-button>
+        <ion-img class="imagen-logo ion-text-center" src="/assets/img/logo-hencok2.png"></ion-img>
       </ion-col>
     </ion-row>
-  </ion-grid> 
+  </ion-grid>
 
   <ion-grid class="form margin-l-20">   
     <ion-row>
@@ -29,7 +31,9 @@
 
 <ion-grid>
   <ion-row>
-    <ion-col size="12" class="ion-text-center"><ion-spinner *ngIf="spinner" name="crescent" ></ion-spinner></ion-col>
+    <ion-col size="12" class="ion-text-center">
+      <ion-spinner *ngIf="spinner" name="crescent"></ion-spinner>
+    </ion-col>
     <ion-col size="12" *ngFor="let carros of cars">
       <ion-img [src]="carros.photo_path" class="ion-padding"></ion-img>
       <ion-item class="color-fondo" lines="none">
@@ -38,9 +42,9 @@
             {{carros.name}}
           </ion-text>
         </h3>
-         <ion-button slot="end" class="texto-m" size="default"  color="vino" routerLink="/detallescars/{{carros.code}}">
-            desde {{carros.from_price}}€
-         </ion-button>
+        <ion-button slot="end" class="texto-m" size="default" color="vino" routerLink="/detallescars/{{carros.code}}">
+          desde {{carros.from_price}}€
+        </ion-button>
       </ion-item>
     </ion-col>
     <ion-col size="12" *ngIf="!spinner && cars && cars.length == 0">
@@ -48,45 +52,7 @@
     </ion-col>
   </ion-row>
 </ion-grid>
-  <!-- <ion-card *ngFor="let carros of cars" class="color-fondo sin-sombra">
-    <ion-card-content>
-      <ion-img [src]="carros.photo_path" class="ion-padding"></ion-img>
-      <ion-row>
-        <ion-col size="8" class="titulo-c">
-          <h1 class="ion-text-left text-bold margin-t-10 margin-b-0">
-            <ion-text class="text-bold titulo-c">
-              {{carros.name}}
-            </ion-text>
-          </h1>
-        </ion-col>
-        <ion-col size="8">
-          <ion-button class="texto-m"  color="vino"  routerLink="/detallescars/{{carros.code}}">
-            desde {{carros.from_price}}€
-          </ion-button>
-        </ion-col>
-      </ion-row>
-    </ion-card-content>
-  </ion-card> -->
-
-<!-- 
-<ion-grid>
-  <ion-row>
-    <ion-col size="12">
-      <ion-list *ngFor="let carros of cars" lines="none">
-        <ion-col size="8">
-          <ion-img [src]="carros.photo_path" class="ion-padding"></ion-img>
-          <h2 class="text-bold ion-text-center">
-            <ion-text class="">{{carros.name}}</ion-text>   
-          </h2>
-          <h1 class="ion-text-center boton-precio">
-          <ion-button size="large" color="vino" class="boton-precio">{{carros.from_price}}€</ion-button>
-          </h1>
-         </ion-col>
-      </ion-list>
-    </ion-col>
-  </ion-row>
-</ion-grid> -->
-
+  
 <ion-grid class="espacio">
   <h6 class="ion-text-center">
     <ion-text class="texto-footer text-color" (click)="go('')">Politica de Privacidad</ion-text>

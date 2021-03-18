@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { MenuController } from '@ionic/angular';
+import { MenuController, NavController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-root',
@@ -26,13 +27,22 @@ export class AppComponent {
     } 
 
   ];
-  constructor(private menu: MenuController) {
+  constructor(
+    private menu: MenuController,
+    private navCtrl: NavController
+    ) {
 
   //  http.get('https://hencok.mybooking.es/api/booking/frontend/products').subscribe(console.log);
     
   }
   closeMenu(){
     this.menu.close();
+  }
+  gotosignin() {
+    this.navCtrl.navigateForward('signin');
+  }
+  gotologin() {
+    this.navCtrl.navigateForward('login');
   }
 
 }
