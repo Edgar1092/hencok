@@ -1,11 +1,16 @@
 <ion-content [fullscreen]="true">
 
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content refreshingSpinner="crescent"></ion-refresher-content>
+  </ion-refresher>
+
   <ion-grid>
     <ion-row>
       <ion-col size="12" class="margin-t-10">
         <ion-button class="ico1" fill="clear" size="small" color="vino" (click)="back()">
           <ion-icon name="chevron-back-outline" color="vino"></ion-icon>
         </ion-button>
+
         <ion-button class="ico2" fill="clear" color="vino" size="small" (click)="openMenu()">
           <ion-icon src="/assets/img/hencok-logomenu1.svg"></ion-icon>
         </ion-button>
@@ -14,24 +19,30 @@
     </ion-row>
   </ion-grid>
 
-  <ion-grid class="form padding-rl">
-    <ion-row>
-      <ion-col size="12" class="ion-padding">
-        <h5 class="ion-text-left">
-          <ion-text class="ion-text-left text-bold margin-b-0" color="vino">Hencok Barcos</ion-text>
-        </h5>
-        <h1 class="ion-text-left text-bold margin-t-10 margin-b-0">
-          <ion-text>Reserva tu Yate</ion-text>
-        </h1>
-      </ion-col>
+
+  <ion-col size="12" class="padding-rl">
+    <ion-row class="titulos padding-rl">
+      <h5 class="text-bold">
+        <ion-text color="vino" class="margin-b-10">Hencok Barcos</ion-text>
+      </h5>
     </ion-row>
-  </ion-grid>
+    <h1 class="text-bold">
+      <ion-text>{{cars.name}}</ion-text>
+    </h1>
+  </ion-col>
+  <ion-spinner *ngIf="spinner" name="crescent"></ion-spinner>
+
+  <ion-col size="12">
+    <ion-img [src]="cars.photo_path" class="ion-padding"></ion-img>
+    <h3 class="margin-l-40">
+      <p [innerHTML]="cars.description" class=""></p>
+    </h3>
+  </ion-col>
 
 
   <ion-grid class="padding-rl">
     <ion-row>
       <ion-col size="12" class="ion-padding">
-
         <ion-item class="color-fondo">
           <ion-label class="color-label">Lugar de entrega</ion-label>
           <ion-select doneText="Ok" cancelText="Cancelar" icon="chevron-down-outline">
@@ -46,11 +57,13 @@
           <ion-datetime doneText="Ok" cancelText="Cancelar" displayFormat="DD/MM/YYYY"></ion-datetime>
           <ion-icon src="/assets/img/001-calendar1.svg"></ion-icon>
         </ion-item>
+
         <ion-item class="color-fondo">
           <ion-label class="color-label">Hora de entrega</ion-label>
           <ion-datetime doneText="Ok" cancelText="Cancelar" displayFormat="HH:mm"></ion-datetime>
           <ion-icon src="/assets/img/003-clock1.svg"></ion-icon>
         </ion-item>
+
         <ion-item class="color-fondo">
           <ion-label class="color-label">Lugar de devolución</ion-label>
           <ion-select doneText="Ok" cancelText="Cancelar">
@@ -59,52 +72,22 @@
           </ion-select>
           <ion-icon src="/assets/img/002-down-arrow1.svg"></ion-icon>
         </ion-item>
+
         <ion-item class="color-fondo">
           <ion-label class="color-label">Fecha de devolución</ion-label>
           <ion-datetime doneText="Ok" cancelText="Cancelar" displayFormat="DD/MM/YYYY"></ion-datetime>
           <ion-icon src="/assets/img/001-calendar1.svg"></ion-icon>
         </ion-item>
+
         <ion-item class="color-fondo">
           <ion-label class="color-label">Hora de devolución</ion-label>
           <ion-datetime doneText="Ok" cancelText="Cancelar" displayFormat="HH:mm"></ion-datetime>
           <ion-icon src="/assets/img/003-clock1.svg"></ion-icon>
         </ion-item>
-        <ion-button expand="block" class="btn">Buscar</ion-button>
+
+        <ion-button expand="block" class="btn" routerLink="/reservayates">Reservar</ion-button>
       </ion-col>
     </ion-row>
-
-    <ion-row>
-      <ion-col size="12" class="ion-padding">
-        <h5 class="ion-text-left text-bold margin-b-0">
-          <ion-text class="text-color text-bold">Descubre Hencok</ion-text>
-        </h5>
-        <h1 class="ion-text-left text-bold margin-t-10 margin-b-0">
-          <ion-text>Últimos Modelos</ion-text>
-        </h1>
-      </ion-col>
-      <ion-col size="12" class="ion-padding ion-text-center">
-        <ion-img src="/assets/img/mercedes-g63.png"> </ion-img>
-        <h2 class="ion-text-center text-bold margin-t-10 margin-b-0">
-          <ion-text>Mercedez GC3</ion-text>
-        </h2>
-      </ion-col>
-      <ion-col size="12" class="ion-padding ion-text-center">
-        <ion-img src="/assets/img/lamborghini-aventador.png"> </ion-img>
-        <h2 class="ion-text-center text-bold margin-t-10 margin-b-0">
-          <ion-text>Lamborghini Aventador</ion-text>
-        </h2>
-      </ion-col>
-      <ion-col size="12" class="ion-padding ion-text-center">
-        <ion-img src="/assets/img/rolls-royce-wraith.png"> </ion-img>
-        <h2 class="ion-text-center text-bold margin-t-10 margin-b-0">
-          <ion-text>Rolls Royce Wraith</ion-text>
-        </h2>
-      </ion-col>
-      <ion-col size="12" class="ion-padding">
-        <ion-button expand="block" class="btn" routerLink="/rentaryates">Ver Todos</ion-button>
-      </ion-col>
-    </ion-row>
-
   </ion-grid>
 
   <ion-grid class="espacio">
@@ -114,5 +97,4 @@
       <ion-text class="texto-footer text-color" (click)="go('')">Aviso Legal</ion-text>
     </h6>
   </ion-grid>
-
 </ion-content>

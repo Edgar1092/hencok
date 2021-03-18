@@ -1,0 +1,61 @@
+ion-item{
+ 
+    margin-bottom: 10px;
+    --border-color:black;
+    --border-radius: 10px 10px 10px 10px;
+    --border-width: 1px;
+     }
+
+ion-select::part(icon) {
+
+    display: none !important;
+    
+}
+       
+.ico1{
+    
+    float: left;
+     font-size: 20px;
+     --border-color: #EEEEEE;     
+}
+
+.ico2{
+    float: right;
+   font-size: 20px;
+   --border-color: #EEEEEE
+}
+
+
+.btn1{
+    font-size: 12px;
+    float: right;
+    width: 100px;
+}
+.text-centro{
+    font-size: xx-large;
+    font-weight: 700;
+}
+
+   
+.color-label{
+    --color: #959595;
+}
+ .btn{
+    --border-radius: 10px 10px 10px 10px;
+    --background: #BA0C2F;
+    height: 50px;
+    font-weight: 700;
+ }
+
+.texto-footer{
+    font-weight: 800;
+    text-decoration: underline #BA0C2F;  
+}
+.espacio{
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.form{
+    margin-top: 40px;
+}

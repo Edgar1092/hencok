@@ -1,0 +1,69 @@
+
+<ion-content [fullscreen]="true">
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content refreshingSpinner="crescent"></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" class="margin-t-10">
+        <ion-button class="ico1" fill="clear" size="small" color="vino" (click)="back()">
+          <ion-icon name="chevron-back-outline" color="vino"></ion-icon>
+        </ion-button>
+
+        <ion-button class="ico2" fill="clear" color="vino" size="small" (click)="openMenu()">
+          <ion-icon src="/assets/img/hencok-logomenu1.svg"></ion-icon>
+        </ion-button>
+        <ion-img class="imagen-logo ion-text-center" src="/assets/img/logo-hencok2.png"></ion-img>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid class="form margin-l-20">   
+    <ion-row>
+      <ion-col size="12" class="ion-padding">  
+        <h5 class="ion-text-left"><ion-text class="ion-text-left text-bold margin-b-0" color="vino">Hencok Barcos</ion-text></h5>
+        <h1 class="ion-text-left text-bold margin-t-10 margin-b-0"><ion-text>Nuestra Flota</ion-text></h1>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+<ion-grid>
+  <ion-row>
+    <ion-col size="12" class="ion-text-center">
+      <ion-spinner *ngIf="spinner" name="crescent"></ion-spinner>
+    </ion-col>
+    <ion-col size="12" *ngFor="let carros of cars">
+      <ion-img [src]="carros.photo_path" class="ion-padding"></ion-img>
+      <ion-item class="color-fondo" lines="none">
+        <h3 class="ion-text-left text-bold">
+          <ion-text class="text-bold titulo-c">
+            {{carros.name}}
+          </ion-text>
+        </h3>
+        <ion-button slot="end" class="texto-m" size="default" color="vino" routerLink="/detallesyates/{{carros.code}}">
+          desde {{carros.from_price}}€
+        </ion-button>
+      </ion-item>
+    </ion-col>
+    <ion-col size="12" *ngIf="!spinner && cars && cars.length == 0">
+      <h5 class="ion-text-center text-bold">No hay datos para mostrar</h5>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+  
+<ion-grid class="espacio">
+  <h6 class="ion-text-center">
+    <ion-text class="texto-footer text-color" (click)="go('')">Politica de Privacidad</ion-text>
+    <ion-text class="text-color"> | </ion-text>
+    <ion-text class="texto-footer text-color" (click)="go('')">Aviso Legal</ion-text>
+  </h6>
+</ion-grid>
+<ion-infinite-scroll threshold="100px" (ionInfinite)="doInfinite($event)">
+  <ion-infinite-scroll-content
+    loadingSpinner="crescent"
+    loadingText="">
+  </ion-infinite-scroll-content>
+</ion-infinite-scroll>
+</ion-content>

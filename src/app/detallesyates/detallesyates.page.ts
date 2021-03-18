@@ -1,20 +1,15 @@
-
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { NavParams, LoadingController, NavController, AlertController, MenuController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
 
-
-
-
 @Component({
-  selector: 'app-detallescars',
-  templateUrl: './detallescars.page.html',
-  styleUrls: ['./detallescars.page.scss'],
+  selector: 'app-detallesyates',
+  templateUrl: './detallesyates.page.html',
+  styleUrls: ['./detallesyates.page.scss'],
 })
-export class DetallescarsPage implements OnInit {
-
-cars: any={};
+export class DetallesyatesPage implements OnInit {
+  cars: any={};
 spinner = false;
 offset = 0
 limit = 10
@@ -27,13 +22,11 @@ total = 0
     private loadingController: LoadingController,
     private navCtrl: NavController,
     private menu: MenuController
-    ) { }
+  ) { }
 
   ngOnInit() {
     this.obtenercarro();
-
   }
-  
   async obtenercarro(){
     // const loading = await this.loadingController.create({
     //   // content: 'Loading'

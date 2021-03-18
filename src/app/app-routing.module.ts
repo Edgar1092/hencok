@@ -25,7 +25,8 @@ const routes: Routes = [
   {
     path: 'detallescars/:code',
     loadChildren: () => import('./detallescars/detallescars.module').then( m => m.DetallescarsPageModule)
-  },  {
+  },
+  {
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
@@ -40,7 +41,19 @@ const routes: Routes = [
   {
     path: 'reserva',
     loadChildren: () => import('./reserva/reserva.module').then( m => m.ReservaPageModule)
+  },
+  {
+    path: 'rentaryates',
+    loadChildren: () => import('./rentaryates/rentaryates.module').then( m => m.RentaryatesPageModule)
+  },
+  {
+    path: 'detallesyates/:code',
+    loadChildren: () => import('./detallesyates/detallesyates.module').then( m => m.DetallesyatesPageModule)
+  },  {
+    path: 'reservayates',
+    loadChildren: () => import('./reservayates/reservayates.module').then( m => m.ReservayatesPageModule)
   }
+
 
 
 ];
