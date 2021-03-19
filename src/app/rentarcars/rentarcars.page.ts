@@ -35,9 +35,12 @@ export class RentarcarsPage implements OnInit {
     this.service.cars(params).subscribe(
       (response: any) => {
         this.spinner = false
-        console.log(response);
-        this.cars = response.data; 
-        this.total = response.total
+        console.log("res",response);
+        if(response && response.data){
+          this.cars = response.data; 
+          this.total = response.total
+        }
+        console.log("cars",this.cars);
       },
       (error) => {
         this.spinner = false

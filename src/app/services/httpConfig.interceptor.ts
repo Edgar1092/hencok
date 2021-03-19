@@ -7,17 +7,22 @@ import {
     HttpErrorResponse
   } from '@angular/common/http';
   import { Observable, throwError } from 'rxjs';
-  import { map, catchError } from 'rxjs/operators';
+  import { map, catchError, finalize } from 'rxjs/operators';
   import { Injectable } from '@angular/core';
-  
+  import { Plugins } from '@capacitor/core';
+  const { Network } = Plugins;
+  import { ToastController } from '@ionic/angular';
   @Injectable()
   export class HttpConfigInterceptor implements HttpInterceptor {
     
-    constructor() { }
+    constructor(public toastController: ToastController) { 
+
+    }
   
   
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
   
+      
     //   const token = "my-token-string-from-server";
   
     //   //Authentication by setting header with token value
@@ -28,7 +33,12 @@ import {
     //       }
     //     });
     //   }
-  
+
+      if(!navigator.onLine){
+        this.presentToast("No hay conexion a internet");
+        return throwError("Network Error");
+      }
+
       if (!request.headers.has('Content-Type')) {
         request = request.clone({
           setHeaders: {
@@ -50,9 +60,18 @@ import {
         }),
         catchError((error: HttpErrorResponse) => {
           console.error(error);
+          if(navigator.onLine){
+            this.presentToast("Error inesperado, contacte con soporte!");
+          }
           return throwError(error);
         }));
     }
   
-  
+    async presentToast(msj) {
+      const toast = await this.toastController.create({
+        message: msj,
+        duration: 2000
+      });
+      toast.present();
+    }
   }

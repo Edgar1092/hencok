@@ -11,6 +11,11 @@ export class AppComponent {
   public selectedIndex = 0;
   public appPages = [
     {
+      title: 'Inicio',
+      url: '',
+      icon: 'chevron-forward'
+    },
+    {
       title: 'Tu perfil',
       url: '/perfil',
       icon: 'chevron-forward'
