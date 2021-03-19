@@ -62,4 +62,7 @@ total = 0
   openMenu(){
     this.menu.open('menu');
   }
+  gotopoliticas() {
+    this.navCtrl.navigateForward('politicas');
+  }
 }

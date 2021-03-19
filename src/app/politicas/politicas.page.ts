@@ -1,22 +1,20 @@
 import { MenuController, NavController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 
-
 @Component({
-  selector: 'app-yates',
-  templateUrl: './yates.page.html',
-  styleUrls: ['./yates.page.scss'],
+  selector: 'app-politicas',
+  templateUrl: './politicas.page.html',
+  styleUrls: ['./politicas.page.scss'],
 })
-export class YatesPage implements OnInit {
+export class PoliticasPage implements OnInit {
 
   constructor(
-    private navCtrl: NavController,
-    private menu: MenuController
+private navCtrl:NavController,
+private menu: MenuController
   ) { }
 
   ngOnInit() {
   }
-
   back(){
     this.navCtrl.back();
   }
@@ -27,6 +25,5 @@ export class YatesPage implements OnInit {
   gotopoliticas() {
     this.navCtrl.navigateForward('politicas');
   }
+
 }
-
-

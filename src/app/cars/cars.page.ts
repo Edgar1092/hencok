@@ -24,4 +24,7 @@ export class CarsPage implements OnInit {
   openMenu(){
     this.menu.open('menu');
   }
+  gotopoliticas() {
+    this.navCtrl.navigateForward('politicas');
+  }
 }

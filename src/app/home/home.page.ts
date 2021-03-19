@@ -1,5 +1,7 @@
+import { NavController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-home',
@@ -8,11 +10,17 @@ import { Router } from '@angular/router';
 })
 export class HomePage implements OnInit {
 
-  constructor(private router: Router,) { }
+  constructor(
+    private router: Router,
+    private navCtrl:NavController
+    ) { }
 
   ngOnInit() {
   }
   go(ruta){
     this.router.navigateByUrl(ruta);
+  }
+  gotopoliticas() {
+    this.navCtrl.navigateForward('politicas');
   }
 }

@@ -21,4 +21,5 @@ export class LoginPage implements OnInit {
   gotosignin() {
     this.navCtrl.navigateForward('signin');
   }
+ 
 }

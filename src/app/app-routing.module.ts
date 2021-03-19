@@ -52,6 +52,14 @@ const routes: Routes = [
   },  {
     path: 'reservayates',
     loadChildren: () => import('./reservayates/reservayates.module').then( m => m.ReservayatesPageModule)
+  },
+  {
+    path: 'politicas',
+    loadChildren: () => import('./politicas/politicas.module').then( m => m.PoliticasPageModule)
+  },
+  {
+    path: 'tusreservas',
+    loadChildren: () => import('./tusreservas/tusreservas.module').then( m => m.TusreservasPageModule)
   }
 
 
