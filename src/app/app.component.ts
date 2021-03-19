@@ -17,7 +17,7 @@ export class AppComponent {
     },
     {
       title: 'Barcos',
-      url: '/rentarcars',
+      url: '/rentaryates',
       icon: 'chevron-forward'
     },
     {

@@ -1,5 +1,6 @@
-import { MenuController } from '@ionic/angular';
+import { MenuController, NavController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
+
 
 
 
@@ -11,13 +12,17 @@ import { Component, OnInit } from '@angular/core';
 export class PerfilPage implements OnInit {
 
   constructor(
-    private menu: MenuController
+    private menu: MenuController,
+    private navCtrl: NavController
   ) { }
 
   ngOnInit() {
   }
   openMenu(){
     this.menu.open('menu');
+  }
+  gotopoliticas() {
+    this.navCtrl.navigateForward('politicas');
   }
 
 }

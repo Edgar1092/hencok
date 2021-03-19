@@ -25,4 +25,7 @@ export class SigninPage implements OnInit {
   gotologin() {
     this.navCtrl.navigateForward('login');
   }
+  gotopoliticas() {
+    this.navCtrl.navigateForward('politicas');
+  }
 }
