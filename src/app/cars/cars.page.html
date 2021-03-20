@@ -34,9 +34,14 @@
 
         <ion-item class="color-fondo">
           <ion-label class="color-label">Lugar de entrega</ion-label>
-          <ion-select doneText="Ok" cancelText="Cancelar" icon="chevron-down-outline">
-            <ion-select-option value="1">Ibiza - Polígono industrial Can Frigole</ion-select-option>
-            <ion-select-option value="2">Madrid - Calle Medina de Pomar 22</ion-select-option>
+
+          <ion-select doneText="Ok" cancelText="Cancelar" icon="chevron-down-outline" 
+          (ionChange)="obtenerdevolucion($event.target.value)"
+          >
+            <ion-select-option *ngFor="let entrega of cars" [value]="entrega.id" >
+              {{entrega.id}}
+            </ion-select-option>
+
           </ion-select>
           <ion-icon src="/assets/img/002-down-arrow1.svg"></ion-icon>
         </ion-item>
@@ -54,8 +59,11 @@
         <ion-item class="color-fondo">
           <ion-label class="color-label">Lugar de devolución</ion-label>
           <ion-select doneText="Ok" cancelText="Cancelar">
-            <ion-select-option value="1">Ibiza - Polígono industrial Can Frigole</ion-select-option>
-            <ion-select-option value="2">Madrid - Calle Medina de Pomar 22</ion-select-option>
+            
+            <ion-select-option *ngFor="let devolucion of cars2" [value]="devolucion.id">
+              {{devolucion.id}}
+            </ion-select-option>
+
           </ion-select>
           <ion-icon src="/assets/img/002-down-arrow1.svg"></ion-icon>
         </ion-item>

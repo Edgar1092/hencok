@@ -46,6 +46,7 @@ export class ApiService implements CanActivate{
     return this.http.post<any>(
     environment.apiUrlCars + "/api/auth/login", data);
   }
+
   cars(params?) : Observable<any>{
     let parseParams = new HttpParams();
     if (params) {
@@ -69,4 +70,29 @@ export class ApiService implements CanActivate{
       catchError(this.handleError('carsdetail', []))
     );
   }
+
+  carsentrega() : Observable<any>{
+    return this.http.get<any>(
+    environment.apiUrlCars + "/api/booking/frontend/"+ "pickup-places")
+    .pipe(
+      tap(_ => this.log('response received')),
+      catchError(this.handleError('carsentrega', []))
+    );
+  }
+
+  carsdevolucion(params?) : Observable<any>{
+    let parseParams = new HttpParams();
+    if (params) {
+      Object.keys(params).forEach(p => {
+        parseParams = parseParams.append(p, params[p]);
+      });
+    }
+    return this.http.get(
+      environment.apiUrlCars + "/api/booking/frontend/return-places", {params : parseParams})
+      .pipe(
+        tap(_ => this.log('response received')),
+        catchError(this.handleError('carsdevolucion', []))
+      );
+  }
+  
 }
