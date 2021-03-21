@@ -36,8 +36,8 @@
           <ion-label class="color-label">Lugar de entrega</ion-label>
 
           <ion-select doneText="Ok" cancelText="Cancelar" icon="chevron-down-outline" 
-          (ionChange)="obtenerdevolucion($event.target.value)"
-          >
+          (ionChange)="obtenerdevolucion($event.target.value)">
+          
             <ion-select-option *ngFor="let entrega of cars" [value]="entrega.id" >
               {{entrega.id}}
             </ion-select-option>
