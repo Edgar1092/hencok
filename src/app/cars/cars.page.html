@@ -35,25 +35,30 @@
         <ion-item class="color-fondo">
           <ion-label class="color-label">Lugar de entrega</ion-label>
 
-          <ion-select doneText="Ok" cancelText="Cancelar" icon="chevron-down-outline" 
-          (ionChange)="obtenerdevolucion($event.target.value)">
+          <ion-select doneText="Ok" cancelText="Cancelar" icon="chevron-down-outline"
+            (ionChange)="obtenerdevolucion($event.target.value)">
           
-            <ion-select-option *ngFor="let entrega of cars" [value]="entrega.id" >
+            <ion-select-option *ngFor="let entrega of cars" [value]="entrega.id">
               {{entrega.id}}
             </ion-select-option>
-
+          
           </ion-select>
           <ion-icon src="/assets/img/002-down-arrow1.svg"></ion-icon>
         </ion-item>
-
         <ion-item class="color-fondo">
           <ion-label class="color-label">Fecha de entrega</ion-label>
-          <ion-datetime doneText="Ok" cancelText="Cancelar" displayFormat="DD/MM/YYYY"></ion-datetime>
+          <ion-datetime (ionChange)="fechaDevolucion($event.target.value)"
+          doneText="Ok" cancelText="Cancelar" displayFormat="DD/MM/YYYY"  [min]="fechaMinEn" [max]="fechaMaxEn">
+        </ion-datetime>
           <ion-icon src="/assets/img/001-calendar1.svg"></ion-icon>
         </ion-item>
         <ion-item class="color-fondo">
           <ion-label class="color-label">Hora de entrega</ion-label>
-          <ion-datetime doneText="Ok" cancelText="Cancelar" displayFormat="HH:mm"></ion-datetime>
+
+          <ion-datetime [min]="horaMin" [max]="horaMax"
+          doneText="Ok" cancelText="Cancelar" displayFormat="HH:mm" minuteValues="00,30">
+          </ion-datetime>
+
           <ion-icon src="/assets/img/003-clock1.svg"></ion-icon>
         </ion-item>
         <ion-item class="color-fondo">
@@ -69,7 +74,11 @@
         </ion-item>
         <ion-item class="color-fondo">
           <ion-label class="color-label">Fecha de devolución</ion-label>
-          <ion-datetime doneText="Ok" cancelText="Cancelar" displayFormat="DD/MM/YYYY"></ion-datetime>
+
+          <ion-datetime [min]="fechaMinDe" [max]="fechaMaxDe"
+          doneText="Ok" cancelText="Cancelar" displayFormat="DD/MM/YYYY">
+          </ion-datetime>
+
           <ion-icon src="/assets/img/001-calendar1.svg"></ion-icon>
         </ion-item>
         <ion-item class="color-fondo">
