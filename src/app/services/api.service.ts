@@ -71,6 +71,33 @@ export class ApiService implements CanActivate{
     );
   }
 
+  yates(params?) : Observable<any>{
+    let parseParams = new HttpParams();
+    if (params) {
+      Object.keys(params).forEach(p => {
+        parseParams = parseParams.append(p, params[p]);
+      });
+    }
+    parseParams = parseParams.append("api_key", environment.apiKey);
+    return this.http.get(
+      environment.apiUrlCars + "/api/booking/frontend/products", {params : parseParams})
+      .pipe(
+        tap(_ => this.log('response received')),
+        catchError(this.handleError('cars', []))
+      );
+  }
+
+  yatesdetail(code) : Observable<any>{
+    let parseParams = new HttpParams();
+    parseParams = parseParams.append("api_key", environment.apiKey);
+    return this.http.get<any>(
+    environment.apiUrlCars + "/api/booking/frontend/products/"+ code, {params : parseParams})
+    .pipe(
+      tap(_ => this.log('response received')),
+      catchError(this.handleError('carsdetail', []))
+    );
+  }
+
   carsentrega() : Observable<any>{
     return this.http.get<any>(
     environment.apiUrlCars + "/api/booking/frontend/"+ "pickup-places")

@@ -4,7 +4,6 @@ import { NavParams, LoadingController, NavController, AlertController, MenuContr
 import { ActivatedRoute, Router } from '@angular/router';
 import { IonInfiniteScroll } from '@ionic/angular';
 
-
 @Component({
   selector: 'app-rentarcars',
   templateUrl: './rentarcars.page.html',
