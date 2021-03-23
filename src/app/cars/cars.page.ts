@@ -7,7 +7,6 @@ import { ApiService } from '../services/api.service';
 import * as Moment from 'moment';
 
 
-
 @Component({
   selector: 'app-cars',
   templateUrl: './cars.page.html',
@@ -29,6 +28,14 @@ export class CarsPage implements OnInit {
   devolucionSeleccionada: any;
   fechaSeleccionada: any;
   
+  /** formulario */
+  pickup_place
+  date_from
+  time_from
+  return_place
+  date_to
+  time_to
+
   spinner = false;
 
 
@@ -86,8 +93,8 @@ export class CarsPage implements OnInit {
   }
 
   fechaEntrega(){
-  this.fechaD = Moment().startOf('month').format();
-  this.fechaH = Moment().endOf('month').format();
+  this.fechaD = Moment().startOf('month').format("YYYY-MM-DD");
+  this.fechaH = Moment().endOf('month').format("YYYY-MM-DD");
     let params = {from:this.fechaD, to:this.fechaH, place:this.entregaSelecionada};
     this.service.carsdateentrega(params).subscribe(
       (response: any) => {
@@ -106,14 +113,20 @@ export class CarsPage implements OnInit {
   }
 
   fechaDevolucion(value){
-      this.fechaSeleccionada = value;
+      this.fechaSeleccionada = Moment(value).format("YYYY-MM-DD");
       let params = {from:this.fechaSeleccionada, to:this.fechaMaxEn, place:this.entregaSelecionada};
       this.service.carsdateentrega(params).subscribe(
         (response: any) => {
         console.log("res",response);
         this.fechaMinDe = response;
         this.fechaMaxDe = response;
-        this.fechaMinDe = this.fechaMinDe[0];
+        console.log(this.fechaMinDe[0], this.fechaSeleccionada)
+        if(this.fechaMinDe[0] == this.fechaSeleccionada){
+          this.fechaMinDe = this.fechaMinDe[1];
+        }else{
+          this.fechaMinDe = this.fechaMinDe[0];
+        }
+        
         this.fechaMaxDe = this.fechaMaxDe[this.fechaMaxDe.length-1];
      
         //  console.log("ENTREGA SELECCIONADA devolucion",this.entregaSelecionada);
@@ -148,7 +161,17 @@ export class CarsPage implements OnInit {
       });
   }
 
- 
+ search(){
+   let data = {
+    "date_from": Moment(this.date_from).format("DD/MM/YYYY"),
+    "time_from": Moment(this.time_from).format("HH:mm"),
+    "date_to": Moment(this.date_to).format("DD/MM/YYYY"),
+    "time_to": Moment(this.time_to).format("HH:mm"),
+    "pickup_place": this.pickup_place,
+    "return_place": this.return_place
+  }
+  console.log(data)
+ }
   
 
 
