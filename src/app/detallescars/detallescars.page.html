@@ -53,18 +53,6 @@
         </ion-item>
 
         <ion-item class="color-fondo">
-          <ion-label class="color-label">Fecha de entrega</ion-label>
-          <ion-datetime doneText="Ok" cancelText="Cancelar" displayFormat="DD/MM/YYYY"></ion-datetime>
-          <ion-icon src="/assets/img/001-calendar1.svg"></ion-icon>
-        </ion-item>
-
-        <ion-item class="color-fondo">
-          <ion-label class="color-label">Hora de entrega</ion-label>
-          <ion-datetime doneText="Ok" cancelText="Cancelar" displayFormat="HH:mm"></ion-datetime>
-          <ion-icon src="/assets/img/003-clock1.svg"></ion-icon>
-        </ion-item>
-
-        <ion-item class="color-fondo">
           <ion-label class="color-label">Lugar de devolución</ion-label>
           <ion-select doneText="Ok" cancelText="Cancelar">
             <ion-select-option value="1">Ibiza - Polígono industrial Can Frigole</ion-select-option>
@@ -74,9 +62,21 @@
         </ion-item>
 
         <ion-item class="color-fondo">
-          <ion-label class="color-label">Fecha de devolución</ion-label>
-          <ion-datetime doneText="Ok" cancelText="Cancelar" displayFormat="DD/MM/YYYY"></ion-datetime>
+          <ion-label class="color-label">Fecha de entrega</ion-label>
+          <ion-datetime doneText="Ok" cancelText="Cancelar" [min]="fechaMinEn" (ionChange)="fechas2($event.target.value)" displayFormat="DD/MM/YYYY"></ion-datetime>
           <ion-icon src="/assets/img/001-calendar1.svg"></ion-icon>
+        </ion-item>
+
+        <ion-item class="color-fondo">
+          <ion-label class="color-label">Fecha de devolución</ion-label>
+          <ion-datetime doneText="Ok" cancelText="Cancelar" [min]="fechaMinDe" [max]="fechaMaxEn"  displayFormat="DD/MM/YYYY" ></ion-datetime>
+          <ion-icon src="/assets/img/001-calendar1.svg"></ion-icon>
+        </ion-item>
+
+        <ion-item class="color-fondo">
+          <ion-label class="color-label">Hora de entrega</ion-label>
+          <ion-datetime doneText="Ok" cancelText="Cancelar" displayFormat="HH:mm"></ion-datetime>
+          <ion-icon src="/assets/img/003-clock1.svg"></ion-icon>
         </ion-item>
 
         <ion-item class="color-fondo">

@@ -137,6 +137,21 @@ export class ApiService implements CanActivate{
       );
   }
 
+  carsocupacionentrega(idcarro,params?) : Observable<any>{
+    let parseParams = new HttpParams();
+    if (params) {
+      Object.keys(params).forEach(p => {
+        parseParams = parseParams.append(p, params[p]);
+      });
+    }
+    return this.http.get(
+      environment.apiUrlCars + "/api/booking/frontend/products/"+idcarro+"/occupation", {params : parseParams})
+      .pipe(
+        tap(_ => this.log('response received')),
+        catchError(this.handleError('carsdateentrega', []))
+      );
+  }
+
   
   carsHoraEntrega(params?) : Observable<any>{
     let parseParams = new HttpParams();
