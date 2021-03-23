@@ -29,15 +29,15 @@ export class CarsPage implements OnInit {
   fechaSeleccionada: any;
   
   /** formulario */
-  pickup_place
-  date_from
-  time_from
-  return_place
-  date_to
-  time_to
+  pickup_place = ''
+  date_from = ''
+  time_from = ''
+  return_place = ''
+  date_to = ''
+  time_to = ''
 
   spinner = false;
-
+  spinnerForm = false;
 
   constructor(
     private navCtrl: NavController,
@@ -162,7 +162,9 @@ export class CarsPage implements OnInit {
   }
 
  search(){
-   let data = {
+   if(this.pickup_place !='' && this.return_place !='' && this.date_from !='' && this.time_from !=''  && this.date_to !='' && this.time_to !=''){
+   this.spinnerForm = true
+    let data = {
     "date_from": Moment(this.date_from).format("DD/MM/YYYY"),
     "time_from": Moment(this.time_from).format("HH:mm"),
     "date_to": Moment(this.date_to).format("DD/MM/YYYY"),
@@ -170,8 +172,25 @@ export class CarsPage implements OnInit {
     "pickup_place": this.pickup_place,
     "return_place": this.return_place
   }
+  let params = {include_products:true}
+
+  this.service.shoppingCart(data, params).subscribe((response)=>{
+    this.spinnerForm =false
+    console.log(response)
+    let shopping_cart = response.shopping_cart
+    localStorage.setItem("free_access_id", shopping_cart.free_access_id)
+    
+  },(error)=>{
+    this.spinnerForm =false
+    console.log(error)
+  })
+  
   console.log(data)
+  }else{
+    this.service.presentToast("Datos incompletos !");
+  }
  }
+ 
   
 
 
