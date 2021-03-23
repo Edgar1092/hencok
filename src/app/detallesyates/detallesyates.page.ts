@@ -9,7 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./detallesyates.page.scss'],
 })
 export class DetallesyatesPage implements OnInit {
-  cars: any={};
+  yates: any={};
 spinner = false;
 offset = 0
 limit = 10
@@ -25,25 +25,18 @@ total = 0
   ) { }
 
   ngOnInit() {
-    this.obtenercarro();
+    this.obteneryate();
   }
-  async obtenercarro(){
-    // const loading = await this.loadingController.create({
-    //   // content: 'Loading'
-    // });
-    // await loading.present();
-    // await 
+  async obteneryate(){
     this.spinner = true;
-    this.service.carsdetail(this.route.snapshot.paramMap.get('code'))
+    this.service.yatesdetail(this.route.snapshot.paramMap.get('code'))
       .subscribe(res => {
         this.spinner = false
         console.log(res);
-        this.cars = res;
-        // loading.dismiss();
+        this.yates = res;
       }, err => {
         this.spinner = false
         console.log(err);
-        // loading.dismiss();
       });
   }
 

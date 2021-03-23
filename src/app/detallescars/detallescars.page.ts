@@ -35,22 +35,15 @@ total = 0
   }
   
   async obtenercarro(){
-    // const loading = await this.loadingController.create({
-    //   // content: 'Loading'
-    // });
-    // await loading.present();
-    // await 
     this.spinner = true;
     this.service.carsdetail(this.route.snapshot.paramMap.get('code'))
       .subscribe(res => {
         this.spinner = false
         console.log(res);
         this.cars = res;
-        // loading.dismiss();
       }, err => {
         this.spinner = false
         console.log(err);
-        // loading.dismiss();
       });
   }
 

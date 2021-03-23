@@ -53,6 +53,14 @@
   </ion-row>
 </ion-grid>
   
+
+<ion-infinite-scroll threshold="100px" (ionInfinite)="doInfinite($event)">
+  <ion-infinite-scroll-content
+    loadingSpinner="crescent"
+    loadingText="">
+  </ion-infinite-scroll-content>
+</ion-infinite-scroll>
+
 <ion-grid class="espacio">
   <h6 class="ion-text-center">
     <ion-text class="texto-footer text-color" (click)="gotopoliticas()">Politica de Privacidad</ion-text>
@@ -60,10 +68,5 @@
     <ion-text class="texto-footer text-color" (click)="gotopoliticas()">Aviso Legal</ion-text>
   </h6>
 </ion-grid>
-<ion-infinite-scroll threshold="100px" (ionInfinite)="doInfinite($event)">
-  <ion-infinite-scroll-content
-    loadingSpinner="crescent"
-    loadingText="">
-  </ion-infinite-scroll-content>
-</ion-infinite-scroll>
+
 </ion-content>

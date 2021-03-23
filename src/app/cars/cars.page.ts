@@ -148,8 +148,4 @@ export class CarsPage implements OnInit {
       });
   }
 
- 
-  
-
-
   }

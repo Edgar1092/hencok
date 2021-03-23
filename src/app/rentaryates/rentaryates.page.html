@@ -34,25 +34,32 @@
     <ion-col size="12" class="ion-text-center">
       <ion-spinner *ngIf="spinner" name="crescent"></ion-spinner>
     </ion-col>
-    <ion-col size="12" *ngFor="let carros of cars">
-      <ion-img [src]="carros.photo_path" class="ion-padding"></ion-img>
+    <ion-col size="12" *ngFor="let yate of yates">
+      <ion-img [src]="yate.photo_path" class="imagenY ion-padding"></ion-img>
       <ion-item class="color-fondo" lines="none">
         <h3 class="ion-text-left text-bold">
           <ion-text class="text-bold titulo-c">
-            {{carros.name}}
+            {{yate.name}}
           </ion-text>
         </h3>
-        <ion-button slot="end" class="texto-m" size="default" color="vino" routerLink="/detallesyates/{{carros.code}}">
-          desde {{carros.from_price}}€
+        <ion-button slot="end" class="texto-m" size="default" color="vino" routerLink="/detallesyates/{{yate.code}}">
+          desde {{yate.from_price}}€
         </ion-button>
       </ion-item>
     </ion-col>
-    <ion-col size="12" *ngIf="!spinner && cars && cars.length == 0">
+    <ion-col size="12" *ngIf="!spinner && yates && yates.length == 0">
       <h5 class="ion-text-center text-bold">No hay datos para mostrar</h5>
     </ion-col>
   </ion-row>
 </ion-grid>
   
+<ion-infinite-scroll threshold="100px" (ionInfinite)="doInfinite($event)">
+  <ion-infinite-scroll-content
+    loadingSpinner="crescent"
+    loadingText="">
+  </ion-infinite-scroll-content>
+</ion-infinite-scroll>
+
 <ion-grid class="espacio">
   <h6 class="ion-text-center">
     <ion-text class="texto-footer text-color" (click)="gotopoliticas('')">Politica de Privacidad</ion-text>
@@ -60,10 +67,4 @@
     <ion-text class="texto-footer text-color" (click)="gotopoliticas('')">Aviso Legal</ion-text>
   </h6>
 </ion-grid>
-<ion-infinite-scroll threshold="100px" (ionInfinite)="doInfinite($event)">
-  <ion-infinite-scroll-content
-    loadingSpinner="crescent"
-    loadingText="">
-  </ion-infinite-scroll-content>
-</ion-infinite-scroll>
 </ion-content>
