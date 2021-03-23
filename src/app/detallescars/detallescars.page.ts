@@ -84,7 +84,6 @@ fechaH: any;
     let arregloFechas=[];
     let arregloFinal=[];
     let contador=0;
-
     console.log('fecha inicial',this.fechaD,this.fechaH)
     let idCarro=this.route.snapshot.paramMap.get('code')
       let params = {from:this.fechaD, to:this.fechaH};
@@ -92,22 +91,14 @@ fechaH: any;
         (response: any) => {
           console.log("res",JSON.parse(JSON.stringify(response)).occupation);
           arregloFechas=response.occupation;
-
           Object.keys(arregloFechas).forEach((element,index) => {
-         
-
-           
             if(arregloFechas[element].selectable_day!=false){
               arregloFinal.push(element)
                 if(contador==0){
                   this.fechaMinEn=element
                }
-
-   
-              
               contador++;
             }
-            
           })
           console.log('arreglo final', arregloFinal)
           console.log('fecha inicial',this.fechaMinEn)
@@ -128,6 +119,7 @@ console.log('posicion final ',Moment(arregloFinal[arregloFinal.length-1]).endOf(
     }
 
     fechas2(value){
-      this.fechas(Moment(value).format('YYYY-MM-DD'))
+      this.fechas(Moment(value).format('YYYY-MM-DD'));
     }
+
 }
