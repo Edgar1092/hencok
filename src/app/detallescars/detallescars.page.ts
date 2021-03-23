@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { NavParams, LoadingController, NavController, AlertController, MenuController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
+import * as Moment from 'moment';
 
 
 
@@ -19,6 +20,14 @@ spinner = false;
 offset = 0
 limit = 10
 total = 0
+fechaMinEn:any;
+fechaMaxEn:any;
+fechaMinDe:any;
+fechaMaxDe: any;
+horaMin:any;
+horaMax:any;
+fechaD: any;
+fechaH: any;
 
   constructor(
     private service: ApiService,
@@ -31,6 +40,9 @@ total = 0
 
   ngOnInit() {
     this.obtenercarro();
+    let fechaInicio = Moment().format('YYYY-MM-DD');
+ 
+    this.fechas(fechaInicio);
 
   }
   
@@ -65,4 +77,57 @@ total = 0
   gotopoliticas() {
     this.navCtrl.navigateForward('politicas');
   }
+
+  fechas(fechaInicio){
+    this.fechaD = fechaInicio;
+    this.fechaH = Moment(this.fechaD).add(2, 'months').format('YYYY-MM-DD');
+    let arregloFechas=[];
+    let arregloFinal=[];
+    let contador=0;
+
+    console.log('fecha inicial',this.fechaD,this.fechaH)
+    let idCarro=this.route.snapshot.paramMap.get('code')
+      let params = {from:this.fechaD, to:this.fechaH};
+      this.service.carsocupacionentrega(idCarro,params).subscribe(
+        (response: any) => {
+          console.log("res",JSON.parse(JSON.stringify(response)).occupation);
+          arregloFechas=response.occupation;
+
+          Object.keys(arregloFechas).forEach((element,index) => {
+         
+
+           
+            if(arregloFechas[element].selectable_day!=false){
+              arregloFinal.push(element)
+                if(contador==0){
+                  this.fechaMinEn=element
+               }
+
+   
+              
+              contador++;
+            }
+            
+          })
+          console.log('arreglo final', arregloFinal)
+          console.log('fecha inicial',this.fechaMinEn)
+          
+console.log('posicion final ',Moment(arregloFinal[arregloFinal.length-1]).endOf('month').format('YYYY-MM-DD'))
+          this.fechaMinDe=Moment(this.fechaMinEn).add(1, 'days').format('YYYY-MM-DD');
+          console.log('contador',contador);
+            // this.fechaD = response;
+            // this.fechaH = response;
+            // this.fechaMinEn = this.fechaD[0];
+            this.fechaMaxEn = Moment(arregloFinal[arregloFinal.length-1]).endOf('month').format('YYYY-MM-DD');
+          // console.log("FECHA Minimo entrega",this.fechaMinEn);
+          // console.log("FECHA Maximo entrega",this.fechaMaxEn);
+        },
+        (error) => {
+          console.log('error')
+        });       
+    }
+
+    fechas2(value){
+      this.fechas(Moment(value).format('YYYY-MM-DD'))
+    }
 }
