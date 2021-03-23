@@ -71,33 +71,6 @@ export class ApiService implements CanActivate{
     );
   }
 
-  yates(params?) : Observable<any>{
-    let parseParams = new HttpParams();
-    if (params) {
-      Object.keys(params).forEach(p => {
-        parseParams = parseParams.append(p, params[p]);
-      });
-    }
-    parseParams = parseParams.append("api_key", environment.apiKey);
-    return this.http.get(
-      environment.apiUrlCars + "/api/booking/frontend/products", {params : parseParams})
-      .pipe(
-        tap(_ => this.log('response received')),
-        catchError(this.handleError('cars', []))
-      );
-  }
-
-  yatesdetail(code) : Observable<any>{
-    let parseParams = new HttpParams();
-    parseParams = parseParams.append("api_key", environment.apiKey);
-    return this.http.get<any>(
-    environment.apiUrlCars + "/api/booking/frontend/products/"+ code, {params : parseParams})
-    .pipe(
-      tap(_ => this.log('response received')),
-      catchError(this.handleError('carsdetail', []))
-    );
-  }
-
   carsentrega() : Observable<any>{
     return this.http.get<any>(
     environment.apiUrlCars + "/api/booking/frontend/"+ "pickup-places")
@@ -137,6 +110,21 @@ export class ApiService implements CanActivate{
       );
   }
 
+  carsocupacionentrega(idcarro,params?) : Observable<any>{
+    let parseParams = new HttpParams();
+    if (params) {
+      Object.keys(params).forEach(p => {
+        parseParams = parseParams.append(p, params[p]);
+      });
+    }
+    return this.http.get(
+      environment.apiUrlCars + "/api/booking/frontend/products/"+idcarro+"/occupation", {params : parseParams})
+      .pipe(
+        tap(_ => this.log('response received')),
+        catchError(this.handleError('carsdateentrega', []))
+      );
+  }
+
   
   carsHoraEntrega(params?) : Observable<any>{
     let parseParams = new HttpParams();
@@ -167,6 +155,35 @@ export class ApiService implements CanActivate{
         catchError(this.handleError('carshoraentrega', []))
       );
   }
+  yates(params?) : Observable<any>{
+    let parseParams = new HttpParams();
+    if (params) {
+      Object.keys(params).forEach(p => {
+        parseParams = parseParams.append(p, params[p]);
+      });
+    }
+    parseParams = parseParams.append("api_key", environment.apiKey);
+    return this.http.get(
+      environment.apiUrlBoat + "/api/booking/frontend/products", {params : parseParams})
+      .pipe(
+        tap(_ => this.log('response received')),
+        catchError(this.handleError('cars', []))
+      );
+  }
+
+  yatesdetail(code) : Observable<any>{
+    let parseParams = new HttpParams();
+    parseParams = parseParams.append("api_key", environment.apiKey);
+    return this.http.get<any>(
+    environment.apiUrlBoat + "/api/booking/frontend/products/"+ code, {params : parseParams})
+    .pipe(
+      tap(_ => this.log('response received')),
+      catchError(this.handleError('carsdetail', []))
+    );
+  }
+
+ 
+
 
   
   

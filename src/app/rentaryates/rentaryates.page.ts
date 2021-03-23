@@ -11,7 +11,7 @@ import { IonInfiniteScroll } from '@ionic/angular';
 })
 export class RentaryatesPage implements OnInit {
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
-  cars=[];
+  yates=[];
   spinner = false
   offset = 0
   limit = 10
@@ -24,17 +24,17 @@ export class RentaryatesPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.obetenerCarros();
+    this.obtenerYates();
   }
-  obetenerCarros(){
+  obtenerYates(){
     this.spinner = true;
     this.offset=0
     let params = {limit:this.limit, offset:0};
-    this.service.cars(params).subscribe(
+    this.service.yates(params).subscribe(
       (response: any) => {
         this.spinner = false
         console.log(response);
-        this.cars = response.data; 
+        this.yates = response.data; 
         this.total = response.total
       },
       (error) => {
@@ -50,11 +50,11 @@ export class RentaryatesPage implements OnInit {
     console.log('Begin async operation');
     this.offset=0
     let params = {limit:this.limit, offset:0};
-    this.service.cars(params).subscribe(
+    this.service.yates(params).subscribe(
       (response: any) => {
         event.target.complete();
         console.log(response);
-        this.cars = response.data;
+        this.yates = response.data;
         this.total = response.total 
       },
       (error) => {
@@ -64,16 +64,16 @@ export class RentaryatesPage implements OnInit {
   }
 
   doInfinite(event){
-    if(this.cars.length < this.total){
+    if(this.yates.length < this.total){
       this.offset+=10;
       let params = {limit:this.limit, offset:this.offset};
       setTimeout(() => {
-        this.service.cars(params).subscribe(
+        this.service.yates(params).subscribe(
           (response: any) => {
             let d = JSON.parse(JSON.stringify(response.data)) 
             console.log(d);
             d.forEach((element,index) => {
-              this.cars.push(element)
+              this.yates.push(element)
             });
             event.target.complete();
           },

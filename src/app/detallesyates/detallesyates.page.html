@@ -27,15 +27,15 @@
       </h5>
     </ion-row>
     <h1 class="text-bold">
-      <ion-text>{{cars.name}}</ion-text>
+      <ion-text>{{yates.name}}</ion-text>
     </h1>
   </ion-col>
   <ion-spinner *ngIf="spinner" name="crescent"></ion-spinner>
 
-  <ion-col size="12">
-    <ion-img [src]="cars.photo_path" class="ion-padding"></ion-img>
+  <ion-col size="12" class="imgborder">
+    <ion-img [src]="yates.photo_path" class="imagenY"></ion-img>
     <h3 class="margin-l-40">
-      <p [innerHTML]="cars.description" class=""></p>
+      <p [innerHTML]="yates.description" class=""></p>
     </h3>
   </ion-col>
 
