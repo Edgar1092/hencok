@@ -20,24 +20,27 @@ export class CarsPage implements OnInit {
   fechaMaxEn:any;
   fechaMinDe:any;
   fechaMaxDe: any;
-  horaMin:any;
-  horaMax:any;
+  horaMinEn:any;
+  horaMaxEn:any;
+  horaMinDe: any;
+  horaMaxDe: any
   fechaD: any;
   fechaH: any;
   entregaSelecionada: any;
   devolucionSeleccionada: any;
   fechaSeleccionada: any;
+  horaSeleccionada: any;
   
   /** formulario */
-  pickup_place
-  date_from
-  time_from
-  return_place
-  date_to
-  time_to
+  pickup_place = ''
+  date_from = ''
+  time_from = ''
+  return_place = ''
+  date_to = ''
+  time_to = ''
 
   spinner = false;
-
+  spinnerForm = false;
 
   constructor(
     private navCtrl: NavController,
@@ -103,9 +106,9 @@ export class CarsPage implements OnInit {
           this.fechaH = response;
           this.fechaMinEn = this.fechaD[0];
           this.fechaMaxEn = this.fechaH[this.fechaH.length-1];
-        console.log("FECHA Minimo entrega",this.fechaMinEn);
-        console.log("FECHA Maximo entrega",this.fechaMaxEn);
-        console.log("ENTREGA SELECCIONADA",this.entregaSelecionada);
+        // console.log("FECHA Minimo entrega",this.fechaMinEn);
+        // console.log("FECHA Maximo entrega",this.fechaMaxEn);
+        // console.log("ENTREGA SELECCIONADA",this.entregaSelecionada);
       },
       (error) => {
         console.log('error')
@@ -113,8 +116,10 @@ export class CarsPage implements OnInit {
   }
 
   fechaDevolucion(value){
+    this.fechaD = Moment().startOf('month').format("YYYY-MM-DD");
+    this.fechaH = Moment().endOf('month').format("YYYY-MM-DD");
       this.fechaSeleccionada = Moment(value).format("YYYY-MM-DD");
-      let params = {from:this.fechaSeleccionada, to:this.fechaMaxEn, place:this.entregaSelecionada};
+      let params = {from:this.fechaD, to:this.fechaH, place:this.entregaSelecionada};
       this.service.carsdateentrega(params).subscribe(
         (response: any) => {
         console.log("res",response);
@@ -126,16 +131,14 @@ export class CarsPage implements OnInit {
         }else{
           this.fechaMinDe = this.fechaMinDe[0];
         }
-        
         this.fechaMaxDe = this.fechaMaxDe[this.fechaMaxDe.length-1];
-     
+
+
         //  console.log("ENTREGA SELECCIONADA devolucion",this.entregaSelecionada);
          console.log("FECHA MINIMA EN DEVOLUCION",this.fechaMinDe);
          console.log("FECHA MAXIMA EN DEVOLUCION",this.fechaMaxDe);
-         console.log("FECHA SELECCIONADA MOSTRADA DEVOLUCION",this.fechaSeleccionada);
-
+         console.log("FECHA SELECCIONADA MOSTRADA ENTREGA",this.fechaSeleccionada);
          this.horaEntrega();
-
         },
         (error) => {
           console.log('error')
@@ -148,12 +151,12 @@ export class CarsPage implements OnInit {
       (response: any) => {
         console.log("res",response);
         this.horas= response;
-        this.horaMin = this.horas[0];
-        this.horaMax = this.horas[this.horas.length-1]
+        this.horaMinEn = this.horas[0];
+        this.horaMaxEn = this.horas[this.horas.length-1]
         // console.log("fechaSeleccionada",this.fechaSeleccionada);
         console.log("HORAAS", this.horas );
-        console.log("hora Minima", this.horaMin);
-        console.log("hora Max", this.horaMax);
+        console.log("hora Minima", this.horaMinEn);
+        console.log("hora Max", this.horaMaxEn);
       },
       (error) => {
        
@@ -161,8 +164,31 @@ export class CarsPage implements OnInit {
       });
   }
 
+  horaDevolucion(){
+    let params = {date:this.date_to , place:this.entregaSelecionada};
+    this.service.carsHoraEntrega(params).subscribe(
+      (response: any) => {
+        console.log("res",response);
+        this.horas= response;
+        this.horaMinDe = this.horas[0];
+        this.horaMaxDe = this.horas[this.horas.length-1]
+        console.log("fechaSeleccionada devolucion",this.date_to);
+        console.log("HORAAS   DEVOLUCION", this.horas );
+        console.log("hora Minima DE", this.horaMinDe);
+        console.log("hora Max DE", this.horaMaxDe);
+      },
+      (error) => {
+       
+        console.log('error')
+      });
+  }
+
+
+
  search(){
-   let data = {
+   if(this.pickup_place !='' && this.return_place !='' && this.date_from !='' && this.time_from !=''  && this.date_to !='' && this.time_to !=''){
+   this.spinnerForm = true
+    let data = {
     "date_from": Moment(this.date_from).format("DD/MM/YYYY"),
     "time_from": Moment(this.time_from).format("HH:mm"),
     "date_to": Moment(this.date_to).format("DD/MM/YYYY"),
@@ -170,8 +196,25 @@ export class CarsPage implements OnInit {
     "pickup_place": this.pickup_place,
     "return_place": this.return_place
   }
+  let params = {include_products:true}
+
+  this.service.shoppingCart(data, params).subscribe((response)=>{
+    this.spinnerForm =false
+    console.log(response)
+    let shopping_cart = response.shopping_cart
+    localStorage.setItem("free_access_id", shopping_cart.free_access_id)
+    
+  },(error)=>{
+    this.spinnerForm =false
+    console.log(error)
+  })
+  
   console.log(data)
+  }else{
+    this.service.presentToast("Datos incompletos !");
+  }
  }
+ 
   
 
 

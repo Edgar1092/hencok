@@ -128,31 +128,21 @@ fecha2
     let arregloFechas=[];
     let arregloFinal=[];
     let contador=0;
-
-    console.log('fecha inicial',fechaInicio)
-    console.log('fecha final',this.fechaH)
+    console.log('fecha inicial',this.fechaD,this.fechaH)
     let idCarro=this.route.snapshot.paramMap.get('code')
       let params = {from:this.fechaD, to:this.fechaH};
       this.service.carsocupacionentrega(idCarro,params).subscribe(
         (response: any) => {
           console.log("res",JSON.parse(JSON.stringify(response)).occupation);
           arregloFechas=response.occupation;
-
           Object.keys(arregloFechas).forEach((element,index) => {
-         
-
-           
             if(arregloFechas[element].selectable_day!=false){
               arregloFinal.push(element)
                 if(contador==0){
                   this.fechaMinEn=element
                }
-
-   
-              
               contador++;
             }
-            
           })
           console.log('arreglo final', arregloFinal)
           console.log('fecha inicial',this.fechaMinEn)
