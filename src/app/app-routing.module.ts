@@ -23,6 +23,10 @@ const routes: Routes = [
     loadChildren: () => import('./rentarcars/rentarcars.module').then( m => m.RentarcarsPageModule)
   },
   {
+    path: 'rentarcars/:id',
+    loadChildren: () => import('./rentarcars/rentarcars.module').then( m => m.RentarcarsPageModule)
+  },
+  {
     path: 'detallescars/:code',
     loadChildren: () => import('./detallescars/detallescars.module').then( m => m.DetallescarsPageModule)
   },
@@ -49,7 +53,8 @@ const routes: Routes = [
   {
     path: 'detallesyates/:code',
     loadChildren: () => import('./detallesyates/detallesyates.module').then( m => m.DetallesyatesPageModule)
-  },  {
+  },
+  {
     path: 'reservayates',
     loadChildren: () => import('./reservayates/reservayates.module').then( m => m.ReservayatesPageModule)
   },

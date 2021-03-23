@@ -3,14 +3,14 @@ import { HttpClient, HttpParams} from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { CanActivate } from '@angular/router';
-import { NavController } from '@ionic/angular';
+import { NavController, ToastController } from '@ionic/angular';
 import { environment } from "../../environments/environment";
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService implements CanActivate{
 
-  constructor(private http: HttpClient, private navCtrl: NavController) { }
+  constructor(private http: HttpClient, private navCtrl: NavController, private toastController : ToastController) { }
 
   canActivate() {
     //Validamos que existe un usuario en el localstorage almacenado
@@ -141,7 +141,7 @@ export class ApiService implements CanActivate{
       );
   }
 
-  shoppingCart(params?) : Observable<any>{
+  shoppingCart(data,params?) : Observable<any>{
     let parseParams = new HttpParams();
     if (params) {
       Object.keys(params).forEach(p => {
@@ -149,7 +149,21 @@ export class ApiService implements CanActivate{
       });
     }
     return this.http.post(
-      environment.apiUrlCars + "/api/booking/frontend/shopping-cart", {params : parseParams})
+      environment.apiUrlCars + "/api/booking/frontend/shopping-cart",data, {params : parseParams})
+      .pipe(
+        tap(_ => this.log('response received')),
+        catchError(this.handleError('carshoraentrega', []))
+      );
+  }
+  shoppingCartGet(id,params?) : Observable<any>{
+    let parseParams = new HttpParams();
+    if (params) {
+      Object.keys(params).forEach(p => {
+        parseParams = parseParams.append(p, params[p]);
+      });
+    }
+    return this.http.get(
+      environment.apiUrlCars + "/api/booking/frontend/shopping-cart/"+id, {params : parseParams})
       .pipe(
         tap(_ => this.log('response received')),
         catchError(this.handleError('carshoraentrega', []))
@@ -182,7 +196,13 @@ export class ApiService implements CanActivate{
     );
   }
 
- 
+  async presentToast(msj) {
+    const toast = await this.toastController.create({
+      message: msj,
+      duration: 2000
+    });
+    toast.present();
+  }
 
 
   
