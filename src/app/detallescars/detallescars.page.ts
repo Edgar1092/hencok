@@ -15,7 +15,9 @@ import * as Moment from 'moment';
 })
 export class DetallescarsPage implements OnInit {
 
-cars: any={};
+cars;
+cars2:[];
+cars3:[];
 spinner = false;
 offset = 0
 limit = 10
@@ -24,10 +26,23 @@ fechaMinEn:any;
 fechaMaxEn:any;
 fechaMinDe:any;
 fechaMaxDe: any;
-horaMin:any;
-horaMax:any;
+horaMinEntrega:any;
+horaMaxEntrega:any;
+horaMinDevolucion:any;
+horaMaxDevolucion:any;
 fechaD: any;
 fechaH: any;
+entregaSelecionada: any;
+devolucionSeleccionada: any;
+fechaSeleccionada: any;
+pickup_place
+date_from
+time_from
+return_place='';
+date_to
+time_to
+fecha1
+fecha2
 
   constructor(
     private service: ApiService,
@@ -40,6 +55,7 @@ fechaH: any;
 
   ngOnInit() {
     this.obtenercarro();
+     this.obtenerentrega();
     let fechaInicio = Moment().format('YYYY-MM-DD');
  
     this.fechas(fechaInicio);
@@ -51,7 +67,7 @@ fechaH: any;
     this.service.carsdetail(this.route.snapshot.paramMap.get('code'))
       .subscribe(res => {
         this.spinner = false
-        console.log(res);
+        console.log('carrote',res);
         this.cars = res;
       }, err => {
         this.spinner = false
@@ -78,13 +94,40 @@ fechaH: any;
     this.navCtrl.navigateForward('politicas');
   }
 
+  obtenerentrega(){
+    this.service.carsentrega()
+        .subscribe(res => {
+          console.log(res);
+          this.cars2 = res;
+        }, err => {
+         
+          console.log(err);
+        });
+    }
+  
+    obtenerdevolucion(value){
+      console.log('ver value',value)
+      this.entregaSelecionada = value;
+      let params = {pickup_place:this.entregaSelecionada};
+      this.service.carsdevolucion(params).subscribe(
+        (response: any) => {
+          console.log("res",response);
+            this.cars3 = response; 
+           console.log("cars2",this.cars3);
+          // this.fechaEntrega();
+        },
+        (error) => {
+         
+          console.log('error')
+        });  
+    }
+
   fechas(fechaInicio){
     this.fechaD = fechaInicio;
     this.fechaH = Moment(this.fechaD).add(2, 'months').format('YYYY-MM-DD');
     let arregloFechas=[];
     let arregloFinal=[];
     let contador=0;
-
     console.log('fecha inicial',this.fechaD,this.fechaH)
     let idCarro=this.route.snapshot.paramMap.get('code')
       let params = {from:this.fechaD, to:this.fechaH};
@@ -92,22 +135,14 @@ fechaH: any;
         (response: any) => {
           console.log("res",JSON.parse(JSON.stringify(response)).occupation);
           arregloFechas=response.occupation;
-
           Object.keys(arregloFechas).forEach((element,index) => {
-         
-
-           
             if(arregloFechas[element].selectable_day!=false){
               arregloFinal.push(element)
                 if(contador==0){
                   this.fechaMinEn=element
                }
-
-   
-              
               contador++;
             }
-            
           })
           console.log('arreglo final', arregloFinal)
           console.log('fecha inicial',this.fechaMinEn)
@@ -128,6 +163,28 @@ console.log('posicion final ',Moment(arregloFinal[arregloFinal.length-1]).endOf(
     }
 
     fechas2(value){
-      this.fechas(Moment(value).format('YYYY-MM-DD'))
+      if(value!=''){
+        this.fechas(Moment(value).format('YYYY-MM-DD'))
+      }
+
     }
+
+    obtenerHoras(){
+      if(this.fecha1!='' && this.pickup_place!=''){
+        let params = {date:this.fecha1,action:'deliveries',place:this.pickup_place};
+        this.service.carsHoraEntrega(params).subscribe(
+          (response: any) => {
+            console.log('hora de entrega1 ',response);
+            this.horaMinEntrega=response[0]
+            this.horaMaxEntrega=response[response.length-1]
+          });
+      }
+ 
+      
+//         horaMinEntrega:any;
+// horaMaxEntrega:any;
+// horaMinDevolucion:any;
+// horaMaxDevolucion:any;
+    }
+
 }
