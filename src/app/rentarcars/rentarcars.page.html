@@ -46,7 +46,7 @@
         <ion-button *ngIf="free_access_id == '' " slot="end" class="texto-m" size="default" color="vino" routerLink="/detallescars/{{carros.code}}">
           desde {{carros.from_price}}€
         </ion-button>
-        <ion-button *ngIf="free_access_id != '' " slot="end" class="texto-m" size="default" color="vino">
+        <ion-button *ngIf="free_access_id != '' " slot="end" class="texto-m" size="default" color="vino" (click)="addProduct(carros.code)">
           desde {{carros.price}}€
         </ion-button>
       </ion-item>

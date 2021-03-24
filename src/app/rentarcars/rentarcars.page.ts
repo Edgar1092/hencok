@@ -25,9 +25,6 @@ export class RentarcarsPage implements OnInit {
     private route: ActivatedRoute,
     
     ) { 
-      if(this.route.snapshot.paramMap.get('id')){
-        this.free_access_id=this.route.snapshot.paramMap.get('id');
-      }
       
     }
 
@@ -145,6 +142,20 @@ export class RentarcarsPage implements OnInit {
     }
   }
 
+  addProduct(product){
+    if(this.free_access_id != ""){
+      let data = { "product": product }
+      this.service.setProduct(this.free_access_id, data).subscribe((response)=>{
+        console.log(response)
+        this.router.navigate(['/reserva/',  this.free_access_id ]);
+      },(error)=>{
+        this.service.presentToast("Error Inesperado, Contacte con soporte !");
+        console.log(error)
+      })
+    }else{
+      this.service.presentToast("Error Inesperado, Carrito de compras no disponible !");
+    }
+  }
   openMenu(){
     this.menu.open('menu');
   }
