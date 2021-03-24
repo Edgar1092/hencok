@@ -35,15 +35,19 @@
       <ion-spinner *ngIf="spinner" name="crescent"></ion-spinner>
     </ion-col>
     <ion-col size="12" *ngFor="let carros of cars">
-      <ion-img [src]="carros.photo_path" class="ion-padding"></ion-img>
+      <ion-img *ngIf="free_access_id == '' " [src]="carros.photo_path" class="ion-padding"></ion-img>
+      <ion-img *ngIf="free_access_id != '' " [src]="carros.full_photo" class="ion-padding"></ion-img>
       <ion-item class="color-fondo" lines="none">
         <h3 class="ion-text-left text-bold">
           <ion-text class="text-bold titulo-c">
             {{carros.name}}
           </ion-text>
         </h3>
-        <ion-button slot="end" class="texto-m" size="default" color="vino" routerLink="/detallescars/{{carros.code}}">
+        <ion-button *ngIf="free_access_id == '' " slot="end" class="texto-m" size="default" color="vino" routerLink="/detallescars/{{carros.code}}">
           desde {{carros.from_price}}€
+        </ion-button>
+        <ion-button *ngIf="free_access_id != '' " slot="end" class="texto-m" size="default" color="vino">
+          desde {{carros.price}}€
         </ion-button>
       </ion-item>
     </ion-col>

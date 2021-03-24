@@ -16,15 +16,29 @@ export class RentarcarsPage implements OnInit {
   offset = 0
   limit = 10
   total = 0
+  free_access_id =''
   constructor(
     private navCtrl: NavController, 
     private service: ApiService,
     private router: Router,
-    private menu:MenuController
-    ) { }
+    private menu:MenuController,
+    private route: ActivatedRoute,
+    
+    ) { 
+      if(this.route.snapshot.paramMap.get('id')){
+        this.free_access_id=this.route.snapshot.paramMap.get('id');
+      }
+      
+    }
 
   ngOnInit() {
-    this.obetenerCarros();
+    if(this.route.snapshot.paramMap.get('id')){
+      this.free_access_id=this.route.snapshot.paramMap.get('id');
+      this.obetenerCarrosSC()
+    }else{
+      this.obetenerCarros();
+    }
+    
   }
 
   obetenerCarros(){
@@ -47,28 +61,68 @@ export class RentarcarsPage implements OnInit {
       });
   }
 
+  obetenerCarrosSC(){
+    this.spinner = true;
+    // this.offset=0
+    let params = {include_products:true};
+    this.service.shoppingCartGet(this.free_access_id, params).subscribe(
+      (response: any) => {
+        this.spinner = false
+        console.log("res",response);
+        if(response && response.products){
+          this.cars = response.products; 
+          // this.total = response.total
+        }
+        console.log("cars",this.cars);
+      },
+      (error) => {
+        this.spinner = false
+        console.log('error')
+      });
+  }
+
   back(){
     this.navCtrl.back();
   }
   doRefresh(event) {
-    console.log('Begin async operation');
-    this.offset=0
-    let params = {limit:this.limit, offset:0};
-    this.service.cars(params).subscribe(
+    if(this.free_access_id != ''){
+    let params = {include_products:true};
+    this.service.shoppingCartGet(this.free_access_id, params).subscribe(
       (response: any) => {
         event.target.complete();
-        console.log(response);
-        this.cars = response.data;
-        this.total = response.total 
+        
+        console.log("res",response);
+        if(response && response.products){
+          this.cars = response.products; 
+          // this.total = response.total
+        }
+        console.log("cars",this.cars);
       },
       (error) => {
         event.target.complete();
         console.log('error')
       });
+    }else{
+      console.log('Begin async operation');
+      this.offset=0
+      let params = {limit:this.limit, offset:0};
+      this.service.cars(params).subscribe(
+        (response: any) => {
+          event.target.complete();
+          console.log(response);
+          this.cars = response.data;
+          this.total = response.total 
+        },
+        (error) => {
+          event.target.complete();
+          console.log('error')
+        });
+    }
+    
   }
 
   doInfinite(event){
-    if(this.cars.length < this.total){
+    if(this.cars.length < this.total && this.free_access_id == ''){
       this.offset+=10;
       let params = {limit:this.limit, offset:this.offset};
       setTimeout(() => {
