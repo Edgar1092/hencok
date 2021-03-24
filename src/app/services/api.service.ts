@@ -169,6 +169,20 @@ export class ApiService implements CanActivate{
         catchError(this.handleError('carshoraentrega', []))
       );
   }
+  setProduct(id,data,params?) : Observable<any>{
+    let parseParams = new HttpParams();
+    if (params) {
+      Object.keys(params).forEach(p => {
+        parseParams = parseParams.append(p, params[p]);
+      });
+    }
+    return this.http.post(
+      environment.apiUrlCars + "/api/booking/frontend/shopping-cart/"+id+"/set-product",data, {params : parseParams})
+      .pipe(
+        tap(_ => this.log('response received')),
+        catchError(this.handleError('carshoraentrega', []))
+      );
+  }
   yates(params?) : Observable<any>{
     let parseParams = new HttpParams();
     if (params) {

@@ -202,8 +202,8 @@ export class CarsPage implements OnInit {
     this.spinnerForm =false
     console.log(response)
     let shopping_cart = response.shopping_cart
-    localStorage.setItem("free_access_id", shopping_cart.free_access_id)
-    
+    // localStorage.setItem("free_access_id", shopping_cart.free_access_id)
+    this.router.navigate(['/rentarcars/',  shopping_cart.free_access_id ]);
   },(error)=>{
     this.spinnerForm =false
     console.log(error)
