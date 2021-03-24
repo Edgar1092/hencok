@@ -14,6 +14,15 @@ export class ReservaPage implements OnInit {
   detail
   terminos = false
   tipoPago
+  nombre=''
+  apellidos=''
+  email=''
+  confirmEmail=''
+  telefono=''
+  telefonoAlternativo=''
+  comentarios=''
+
+
   constructor(
     private navCtrl: NavController, 
     private service: ApiService,
@@ -56,5 +65,19 @@ export class ReservaPage implements OnInit {
         this.spinner = false
         console.log('error')
       });
+  }
+
+  pagar(){
+
+    if( this.nombre!=''&& this.apellidos!='' && this.email!='' && this.telefono!=''){
+      if(this.email!=this.confirmEmail){
+        this.service.presentToast('Email no coinciden')
+        return;
+      }
+
+    }else{
+      this.service.presentToast('Todos los campos tienen que estar llenos')
+    }
+
   }
 }

@@ -34,25 +34,25 @@
           <ion-col size="12">
             <ion-list lines="none">
               <ion-item class="item-form">
-                <ion-input placeholder="Nombre*"></ion-input>
+                <ion-input [(ngModel)]="nombre" placeholder="Nombre*"></ion-input>
               </ion-item>
               <ion-item class="item-form">
-                <ion-input placeholder="Apellidos*"></ion-input>
+                <ion-input [(ngModel)]="apellidos" placeholder="Apellidos*"></ion-input>
               </ion-item>
               <ion-item class="item-form">
-                <ion-input placeholder="Email*"></ion-input>
+                <ion-input [(ngModel)]="email" placeholder="Email*"></ion-input>
               </ion-item>
               <ion-item class="item-form">
-                <ion-input placeholder="Confirma tu email"></ion-input>
+                <ion-input [(ngModel)]="confirmEmail" placeholder="Confirma tu email"></ion-input>
               </ion-item>
               <ion-item class="item-form">
-                <ion-input placeholder="Telefono*"></ion-input>
+                <ion-input [(ngModel)]="telefono" placeholder="Telefono*"></ion-input>
               </ion-item>
               <ion-item class="item-form">
-                <ion-input placeholder="Telefono alternativo*"></ion-input>
+                <ion-input [(ngModel)]="telefonoAlternativo" placeholder="Telefono alternativo"></ion-input>
               </ion-item>
               <ion-item class="item-form">
-                <ion-textarea placeholder="Comentarios*"></ion-textarea>
+                <ion-textarea [(ngModel)]="comentarios" placeholder="Comentarios"></ion-textarea>
               </ion-item>
               <ion-radio-group [(ngModel)]="tipoPago">
               <ion-item class="color-fondo">
@@ -75,7 +75,7 @@
                 </h6>
               </ion-item>
             </ion-list>
-            <ion-button expand="block" color="vino" class="btn" [disabled]="!terminos">Solicitud de Reserva</ion-button>
+            <ion-button expand="block" color="vino" class="btn" [disabled]="!terminos && tipoPago!=''">Solicitud de Reserva</ion-button>
           </ion-col>
         </ion-row>
         <ion-row class="titulos">
