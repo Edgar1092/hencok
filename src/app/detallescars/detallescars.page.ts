@@ -43,7 +43,8 @@ date_to
 time_to
 fecha1
 fecha2
-
+horaEntreg
+horaDev
   constructor(
     private service: ApiService,
     private route: ActivatedRoute,
@@ -177,7 +178,17 @@ console.log('posicion final ',Moment(arregloFinal[arregloFinal.length-1]).endOf(
             console.log('hora de entrega1 ',response);
             this.horaMinEntrega=response[0]
             this.horaMaxEntrega=response[response.length-1]
+
+            let params2 = {date:this.fecha2,action:'collections',place:this.return_place};
+            this.service.carsHoraEntrega(params2).subscribe(
+              (response: any) => {
+                console.log('hora de entrega2 ',response);
+                this.horaMinDevolucion=response[0]
+                this.horaMaxDevolucion=response[response.length-1]
+              });
           });
+
+       
       }
  
       
