@@ -45,6 +45,9 @@ fecha1
 fecha2
 horaEntreg
 horaDev
+spinnerForm = false;
+free_access_id='';
+idCarro
   constructor(
     private service: ApiService,
     private route: ActivatedRoute,
@@ -130,9 +133,9 @@ horaDev
     let arregloFinal=[];
     let contador=0;
     console.log('fecha inicial',this.fechaD,this.fechaH)
-    let idCarro=this.route.snapshot.paramMap.get('code')
+    this.idCarro=this.route.snapshot.paramMap.get('code')
       let params = {from:this.fechaD, to:this.fechaH};
-      this.service.carsocupacionentrega(idCarro,params).subscribe(
+      this.service.carsocupacionentrega(this.idCarro,params).subscribe(
         (response: any) => {
           console.log("res",JSON.parse(JSON.stringify(response)).occupation);
           arregloFechas=response.occupation;
@@ -191,11 +194,55 @@ console.log('posicion final ',Moment(arregloFinal[arregloFinal.length-1]).endOf(
        
       }
  
-      
-//         horaMinEntrega:any;
-// horaMaxEntrega:any;
-// horaMinDevolucion:any;
-// horaMaxDevolucion:any;
+
+    }
+
+    reserva(){
+      if(this.pickup_place !='' && this.return_place !='' && this.fecha1 !='' && this.horaEntreg !=''  && this.fecha2 !='' && this.horaDev !=''){
+      this.spinnerForm = true
+       let data = {
+       "date_from": Moment(this.fecha1).format("DD/MM/YYYY"),
+       "time_from": Moment(this.horaEntreg).format("HH:mm"),
+       "date_to": Moment(this.fecha2).format("DD/MM/YYYY"),
+       "time_to": Moment(this.horaDev).format("HH:mm"),
+       "pickup_place": this.pickup_place,
+       "return_place": this.return_place
+     }
+     let params = {include_products:true}
+   
+     this.service.shoppingCart(data, params).subscribe((response)=>{
+       
+       console.log(response)
+       let shopping_cart = response.shopping_cart
+       // localStorage.setItem("free_access_id", shopping_cart.free_access_id)
+      this.free_access_id=shopping_cart.free_access_id 
+      this.addProduct(this.idCarro)
+      this.spinnerForm =false
+     },(error)=>{
+       this.spinnerForm =false
+       console.log(error)
+     })
+     
+     console.log(data)
+     }else{
+       this.service.presentToast("Datos incompletos !");
+     }
+    }
+
+
+    addProduct(product){
+      if(this.free_access_id != ""){
+        let data = { "product": product }
+        this.service.setProduct(this.free_access_id, data).subscribe((response)=>{
+          console.log(response)
+          this.router.navigate(['/reserva/',  this.free_access_id ]);
+        },(error)=>{
+          this.service.presentToast("Error Inesperado, Contacte con soporte !");
+          console.log(error)
+        })
+      }else{
+        this.service.presentToast("Error Inesperado, Carrito de compras no disponible !");
+      }
     }
 
 }
