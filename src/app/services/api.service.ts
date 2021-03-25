@@ -242,6 +242,19 @@ export class ApiService implements CanActivate{
         catchError(this.handleError('carshoraentrega', []))
       );
   }
-  
+  reservaPagar(data,params?) : Observable<any>{
+    let parseParams = new HttpParams();
+    if (params) {
+      Object.keys(params).forEach(p => {
+        parseParams = parseParams.append(p, params[p]);
+      });
+    }
+    return this.http.post(
+      environment.apiUrlCars + "/reserva/pagar",data, {params : parseParams})
+      .pipe(
+        tap(_ => this.log('response received')),
+        catchError(this.handleError('carshoraentrega', []))
+      );
+  }
   
 }

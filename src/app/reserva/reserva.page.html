@@ -68,6 +68,9 @@
                 </h6></label>
               </ion-item>
             </ion-radio-group>
+              <ion-row *ngIf="detail && tipoPago == 'pagar_ahora' " class="ion-padding bg-info-pay">
+                <h5><ion-text color="vino">Para confirmar su reserva ha de realizarse un pago de </ion-text> <ion-text class="text-bold" color="vino">{{detail.shopping_cart.booking_amount}}€</ion-text></h5>
+              </ion-row>
               <ion-item class="color-fondo">
                 <ion-checkbox [(ngModel)]="terminos" mode="ios" color="vino" slot="start" class="margin"></ion-checkbox>
                 <h6>
@@ -75,7 +78,8 @@
                 </h6>
               </ion-item>
             </ion-list>
-            <ion-button expand="block" color="vino" class="btn" [disabled]="!terminos && tipoPago!=''" (click)="pagar()">Solicitud de Reserva</ion-button>
+            <ion-button *ngIf="tipoPago == '' || tipoPago == 'solicitud_reserva' " expand="block" color="vino" class="btn" [disabled]="!terminos" (click)="pagar()">Solicitud de Reserva</ion-button>
+            <ion-button *ngIf="detail && tipoPago == 'pagar_ahora' " expand="block" color="vino" class="btn" disabled="true" (click)="pagar()">Pagar {{detail.shopping_cart.booking_amount}}€</ion-button>
           </ion-col>
         </ion-row>
         <ion-row class="titulos">

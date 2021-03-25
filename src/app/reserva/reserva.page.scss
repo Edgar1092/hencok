@@ -30,7 +30,8 @@ ion-list{
 ion-checkbox{
     border: 1px solid #000;
     border-radius: 20px;
-    margin-left: 0%;
+    margin-left: 5px;
+    --background :transparent;
 }
 .form{
     margin-top: 40px;
@@ -69,5 +70,16 @@ margin-top: 40px;
     margin-left: auto;
     margin-right: auto;  
   }
-  
+
+.bg-info-pay{
+    background: #f8d7da;
+}
+  ion-radio{
+      width: 25px;
+      height: 25px;
+      border-color: #000;
+      --color:#000;
+      --border-width: 1px;
+
+  }
 

@@ -13,7 +13,7 @@ export class ReservaPage implements OnInit {
   spinner=false
   detail
   terminos = false
-  tipoPago
+  tipoPago=''
   nombre=''
   apellidos=''
   email=''
@@ -75,12 +75,18 @@ export class ReservaPage implements OnInit {
         this.service.presentToast('Email no coinciden')
         return;
       }
+      let pay ="none"
+      if(this.tipoPago=='solicitud_reserva'){
+        pay ="none"
+      }else if(this.tipoPago=='pagar_ahora'){
+        pay=this.detail.sales_process.payment_methods.tpv_virtual
+      }
       let data = {
         "customer_name": this.nombre,
         "customer_surname": this.apellidos,
         "customer_email": this.email,
         "customer_phone_number": this.telefono,
-        "payment": "none"
+        "payment": pay
       }
       this.service.createCheckout(this.free_access_id, data).subscribe(
         (response: any) => {
@@ -90,6 +96,13 @@ export class ReservaPage implements OnInit {
             if(this.tipoPago=='solicitud_reserva'){
         
                 this.router.navigate(['/resumen/',  response.free_access_id ]);
+            }else if(this.tipoPago=='pagar_ahora') {
+              let dataPago = {"id":response.free_access_id,"payment":response.payment,"payment_method":response.payment_method_id}
+              // this.service.reservaPagar(dataPago).subscribe((res)=>{
+              //   console.log("reserva pagar",res)
+              // },(error)=>{
+              //   console.log(error)
+              // })
             }
           }
           // console.log("detail",this.detail);
