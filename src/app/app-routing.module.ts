@@ -63,9 +63,14 @@ const routes: Routes = [
     loadChildren: () => import('./politicas/politicas.module').then( m => m.PoliticasPageModule)
   },
   {
-    path: 'tusreservas/:shoppingCart',
+    path: 'tusreservas',
     loadChildren: () => import('./tusreservas/tusreservas.module').then( m => m.TusreservasPageModule)
+  },
+  {
+    path: 'resumen/:shoppingCart',
+    loadChildren: () => import('./resumen/resumen.module').then( m => m.ResumenPageModule)
   }
+
 
 
 

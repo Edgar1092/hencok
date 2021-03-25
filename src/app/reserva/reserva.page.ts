@@ -70,13 +70,36 @@ export class ReservaPage implements OnInit {
   pagar(){
 
     if( this.nombre!=''&& this.apellidos!='' && this.email!='' && this.telefono!=''){
+   
       if(this.email!=this.confirmEmail){
         this.service.presentToast('Email no coinciden')
         return;
       }
-      if(this.tipoPago=='solicitud_reserva'){
-        this.router.navigate(['/tusreservas/',  this.free_access_id ]);
+      let data = {
+        "customer_name": this.nombre,
+        "customer_surname": this.apellidos,
+        "customer_email": this.email,
+        "customer_phone_number": this.telefono,
+        "payment": "none"
       }
+      this.service.createCheckout(this.free_access_id, data).subscribe(
+        (response: any) => {
+          this.spinner = false
+          console.log("res",response.free_access_id);
+          if(response){
+            if(this.tipoPago=='solicitud_reserva'){
+        
+                this.router.navigate(['/resumen/',  response.free_access_id ]);
+            }
+          }
+          // console.log("detail",this.detail);
+        },
+        (error) => {
+          this.spinner = false
+          console.log('error')
+        });
+
+     
 
     }else{
       this.service.presentToast('Todos los campos tienen que estar llenos')

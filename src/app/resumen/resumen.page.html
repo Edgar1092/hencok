@@ -1,0 +1,110 @@
+<ion-content [fullscreen]="true">
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" class="margin-t-10">
+        <ion-button class="ico1" fill="clear" size="small" color="vino" (click)="back()">
+          <ion-icon name="chevron-back-outline" color="vino"></ion-icon>
+        </ion-button>
+
+        <ion-button class="ico2" fill="clear" color="vino" size="small" (click)="openMenu()">
+          <ion-icon src="/assets/img/hencok-logomenu1.svg"></ion-icon>
+        </ion-button>
+        <ion-img class="imagen-logo ion-text-center" src="/assets/img/logo-hencok2.png"></ion-img>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" class="ion-text-center">
+        <ion-spinner *ngIf="spinner" name="crescent"></ion-spinner>
+      </ion-col>
+      <ion-col size="12" class="ion-padding padding-rl">
+    
+          
+     
+        <ion-row class="titulos">
+          <h5 class="ion-text-left text-bold margin-b-0">
+            <ion-text *ngIf="detail" class="text-bold" >LOCALIZADOR: {{detail.booking.id}}</ion-text><br><br>
+            <ion-text *ngIf="detail" color="vino">{{detail.booking.booking_lines[0].item_description}}</ion-text>
+            
+          </h5>
+          <h1 class="ion-text-left text-bold margin-t-10 margin-b-0"><br>
+            <ion-text>Detalle de la Reserva</ion-text>
+          </h1>
+        </ion-row>
+        <ion-col size="12" class="ion-padding ion-text-center">
+          <ion-img *ngIf="detail" [src]="detail.booking.booking_lines[0].photo_full"> </ion-img>
+        </ion-col>
+        <ion-col size="12" class="ion-padding ion-text-left">
+          <h4>
+            <ion-text class="text-bold">Incluye:</ion-text>
+          </h4>
+          <h4>
+            <ion-text>Seguro a todo Riesgo</ion-text>
+          </h4>
+          <h4>
+            <ion-text>Incluidos 200km por día</ion-text>
+          </h4>
+          <h4>
+            <ion-text class="text-bold">Lugar de recogida</ion-text>
+          </h4>
+          <h4 *ngIf="detail">
+            <ion-text>{{detail.booking.pickup_place}}</ion-text>
+          </h4>
+          <h4>
+            <ion-text class="text-bold">Fecha y hora de recogida</ion-text>
+          </h4>
+          <h4 *ngIf="detail" >
+            <ion-text>{{detail.booking.date_from_full_format}} {{detail.booking.time_from}}</ion-text>
+          </h4>
+          <h4>
+            <ion-text class="text-bold">Lugar de devolución</ion-text>
+          </h4>
+          <h4 *ngIf="detail" >
+            <ion-text>{{detail.booking.return_place}}</ion-text>
+          </h4>
+          <h4>
+            <ion-text class="text-bold">Fecha y hora de devolución</ion-text>
+          </h4>
+          <h4 *ngIf="detail" >
+            <ion-text>{{detail.booking.date_to_full_format}} {{detail.booking.time_to}}</ion-text>
+          </h4>
+          <h4>
+            <ion-text class="text-bold">Duración del alquiler</ion-text>
+          </h4>
+          <h4 *ngIf="detail" >
+            <ion-text>{{detail.booking.days}} día/s</ion-text>
+          </h4>
+        </ion-col>
+        <ion-col size="12">
+          <h4 *ngIf="detail" >
+            <ion-text class="text-bold texto-izquierda">VEHÍCULO</ion-text>
+            <ion-text class="text-bold texto-derecha">{{detail.booking.item_cost}}€</ion-text>
+          </h4>
+        </ion-col>
+        <ion-col size="12">
+          <h4 *ngIf="detail" >
+            <ion-text class="text-bold texto-izquierda">EXTRAS</ion-text>
+            <ion-text class="text-bold texto-derecha">{{detail.booking.extras_cost}}€</ion-text>
+          </h4>
+        </ion-col>
+        <ion-col size="12">
+          <h1 *ngIf="detail" >
+            <ion-text class="text-bold texto-izquierda" color="vino">TOTAL</ion-text>
+            <ion-text class="text-bold texto-derecha" color="vino">{{detail.booking.total_cost}}€</ion-text>
+          </h1>
+        </ion-col>
+        <!-- <ion-button expand="block" color="vino" class="btn margin-t-40">MODIFICAR RESERVA</ion-button> -->
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid class="espacio">
+    <h6 class="ion-text-center">
+      <ion-text class="texto-footer text-color" (click)="gotopoliticas()">Politica de Privacidad</ion-text>
+      <ion-text class="text-color"> | </ion-text>
+      <ion-text class="texto-footer text-color" (click)="gotopoliticas()">Aviso Legal</ion-text>
+    </h6>
+  </ion-grid>
+</ion-content>
