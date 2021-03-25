@@ -39,5 +39,8 @@ export class ResumenPage implements OnInit {
     this.menu.open('menu');
   }
   
+  back() {
+    this.router.navigate(['/']);
+  }
 
 }
