@@ -5,6 +5,7 @@ import { catchError, tap } from 'rxjs/operators';
 import { CanActivate } from '@angular/router';
 import { NavController, ToastController } from '@ionic/angular';
 import { environment } from "../../environments/environment";
+import { HttpHeaders } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
@@ -244,13 +245,18 @@ export class ApiService implements CanActivate{
   }
   reservaPagar(data,params?) : Observable<any>{
     let parseParams = new HttpParams();
+    const headers = new HttpHeaders()
+
+    .set('Accept', '*/*')
+
+    .set('Content-Type', 'multipart/form-data');
     if (params) {
       Object.keys(params).forEach(p => {
         parseParams = parseParams.append(p, params[p]);
       });
     }
     return this.http.post(
-      environment.apiUrlCars + "/reserva/pagar",data, {params : parseParams})
+      environment.apiUrlCars + "/reserva/pagar",data, {params : parseParams,headers: headers} )
       .pipe(
         tap(_ => this.log('response received')),
         catchError(this.handleError('carshoraentrega', []))

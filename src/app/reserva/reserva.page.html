@@ -79,7 +79,7 @@
               </ion-item>
             </ion-list>
             <ion-button *ngIf="tipoPago == '' || tipoPago == 'solicitud_reserva' " expand="block" color="vino" class="btn" [disabled]="!terminos" (click)="pagar()">Solicitud de Reserva</ion-button>
-            <ion-button *ngIf="detail && tipoPago == 'pagar_ahora' " expand="block" color="vino" class="btn" disabled="true" (click)="pagar()">Pagar {{detail.shopping_cart.booking_amount}}€</ion-button>
+            <ion-button *ngIf="detail && tipoPago == 'pagar_ahora' " expand="block" color="vino" class="btn"  [disabled]="!terminos" (click)="pagar()">Pagar {{detail.shopping_cart.booking_amount}}€</ion-button>
           </ion-col>
         </ion-row>
         <ion-row class="titulos">

@@ -97,12 +97,16 @@ export class ReservaPage implements OnInit {
         
                 this.router.navigate(['/resumen/',  response.free_access_id ]);
             }else if(this.tipoPago=='pagar_ahora') {
-              let dataPago = {"id":response.free_access_id,"payment":response.payment,"payment_method":response.payment_method_id}
-              // this.service.reservaPagar(dataPago).subscribe((res)=>{
-              //   console.log("reserva pagar",res)
-              // },(error)=>{
-              //   console.log(error)
-              // })
+              let formData:FormData = new FormData();
+              formData.append('id',response.free_access_id);
+              formData.append('payment','deposit');
+              formData.append('payment_method',response.payment_method_id);
+              // let dataPago = {id:response.free_access_id,payment:'deposit',payment_method:response.payment_method_id}
+              this.service.reservaPagar(formData).subscribe((res)=>{
+                console.log("reserva pagar",res)
+              },(error)=>{
+                console.log(error)
+              })
             }
           }
           // console.log("detail",this.detail);
