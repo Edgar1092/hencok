@@ -218,7 +218,20 @@ export class ApiService implements CanActivate{
     toast.present();
   }
 
-
+  reservaGet(id) : Observable<any>{
+    // let parseParams = new HttpParams();
+    // if (params) {
+    //   Object.keys(params).forEach(p => {
+    //     parseParams = parseParams.append(p, params[p]);
+    //   });
+    // }
+    return this.http.get(
+      environment.apiUrlCars + "/api/booking/frontend/booking/"+id)
+      .pipe(
+        tap(_ => this.log('response received')),
+        catchError(this.handleError('reservaGet', []))
+      );
+  }
   
   
 }

@@ -75,7 +75,7 @@
                 </h6>
               </ion-item>
             </ion-list>
-            <ion-button expand="block" color="vino" class="btn" [disabled]="!terminos && tipoPago!=''">Solicitud de Reserva</ion-button>
+            <ion-button expand="block" color="vino" class="btn" [disabled]="!terminos && tipoPago!=''" (click)="pagar()">Solicitud de Reserva</ion-button>
           </ion-col>
         </ion-row>
         <ion-row class="titulos">
