@@ -83,13 +83,17 @@
 
         <ion-item class="color-fondo">
           <ion-label class="color-label">Hora de entrega</ion-label>
-          <ion-datetime doneText="Ok" [(ngModel)]="horaEntreg" cancelText="Cancelar" minuteValues="00,30" [min]="horaMinEntrega" [disabled]="!fecha1" [max]="horaMaxEntrega" displayFormat="HH:mm"></ion-datetime>
+          <ion-datetime doneText="Ok" [(ngModel)]="horaEntreg" cancelText="Cancelar" minuteValues="00,30" 
+          [min]="horaMinEntrega" [disabled]="!fecha1" [max]="horaMaxEntrega" displayFormat="HH:mm"></ion-datetime>
           <ion-icon src="/assets/img/003-clock1.svg"></ion-icon>
         </ion-item>
 
         <ion-item class="color-fondo">
           <ion-label class="color-label">Hora de devolución</ion-label>
-          <ion-datetime doneText="Ok" [disabled]="!horaEntreg" [(ngModel)]="horaDev" cancelText="Cancelar" minuteValues="00,30" displayFormat="HH:mm"></ion-datetime>
+
+          <ion-datetime doneText="Ok" [disabled]="!horaEntreg" [(ngModel)]="horaDev" 
+          [min]="horaMinDevolucion" [max]="horaMaxDevolucion"
+          cancelText="Cancelar" minuteValues="00,30" displayFormat="HH:mm"></ion-datetime>
           <ion-icon src="/assets/img/003-clock1.svg"></ion-icon>
         </ion-item>
 

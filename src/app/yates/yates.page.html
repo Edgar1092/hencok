@@ -34,42 +34,73 @@
 
         <ion-item class="color-fondo">
           <ion-label class="color-label">Lugar de entrega</ion-label>
-          <ion-select doneText="Ok" cancelText="Cancelar" icon="chevron-down-outline">
-            <ion-select-option value="1">Ibiza - Polígono industrial Can Frigole</ion-select-option>
-            <ion-select-option value="2">Madrid - Calle Medina de Pomar 22</ion-select-option>
+
+          <ion-select [(ngModel)]="pickup_place" doneText="Ok" cancelText="Cancelar" icon="chevron-down-outline"
+            (ionChange)="obtenerdevolucion($event.target.value)">
+            <ion-select-option *ngFor="let entrega of yates" [value]="entrega.id">
+              {{entrega.id}}
+            </ion-select-option>
           </ion-select>
           <ion-icon src="/assets/img/002-down-arrow1.svg"></ion-icon>
         </ion-item>
 
         <ion-item class="color-fondo">
           <ion-label class="color-label">Fecha de entrega</ion-label>
-          <ion-datetime doneText="Ok" cancelText="Cancelar" displayFormat="DD/MM/YYYY"></ion-datetime>
+          <ion-datetime [disabled]="pickup_place == '' " [(ngModel)]="date_from" (ionChange)="fechaDevolucion($event.target.value)"
+          doneText="Ok" cancelText="Cancelar" displayFormat="DD/MM/YYYY"  [min]="fechaMinEn" [max]="fechaMaxEn">
+        </ion-datetime>
           <ion-icon src="/assets/img/001-calendar1.svg"></ion-icon>
         </ion-item>
+
         <ion-item class="color-fondo">
           <ion-label class="color-label">Hora de entrega</ion-label>
-          <ion-datetime doneText="Ok" cancelText="Cancelar" displayFormat="HH:mm"></ion-datetime>
+
+          <ion-datetime
+          [disabled]="date_from == '' " [(ngModel)]="time_from" [min]="horaMinEn" [max]="horaMaxEn"
+         doneText="Ok" cancelText="Cancelar" displayFormat="HH:mm" minuteValues="00,30">
+         </ion-datetime>
+          
           <ion-icon src="/assets/img/003-clock1.svg"></ion-icon>
         </ion-item>
+
         <ion-item class="color-fondo">
           <ion-label class="color-label">Lugar de devolución</ion-label>
-          <ion-select doneText="Ok" cancelText="Cancelar">
-            <ion-select-option value="1">Ibiza - Polígono industrial Can Frigole</ion-select-option>
-            <ion-select-option value="2">Madrid - Calle Medina de Pomar 22</ion-select-option>
+
+          <ion-select [disabled]="pickup_place == '' " [(ngModel)]="return_place" doneText="Ok" cancelText="Cancelar">
+            <ion-select-option *ngFor="let devolucion of yates2" [value]="devolucion.id">
+              {{devolucion.id}}
+            </ion-select-option>
           </ion-select>
+
           <ion-icon src="/assets/img/002-down-arrow1.svg"></ion-icon>
         </ion-item>
+
         <ion-item class="color-fondo">
           <ion-label class="color-label">Fecha de devolución</ion-label>
-          <ion-datetime doneText="Ok" cancelText="Cancelar" displayFormat="DD/MM/YYYY"></ion-datetime>
+
+          <ion-datetime (ionChange)="horaDevolucion($event.target.value)"
+          [disabled]="return_place == '' "  [(ngModel)]="date_to" [min]="fechaMinDe" 
+          [max]="fechaMaxDe"
+          doneText="Ok" cancelText="Cancelar" displayFormat="DD/MM/YYYY">
+          </ion-datetime>
+
           <ion-icon src="/assets/img/001-calendar1.svg"></ion-icon>
         </ion-item>
+
         <ion-item class="color-fondo">
           <ion-label class="color-label">Hora de devolución</ion-label>
-          <ion-datetime doneText="Ok" cancelText="Cancelar" displayFormat="HH:mm"></ion-datetime>
+
+          <ion-datetime 
+          [disabled]="date_to == '' "  [(ngModel)]="time_to" doneText="Ok" cancelText="Cancelar" 
+          displayFormat="HH:mm" minuteValues="00,30" [min]="horaMinDe" [max]="horaMaxDe" ></ion-datetime>
+
           <ion-icon src="/assets/img/003-clock1.svg"></ion-icon>
         </ion-item>
-        <ion-button expand="block" class="btn">Buscar</ion-button>
+
+        <div class="ion-text-center width-100">
+          <ion-spinner *ngIf="spinnerForm" color="vino" name="crescent"></ion-spinner>
+        </div>
+        <ion-button [disabled]="spinnerForm" expand="block" class="btn" (click)="search()">Buscar</ion-button>
       </ion-col>
     </ion-row>
 

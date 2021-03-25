@@ -53,6 +53,9 @@ export class CarsPage implements OnInit {
 
   ngOnInit() {
     this.obtenerentrega();
+    let fechaInicio = Moment().format('YYYY-MM-DD');
+ 
+    this.fechaEntrega(fechaInicio);
     
   }
 
@@ -87,7 +90,7 @@ export class CarsPage implements OnInit {
         console.log("res",response);
           this.cars2 = response; 
         // console.log("cars2",this.cars2);
-        this.fechaEntrega();
+        // this.fechaEntrega();
       },
       (error) => {
        
@@ -95,9 +98,11 @@ export class CarsPage implements OnInit {
       });  
   }
 
-  fechaEntrega(){
-  this.fechaD = Moment().startOf('month').format("YYYY-MM-DD");
-  this.fechaH = Moment().endOf('month').format("YYYY-MM-DD");
+  fechaEntrega(fechaInicio){
+  // this.fechaD = Moment().startOf('month').format("YYYY-MM-DD");
+  // this.fechaH = Moment().endOf('month').format("YYYY-MM-DD");
+  this.fechaD = fechaInicio;
+  this.fechaH = Moment(this.fechaD).add(2, 'months').format('YYYY-MM-DD');
     let params = {from:this.fechaD, to:this.fechaH, place:this.entregaSelecionada};
     this.service.carsdateentrega(params).subscribe(
       (response: any) => {
@@ -116,10 +121,10 @@ export class CarsPage implements OnInit {
   }
 
   fechaDevolucion(value){
-    this.fechaD = Moment().startOf('month').format("YYYY-MM-DD");
-    this.fechaH = Moment().endOf('month').format("YYYY-MM-DD");
+    this.fechaSeleccionada = Moment().startOf('month').format("YYYY-MM-DD");
+    this.fechaMaxDe =Moment(this.fechaSeleccionada).add(2, 'months').format('YYYY-MM-DD');
       this.fechaSeleccionada = Moment(value).format("YYYY-MM-DD");
-      let params = {from:this.fechaD, to:this.fechaH, place:this.entregaSelecionada};
+      let params = {from:this.fechaSeleccionada, to:this.fechaMaxDe, place:this.entregaSelecionada};
       this.service.carsdateentrega(params).subscribe(
         (response: any) => {
         console.log("res",response);
@@ -164,8 +169,9 @@ export class CarsPage implements OnInit {
       });
   }
 
-  horaDevolucion(){
-    let params = {date:this.date_to , place:this.entregaSelecionada};
+  horaDevolucion(value){
+    this.fechaSeleccionada = value;
+    let params = {date:this.fechaSeleccionada , place:this.entregaSelecionada};
     this.service.carsHoraEntrega(params).subscribe(
       (response: any) => {
         console.log("res",response);
