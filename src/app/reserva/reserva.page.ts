@@ -74,6 +74,9 @@ export class ReservaPage implements OnInit {
         this.service.presentToast('Email no coinciden')
         return;
       }
+      if(this.tipoPago=='solicitud_reserva'){
+        this.router.navigate(['/tusreservas/',  this.free_access_id ]);
+      }
 
     }else{
       this.service.presentToast('Todos los campos tienen que estar llenos')
