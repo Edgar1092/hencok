@@ -2,6 +2,8 @@ import { NavController, MenuController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Capacitor, Plugins } from '@capacitor/core'
+import { environment } from '../../environments/environment'
 
 @Component({
   selector: 'app-reserva',
@@ -9,6 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./reserva.page.scss'],
 })
 export class ReservaPage implements OnInit {
+  url = environment.apiUrlCars+'/reserva/pagar'
   free_access_id = ''
   spinner=false
   detail
@@ -21,6 +24,9 @@ export class ReservaPage implements OnInit {
   telefono=''
   telefonoAlternativo=''
   comentarios=''
+  idCheckout
+  Paymentmethodcheckout
+  paymentcheckout
 
 
   constructor(
@@ -31,10 +37,33 @@ export class ReservaPage implements OnInit {
     private route: ActivatedRoute,
   ) { }
 
-  ngOnInit() {
+ async ngOnInit() {
     if(this.route.snapshot.paramMap.get('id')){
       this.free_access_id=this.route.snapshot.paramMap.get('id');
       this.obetenerDetalleSC();
+    }
+
+  
+      //  if (this.url.searchParams.has('r')) {
+
+      
+    // }
+  }
+
+  async botonprueba(){
+    if (Capacitor.isNative) {
+      console.log('aqui entro')
+      await Plugins.App.openUrl({ url: this.url})
+      await this.getLaunchUrl()
+    } else {
+      console.log('aqui entro en el else')
+      await this.router.navigateByUrl(this.url.split('.com').pop()!)
+    }
+  }
+  async getLaunchUrl() {
+    const urlOpen = await Plugins.App.getLaunchUrl()
+    if (urlOpen && urlOpen.url) {
+      await this.router.navigateByUrl(this.url.split('://localhost').pop()!)
     }
   }
   back(){
@@ -101,12 +130,16 @@ export class ReservaPage implements OnInit {
               formData.append('id',response.free_access_id);
               formData.append('payment','deposit');
               formData.append('payment_method',response.payment_method_id);
-              // let dataPago = {id:response.free_access_id,payment:'deposit',payment_method:response.payment_method_id}
-              this.service.reservaPagar(formData).subscribe((res)=>{
-                console.log("reserva pagar",res)
-              },(error)=>{
-                console.log(error)
-              })
+              this.idCheckout=this.free_access_id
+              this.Paymentmethodcheckout=response.payment_method_id
+              this.paymentcheckout='deposit'
+               let dataPago = {id:response.free_access_id,payment:'deposit',payment_method:response.payment_method_id}
+
+              // this.service.reservaPagar(dataPago).subscribe((res)=>{
+              //   console.log("reserva pagar",res)
+              // },(error)=>{
+              //   console.log(error)
+              // })
             }
           }
           // console.log("detail",this.detail);

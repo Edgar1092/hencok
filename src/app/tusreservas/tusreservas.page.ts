@@ -1,7 +1,8 @@
-import { MenuController } from '@ionic/angular';
+import { MenuController,NavController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { ActivatedRoute, Router } from '@angular/router';
+
 
 
 @Component({
@@ -14,6 +15,7 @@ export class TusreservasPage implements OnInit {
   reserva:[]
   constructor(
    private menu: MenuController,
+   private navCtrl: NavController,
    private service: ApiService,
    private router: Router,
    private route: ActivatedRoute,
@@ -38,6 +40,10 @@ export class TusreservasPage implements OnInit {
 
   openMenu(){
     this.menu.open('menu');
+  }
+
+  gotopoliticas() {
+    this.navCtrl.navigateForward('politicas');
   }
   
 }

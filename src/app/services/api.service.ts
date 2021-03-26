@@ -247,9 +247,14 @@ export class ApiService implements CanActivate{
     let parseParams = new HttpParams();
     const headers = new HttpHeaders()
 
-    .set('Accept', '*/*')
+    .set('Content-Type', 'multipart/form-data')
+.set('Content-Length','424')
+.set('Cache-Control','no-cache')
+.set('Host','hencok.mybooking.es')
+.set('Accept','*/*')
+.set('Accept-Encoding','gzip, deflate, br')
+.set('Connection','keep-alive')
 
-    .set('Content-Type', 'multipart/form-data');
     if (params) {
       Object.keys(params).forEach(p => {
         parseParams = parseParams.append(p, params[p]);

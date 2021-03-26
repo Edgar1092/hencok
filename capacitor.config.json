@@ -9,5 +9,8 @@
       "launchShowDuration": 0
     }
   },
+  "server": {
+    "allowNavigation": ["sis-t.redsys.es", "*.redsys.es"]
+  },
   "cordova": {}
 }

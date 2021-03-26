@@ -55,7 +55,7 @@
         <ion-item class="color-fondo">
           <ion-label class="color-label">Hora de entrega</ion-label>
 
-          <ion-datetime [disabled]="date_from == '' " [(ngModel)]="time_from" [min]="horaMin" [max]="horaMax"
+          <ion-datetime [disabled]="date_from == '' " [(ngModel)]="time_from" [min]="horaMinEn" [max]="horaMaxEn"
           doneText="Ok" cancelText="Cancelar" displayFormat="HH:mm" minuteValues="00,30">
           </ion-datetime>
 
