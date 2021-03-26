@@ -147,7 +147,7 @@ export class RentarcarsPage implements OnInit {
       let data = { "product": product }
       this.service.setProduct(this.free_access_id, data).subscribe((response)=>{
         console.log(response)
-        this.router.navigate(['/reservayates/',  this.free_access_id ]);
+        this.router.navigate(['/reserva/',  this.free_access_id ]);
       },(error)=>{
         this.service.presentToast("Error Inesperado, Contacte con soporte !");
         console.log(error)
@@ -156,6 +156,7 @@ export class RentarcarsPage implements OnInit {
       this.service.presentToast("Error Inesperado, Carrito de compras no disponible !");
     }
   }
+
   openMenu(){
     this.menu.open('menu');
   }
