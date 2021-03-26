@@ -60,6 +60,7 @@ idCarro
   ngOnInit() {
     this.obtenercarro();
      this.obtenerentrega();
+     
     let fechaInicio = Moment().format('YYYY-MM-DD');
  
     this.fechas(fechaInicio);
@@ -190,11 +191,7 @@ console.log('posicion final ',Moment(arregloFinal[arregloFinal.length-1]).endOf(
                 this.horaMaxDevolucion=response[response.length-1]
               });
           });
-
-       
       }
- 
-
     }
 
     reserva(){

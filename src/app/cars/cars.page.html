@@ -45,6 +45,8 @@
           </ion-select>
           <ion-icon src="/assets/img/002-down-arrow1.svg"></ion-icon>
         </ion-item>
+
+
         <ion-item class="color-fondo">
           <ion-label class="color-label">Fecha de entrega</ion-label>
           <ion-datetime [disabled]="pickup_place == '' " [(ngModel)]="date_from" (ionChange)="fechaDevolucion($event.target.value)"
@@ -52,6 +54,7 @@
         </ion-datetime>
           <ion-icon src="/assets/img/001-calendar1.svg"></ion-icon>
         </ion-item>
+
         <ion-item class="color-fondo">
           <ion-label class="color-label">Hora de entrega</ion-label>
 
@@ -75,7 +78,9 @@
         <ion-item class="color-fondo">
           <ion-label class="color-label">Fecha de devolución</ion-label>
 
-          <ion-datetime [disabled]="return_place == '' "  [(ngModel)]="date_to" [min]="fechaMinDe" [max]="fechaMaxDe"
+          <ion-datetime (ionChange)="horaDevolucion($event.target.value)"
+          [disabled]="return_place == '' "  [(ngModel)]="date_to" [min]="fechaMinDe" 
+          [max]="fechaMaxDe"
           doneText="Ok" cancelText="Cancelar" displayFormat="DD/MM/YYYY">
           </ion-datetime>
 
@@ -83,7 +88,9 @@
         </ion-item>
         <ion-item class="color-fondo">
           <ion-label class="color-label">Hora de devolución</ion-label>
-          <ion-datetime [disabled]="date_to == '' "  [(ngModel)]="time_to" doneText="Ok" cancelText="Cancelar" displayFormat="HH:mm" minuteValues="00,30"></ion-datetime>
+          <ion-datetime 
+          [disabled]="date_to == '' "  [(ngModel)]="time_to" doneText="Ok" cancelText="Cancelar" 
+          displayFormat="HH:mm" minuteValues="00,30" [min]="horaMinDe" [max]="horaMaxDe" ></ion-datetime>
           <ion-icon src="/assets/img/003-clock1.svg"></ion-icon>
         </ion-item>
 

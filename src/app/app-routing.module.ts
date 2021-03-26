@@ -69,7 +69,11 @@ const routes: Routes = [
   {
     path: 'resumen/:shoppingCart',
     loadChildren: () => import('./resumen/resumen.module').then( m => m.ResumenPageModule)
+  },  {
+    path: 'resumenyates',
+    loadChildren: () => import('./resumenyates/resumenyates.module').then( m => m.ResumenyatesPageModule)
   }
+
 
 
 

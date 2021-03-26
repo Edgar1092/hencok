@@ -16,15 +16,23 @@ export class RentaryatesPage implements OnInit {
   offset = 0
   limit = 10
   total = 0
+  free_access_id =''
   constructor(
     private navCtrl: NavController, 
     private service: ApiService,
     private router: Router,
-    private menu:MenuController
+    private menu:MenuController,
+    private route: ActivatedRoute,
   ) { }
 
   ngOnInit() {
-    this.obtenerYates();
+    if(this.route.snapshot.paramMap.get('id')){
+      this.free_access_id=this.route.snapshot.paramMap.get('id');
+      this.obetenerYatesSC()
+    }else{
+      this.obtenerYates();
+    }
+    
   }
   obtenerYates(){
     this.spinner = true;
@@ -43,28 +51,70 @@ export class RentaryatesPage implements OnInit {
       });
   }
 
+  obetenerYatesSC(){
+    this.spinner = true;
+    // this.offset=0
+    let params = {include_products:true};
+    this.service.shoppingYate(this.free_access_id, params).subscribe(
+      (response: any) => {
+        this.spinner = false
+        console.log("res",response);
+        if(response && response.products){
+          this.yates = response.products; 
+          // this.total = response.total
+        }
+        console.log("yates",this.yates);
+      },
+      (error) => {
+        this.spinner = false
+        console.log('error')
+      });
+  }
+
   back(){
     this.navCtrl.back();
   }
+
   doRefresh(event) {
-    console.log('Begin async operation');
-    this.offset=0
-    let params = {limit:this.limit, offset:0};
-    this.service.yates(params).subscribe(
+    if(this.free_access_id != ''){
+    let params = {include_products:true};
+    this.service.shoppingYateGet(this.free_access_id, params).subscribe(
       (response: any) => {
         event.target.complete();
-        console.log(response);
-        this.yates = response.data;
-        this.total = response.total 
+        
+        console.log("res",response);
+        if(response && response.products){
+          this.yates = response.products; 
+          // this.total = response.total
+        }
+        console.log("yates",this.yates);
       },
       (error) => {
         event.target.complete();
         console.log('error')
       });
+    }else{
+      console.log('Begin async operation');
+      this.offset=0
+      let params = {limit:this.limit, offset:0};
+      this.service.yates(params).subscribe(
+        (response: any) => {
+          event.target.complete();
+          console.log(response);
+          this.yates = response.data;
+          this.total = response.total 
+        },
+        (error) => {
+          event.target.complete();
+          console.log('error')
+        });
+    }
+    
   }
 
-  doInfinite(event){
-    if(this.yates.length < this.total){
+
+doInfinite(event){
+    if(this.yates.length < this.total && this.free_access_id == ''){
       this.offset+=10;
       let params = {limit:this.limit, offset:this.offset};
       setTimeout(() => {
@@ -84,6 +134,20 @@ export class RentaryatesPage implements OnInit {
       }, 1000);
     }else{
       event.target.complete();
+    }
+  }
+  addProduct(product){
+    if(this.free_access_id != ""){
+      let data = { "product": product }
+      this.service.setProductYate(this.free_access_id, data).subscribe((response)=>{
+        console.log(response)
+        this.router.navigate(['/reserva/',  this.free_access_id ]);
+      },(error)=>{
+        this.service.presentToast("Error Inesperado, Contacte con soporte !");
+        console.log(error)
+      })
+    }else{
+      this.service.presentToast("Error Inesperado, Carrito de compras no disponible !");
     }
   }
 

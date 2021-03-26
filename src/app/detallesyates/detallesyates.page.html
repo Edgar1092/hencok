@@ -27,15 +27,15 @@
       </h5>
     </ion-row>
     <h1 class="text-bold">
-      <ion-text>{{yates.name}}</ion-text>
+      <ion-text *ngIf="yates"> {{yates.name}}</ion-text>
     </h1>
   </ion-col>
   <ion-spinner *ngIf="spinner" name="crescent"></ion-spinner>
 
-  <ion-col size="12" class="imgborder">
-    <ion-img [src]="yates.photo_path" class="imagenY"></ion-img>
+  <ion-col size="12">
+    <ion-img *ngIf="yates" [src]="yates.photo_path" class="imagenY"></ion-img>
     <h3 class="margin-l-40">
-      <p [innerHTML]="yates.description" class=""></p>
+      <p *ngIf="yates" [innerHTML]="yates.description" class=""></p>
     </h3>
   </ion-col>
 
@@ -45,47 +45,62 @@
       <ion-col size="12" class="ion-padding">
         <ion-item class="color-fondo">
           <ion-label class="color-label">Lugar de entrega</ion-label>
-          <ion-select doneText="Ok" cancelText="Cancelar" icon="chevron-down-outline">
-            <ion-select-option value="1">Ibiza - Polígono industrial Can Frigole</ion-select-option>
-            <ion-select-option value="2">Madrid - Calle Medina de Pomar 22</ion-select-option>
+
+          <ion-select [(ngModel)]="pickup_place" doneText="Ok" cancelText="Cancelar" icon="chevron-down-outline"
+          (ionChange)="obtenerdevolucion($event.target.value)">
+        
+          <ion-select-option *ngFor="let entrega of yates2" [value]="entrega.id">
+            {{entrega.id}}
+          </ion-select-option>
+        
+        </ion-select>
+
+          <ion-icon src="/assets/img/002-down-arrow1.svg"></ion-icon>
+        </ion-item>
+
+        <ion-item class="color-fondo">
+          <ion-label class="color-label">Lugar de devolución</ion-label>
+          
+          <ion-select [disabled]="!pickup_place" [(ngModel)]="return_place" doneText="Ok" cancelText="Cancelar">
+            
+            <ion-select-option *ngFor="let devolucion of yates3" [value]="devolucion.id">
+              {{devolucion.id}}
+            </ion-select-option>
+
           </ion-select>
           <ion-icon src="/assets/img/002-down-arrow1.svg"></ion-icon>
         </ion-item>
 
         <ion-item class="color-fondo">
           <ion-label class="color-label">Fecha de entrega</ion-label>
-          <ion-datetime doneText="Ok" cancelText="Cancelar" displayFormat="DD/MM/YYYY"></ion-datetime>
+          <ion-datetime [disabled]="!return_place" [(ngModel)]="fecha1" doneText="Ok" cancelText="Cancelar" [min]="fechaMinEn" (ionChange)="fechas2($event.target.value)" displayFormat="DD/MM/YYYY"></ion-datetime>
+          <ion-icon src="/assets/img/001-calendar1.svg"></ion-icon>
+        </ion-item>
+
+        <ion-item class="color-fondo">
+          <ion-label class="color-label">Fecha de devolución</ion-label>
+          <ion-datetime  [(ngModel)]="fecha2" doneText="Ok" cancelText="Cancelar" [disabled]="!fecha1" [min]="fechaMinDe" [max]="fechaMaxEn" (ionChange)="obtenerHoras()" displayFormat="DD/MM/YYYY" ></ion-datetime>
           <ion-icon src="/assets/img/001-calendar1.svg"></ion-icon>
         </ion-item>
 
         <ion-item class="color-fondo">
           <ion-label class="color-label">Hora de entrega</ion-label>
-          <ion-datetime doneText="Ok" cancelText="Cancelar" displayFormat="HH:mm"></ion-datetime>
+          <ion-datetime doneText="Ok" [(ngModel)]="horaEntreg" cancelText="Cancelar" minuteValues="00,30" [min]="horaMinEntrega" [disabled]="!fecha1" [max]="horaMaxEntrega" displayFormat="HH:mm"></ion-datetime>
           <ion-icon src="/assets/img/003-clock1.svg"></ion-icon>
-        </ion-item>
-
-        <ion-item class="color-fondo">
-          <ion-label class="color-label">Lugar de devolución</ion-label>
-          <ion-select doneText="Ok" cancelText="Cancelar">
-            <ion-select-option value="1">Ibiza - Polígono industrial Can Frigole</ion-select-option>
-            <ion-select-option value="2">Madrid - Calle Medina de Pomar 22</ion-select-option>
-          </ion-select>
-          <ion-icon src="/assets/img/002-down-arrow1.svg"></ion-icon>
-        </ion-item>
-
-        <ion-item class="color-fondo">
-          <ion-label class="color-label">Fecha de devolución</ion-label>
-          <ion-datetime doneText="Ok" cancelText="Cancelar" displayFormat="DD/MM/YYYY"></ion-datetime>
-          <ion-icon src="/assets/img/001-calendar1.svg"></ion-icon>
         </ion-item>
 
         <ion-item class="color-fondo">
           <ion-label class="color-label">Hora de devolución</ion-label>
-          <ion-datetime doneText="Ok" cancelText="Cancelar" displayFormat="HH:mm"></ion-datetime>
+          <ion-datetime doneText="Ok" [disabled]="!horaEntreg" [(ngModel)]="horaDev" cancelText="Cancelar" minuteValues="00,30" displayFormat="HH:mm"></ion-datetime>
           <ion-icon src="/assets/img/003-clock1.svg"></ion-icon>
         </ion-item>
 
-        <ion-button expand="block" class="btn" routerLink="/reservayates">Reservar</ion-button>
+        <div class="ion-text-center width-100">
+          <ion-spinner *ngIf="spinnerForm" color="vino" name="crescent"></ion-spinner>
+        </div>
+
+        <ion-button expand="block" class="btn" (click)="reserva()" [disabled]="spinnerForm">Reservar</ion-button>
+
       </ion-col>
     </ion-row>
   </ion-grid>

@@ -111,22 +111,6 @@ export class ApiService implements CanActivate{
       );
   }
 
-  carsocupacionentrega(idcarro,params?) : Observable<any>{
-    let parseParams = new HttpParams();
-    if (params) {
-      Object.keys(params).forEach(p => {
-        parseParams = parseParams.append(p, params[p]);
-      });
-    }
-    return this.http.get(
-      environment.apiUrlCars + "/api/booking/frontend/products/"+idcarro+"/occupation", {params : parseParams})
-      .pipe(
-        tap(_ => this.log('response received')),
-        catchError(this.handleError('carsdateentrega', []))
-      );
-  }
-
-  
   carsHoraEntrega(params?) : Observable<any>{
     let parseParams = new HttpParams();
     if (params) {
@@ -139,6 +123,21 @@ export class ApiService implements CanActivate{
       .pipe(
         tap(_ => this.log('response received')),
         catchError(this.handleError('carshoraentrega', []))
+      );
+  }
+
+  carsocupacionentrega(idcarro,params?) : Observable<any>{
+    let parseParams = new HttpParams();
+    if (params) {
+      Object.keys(params).forEach(p => {
+        parseParams = parseParams.append(p, params[p]);
+      });
+    }
+    return this.http.get(
+      environment.apiUrlCars + "/api/booking/frontend/products/"+idcarro+"/occupation", {params : parseParams})
+      .pipe(
+        tap(_ => this.log('response received')),
+        catchError(this.handleError('carsdateentrega', []))
       );
   }
 
@@ -156,6 +155,7 @@ export class ApiService implements CanActivate{
         catchError(this.handleError('carshoraentrega', []))
       );
   }
+
   shoppingCartGet(id,params?) : Observable<any>{
     let parseParams = new HttpParams();
     if (params) {
@@ -170,6 +170,7 @@ export class ApiService implements CanActivate{
         catchError(this.handleError('carshoraentrega', []))
       );
   }
+
   setProduct(id,data,params?) : Observable<any>{
     let parseParams = new HttpParams();
     if (params) {
@@ -183,40 +184,6 @@ export class ApiService implements CanActivate{
         tap(_ => this.log('response received')),
         catchError(this.handleError('carshoraentrega', []))
       );
-  }
-  yates(params?) : Observable<any>{
-    let parseParams = new HttpParams();
-    if (params) {
-      Object.keys(params).forEach(p => {
-        parseParams = parseParams.append(p, params[p]);
-      });
-    }
-    parseParams = parseParams.append("api_key", environment.apiKey);
-    return this.http.get(
-      environment.apiUrlBoat + "/api/booking/frontend/products", {params : parseParams})
-      .pipe(
-        tap(_ => this.log('response received')),
-        catchError(this.handleError('cars', []))
-      );
-  }
-
-  yatesdetail(code) : Observable<any>{
-    let parseParams = new HttpParams();
-    parseParams = parseParams.append("api_key", environment.apiKey);
-    return this.http.get<any>(
-    environment.apiUrlBoat + "/api/booking/frontend/products/"+ code, {params : parseParams})
-    .pipe(
-      tap(_ => this.log('response received')),
-      catchError(this.handleError('carsdetail', []))
-    );
-  }
-
-  async presentToast(msj) {
-    const toast = await this.toastController.create({
-      message: msj,
-      duration: 2000
-    });
-    toast.present();
   }
 
   reservaGet(id) : Observable<any>{
@@ -243,18 +210,14 @@ export class ApiService implements CanActivate{
         catchError(this.handleError('carshoraentrega', []))
       );
   }
+
   reservaPagar(data,params?) : Observable<any>{
     let parseParams = new HttpParams();
     const headers = new HttpHeaders()
 
-    .set('Content-Type', 'multipart/form-data')
-.set('Content-Length','424')
-.set('Cache-Control','no-cache')
-.set('Host','hencok.mybooking.es')
-.set('Accept','*/*')
-.set('Accept-Encoding','gzip, deflate, br')
-.set('Connection','keep-alive')
+    .set('Accept', '*/*')
 
+    .set('Content-Type', 'multipart/form-data');
     if (params) {
       Object.keys(params).forEach(p => {
         parseParams = parseParams.append(p, params[p]);
@@ -267,5 +230,212 @@ export class ApiService implements CanActivate{
         catchError(this.handleError('carshoraentrega', []))
       );
   }
+
+  yates(params?) : Observable<any>{
+    let parseParams = new HttpParams();
+    if (params) {
+      Object.keys(params).forEach(p => {
+        parseParams = parseParams.append(p, params[p]);
+      });
+    }
+    parseParams = parseParams.append("api_key", environment.apiKey);
+    return this.http.get(
+      environment.apiUrlBoat + "/api/booking/frontend/products", {params : parseParams})
+      .pipe(
+        tap(_ => this.log('response received')),
+        catchError(this.handleError('yates', []))
+      );
+  }
+
+  yatesdetail(code) : Observable<any>{
+    let parseParams = new HttpParams();
+    parseParams = parseParams.append("api_key", environment.apiKey);
+    return this.http.get<any>(
+    environment.apiUrlBoat + "/api/booking/frontend/products/"+ code, {params : parseParams})
+    .pipe(
+      tap(_ => this.log('response received')),
+      catchError(this.handleError('yatesdetail', []))
+    );
+  }
+
+  yatesEntrega() : Observable<any>{
+    let parseParams = new HttpParams();
+    parseParams = parseParams.append("api_key", environment.apiKey);
+    return this.http.get<any>(
+    environment.apiUrlBoat + "/api/booking/frontend/pickup-places",{params : parseParams})
+    .pipe(
+      tap(_ => this.log('response received')),
+      catchError(this.handleError('yatesEntrega', []))
+    );
+  }
+
+  yatesDevolucion(params?) : Observable<any>{
+    let parseParams = new HttpParams();
+    if (params) {
+      Object.keys(params).forEach(p => {
+        parseParams = parseParams.append(p, params[p]);
+      });
+    }
+    parseParams = parseParams.append("api_key", environment.apiKey);
+    return this.http.get(
+      environment.apiUrlBoat + "/api/booking/frontend/return-places", {params : parseParams})
+      .pipe(
+        tap(_ => this.log('response received')),
+        catchError(this.handleError('yatesDevolucion', []))
+      );
+  }
+
+  yatesFechas(params?) : Observable<any>{
+    let parseParams = new HttpParams();
+    if (params) {
+      Object.keys(params).forEach(p => {
+        parseParams = parseParams.append(p, params[p]);
+      });
+    }
+    parseParams = parseParams.append("api_key", environment.apiKey);
+    return this.http.get(
+      environment.apiUrlBoat + "/api/booking/frontend/dates", {params : parseParams})
+      .pipe(
+        tap(_ => this.log('response received')),
+        catchError(this.handleError('yatesFechas', []))
+      );
+  }
+
+  yatesHoras(params?) : Observable<any>{
+    let parseParams = new HttpParams();
+    if (params) {
+      Object.keys(params).forEach(p => {
+        parseParams = parseParams.append(p, params[p]);
+      });
+    }
+    parseParams = parseParams.append("api_key", environment.apiKey);
+    return this.http.get(
+      environment.apiUrlBoat + "/api/booking/frontend/times", {params : parseParams})
+      .pipe(
+        tap(_ => this.log('response received')),
+        catchError(this.handleError('yatesHoras', []))
+      );
+  }
+
+  yatesOcupacion(idyate,params?) : Observable<any>{
+    let parseParams = new HttpParams();
+    if (params) {
+      Object.keys(params).forEach(p => {
+        parseParams = parseParams.append(p, params[p]);
+      });
+    }
+    parseParams = parseParams.append("api_key", environment.apiKey);
+    return this.http.get(
+      environment.apiUrlBoat + "/api/booking/frontend/products/"+idyate+"/occupation", {params : parseParams})
+      .pipe(
+        tap(_ => this.log('response received')),
+        catchError(this.handleError('yatesOcupacion', []))
+      );
+  }
+
+  shoppingYate(data,params?) : Observable<any>{
+    let parseParams = new HttpParams();
+    if (params) {
+      Object.keys(params).forEach(p => {
+        parseParams = parseParams.append(p, params[p]);
+      });
+    }
+    parseParams = parseParams.append("api_key", environment.apiKey);
+    return this.http.post(
+      environment.apiUrlBoat + "/api/booking/frontend/shopping-cart",data, {params : parseParams})
+      .pipe(
+        tap(_ => this.log('response received')),
+        catchError(this.handleError('shoppingYate', []))
+      );
+  }
+
+  shoppingYateGet(id,params?) : Observable<any>{
+    let parseParams = new HttpParams();
+    if (params) {
+      Object.keys(params).forEach(p => {
+        parseParams = parseParams.append(p, params[p]);
+      });
+    }
+    parseParams = parseParams.append("api_key", environment.apiKey);
+    return this.http.get(
+      environment.apiUrlBoat + "/api/booking/frontend/shopping-cart/"+id, {params : parseParams})
+      .pipe(
+        tap(_ => this.log('response received')),
+        catchError(this.handleError('shoppingYateGet', []))
+      );
+  }
+
+  setProductYate(id,data,params?) : Observable<any>{
+    let parseParams = new HttpParams();
+    if (params) {
+      Object.keys(params).forEach(p => {
+        parseParams = parseParams.append(p, params[p]);
+      });
+    }
+    parseParams = parseParams.append("api_key", environment.apiKey);
+    return this.http.post(
+      environment.apiUrlBoat + "/api/booking/frontend/shopping-cart/"+id+"/set-product",data, {params : parseParams})
+      .pipe(
+        tap(_ => this.log('response received')),
+        catchError(this.handleError('setProductYate', []))
+      );
+  }
+
+  reservaGetYate(id) : Observable<any>{
+    let parseParams = new HttpParams();
+    parseParams = parseParams.append("api_key", environment.apiKey);
+    return this.http.get(
+      environment.apiUrlBoat + "/api/booking/frontend/booking/"+id,{params : parseParams})
+      .pipe(
+        tap(_ => this.log('response received')),
+        catchError(this.handleError('reservaGetYate', []))
+      );
+  }
+
+  createCheckoutYate(shoppingYate,data,params?) : Observable<any>{
+    let parseParams = new HttpParams();
+    if (params) {
+      Object.keys(params).forEach(p => {
+        parseParams = parseParams.append(p, params[p]);
+      });
+    }
+    parseParams = parseParams.append("api_key", environment.apiKey);
+    return this.http.post(
+      environment.apiUrlBoat + "/api/booking/frontend/shopping-cart/"+shoppingYate+"/checkout",data, {params : parseParams})
+      .pipe(
+        tap(_ => this.log('response received')),
+        catchError(this.handleError('createCheckoutYate', []))
+      );
+  }
+
+  reservaPagarYate(data,params?) : Observable<any>{
+    let parseParams = new HttpParams();
+    const headers = new HttpHeaders()
+    .set('Accept', '*/*')
+    .set('Content-Type', 'multipart/form-data');
+    if (params) {
+      Object.keys(params).forEach(p => {
+        parseParams = parseParams.append(p, params[p]);
+      });
+    }
+    parseParams = parseParams.append("api_key", environment.apiKey);
+    return this.http.post(
+      environment.apiUrlBoat + "/reserva/pagar",data, {params : parseParams,headers: headers} )
+      .pipe(
+        tap(_ => this.log('response received')),
+        catchError(this.handleError('reservaPagarYate', []))
+      );
+  }
+
+
+
+  async presentToast(msj) {
+    const toast = await this.toastController.create({
+      message: msj,
+      duration: 2000
+    });
+    toast.present();
+  }
+
   
 }
