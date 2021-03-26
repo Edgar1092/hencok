@@ -11,7 +11,7 @@ import { NgForm } from '@angular/forms';
 })
 export class PagoPage implements OnInit {
   // @ViewChild('myFormPost') form: ElementRef;
-   @ViewChild('submitButton', {static:true}) public buttonsiyo: ElementRef;
+   @ViewChild('submitButton', {static:false}) public buttonsiyo: ElementRef;
   // @ViewChild('submitButton') submitButton: ElementRef;
   // @ViewChild('myFormPost', { read: NgForm }) form: any;
   url = environment.apiUrlCars+'/reserva/pagar'
@@ -38,6 +38,10 @@ export class PagoPage implements OnInit {
     //  this.form.nativeElement.submit();
     //  console.log('se ejecuto esa mierda');
 
+    // this.buttonsiyo.nativeElement.click();
+  }
+
+  ionViewDidEnter(){
     this.buttonsiyo.nativeElement.click();
   }
 
