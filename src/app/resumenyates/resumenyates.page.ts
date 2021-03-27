@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MenuController } from '@ionic/angular';
+import { MenuController, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-resumenyates',
@@ -17,6 +17,7 @@ export class ResumenyatesPage implements OnInit {
     private service: ApiService,
     private router: Router,
     private route: ActivatedRoute,
+    private navCtrl:NavController
   ) { }
 
   ngOnInit() {
@@ -44,5 +45,13 @@ export class ResumenyatesPage implements OnInit {
   back() {
     this.router.navigate(['/']);
   }
+  gotoaviso() {
+    this.navCtrl.navigateForward('avisolegal');
+  }
+
+  gotopoliticas() {
+    this.navCtrl.navigateForward('politicas');
+  }
+
 
 }

@@ -23,4 +23,7 @@ export class HomePage implements OnInit {
   gotopoliticas() {
     this.navCtrl.navigateForward('politicas');
   }
+  gotoaviso() {
+    this.navCtrl.navigateForward('avisolegal');
+  }
 }

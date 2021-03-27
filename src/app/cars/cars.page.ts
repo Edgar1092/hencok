@@ -70,6 +70,9 @@ export class CarsPage implements OnInit {
   gotopoliticas() {
     this.navCtrl.navigateForward('politicas');
   }
+  gotoaviso() {
+    this.navCtrl.navigateForward('avisolegal');
+  }
 
   obtenerentrega(){
   this.service.carsentrega()

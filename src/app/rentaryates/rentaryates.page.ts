@@ -17,6 +17,7 @@ export class RentaryatesPage implements OnInit {
   limit = 10
   total = 0
   free_access_id =''
+
   constructor(
     private navCtrl: NavController, 
     private service: ApiService,
@@ -26,14 +27,15 @@ export class RentaryatesPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    if(this.route.snapshot.paramMap.get('id')){
-      this.free_access_id=this.route.snapshot.paramMap.get('id');
-      this.obetenerYatesSC()
-    }else{
-      this.obtenerYates();
-    }
-    
+    // if(this.route.snapshot.paramMap.get('id')){
+    //   this.free_access_id=this.route.snapshot.paramMap.get('id');
+    //   this.obetenerYatesSC()
+    // }else{
+    //   this.obtenerYates();
+    // }
+    this.obtenerYates();
   }
+
   obtenerYates(){
     this.spinner = true;
     this.offset=0
@@ -44,26 +46,7 @@ export class RentaryatesPage implements OnInit {
         console.log(response);
         this.yates = response.data; 
         this.total = response.total
-      },
-      (error) => {
-        this.spinner = false
-        console.log('error')
-      });
-  }
-
-  obetenerYatesSC(){
-    this.spinner = true;
-    // this.offset=0
-    let params = {include_products:true};
-    this.service.shoppingYate(this.free_access_id, params).subscribe(
-      (response: any) => {
-        this.spinner = false
-        console.log("res",response);
-        if(response && response.products){
-          this.yates = response.products; 
-          // this.total = response.total
-        }
-        console.log("yates",this.yates);
+        console.log('Total de Yates',this.total)
       },
       (error) => {
         this.spinner = false
@@ -111,8 +94,7 @@ export class RentaryatesPage implements OnInit {
     }
     
   }
-
-
+  
 doInfinite(event){
     if(this.yates.length < this.total && this.free_access_id == ''){
       this.offset+=10;
@@ -136,26 +118,15 @@ doInfinite(event){
       event.target.complete();
     }
   }
-  addProduct(product){
-    if(this.free_access_id != ""){
-      let data = { "product": product }
-      this.service.setProductYate(this.free_access_id, data).subscribe((response)=>{
-        console.log(response)
-        this.router.navigate(['/reserva/',  this.free_access_id ]);
-      },(error)=>{
-        this.service.presentToast("Error Inesperado, Contacte con soporte !");
-        console.log(error)
-      })
-    }else{
-      this.service.presentToast("Error Inesperado, Carrito de compras no disponible !");
-    }
-  }
 
   openMenu(){
     this.menu.open('menu');
   }
   gotopoliticas() {
     this.navCtrl.navigateForward('politicas');
+  }
+  gotoaviso() {
+    this.navCtrl.navigateForward('avisolegal');
   }
 
 }
