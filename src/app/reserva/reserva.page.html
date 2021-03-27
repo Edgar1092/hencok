@@ -82,12 +82,7 @@
             </ion-list>
             <ion-button *ngIf="tipoPago == '' || tipoPago == 'solicitud_reserva' " expand="block" color="vino" class="btn" [disabled]="!terminos" (click)="pagar()">Solicitud de Reserva</ion-button>
             <ion-button *ngIf="detail && tipoPago == 'pagar_ahora' " expand="block" color="vino" class="btn"  [disabled]="!terminos" (click)="pagar()">Pagar {{detail.shopping_cart.booking_amount}}€</ion-button>
-            <form ngNoForm #myFormPost action="{{url}}" method="post">
-              <input type="hidden" name="id" [value]="idCheckout" />
-              <input type="hidden" name="payment" [value]="paymentcheckout" />
-              <input type="hidden" name="payment_method" [value]="Paymentmethodcheckout" />
-              <input type="submit"  value="pagar">
-            </form>
+          
           </ion-col>
         </ion-row>
         <ion-row class="titulos">

@@ -213,18 +213,14 @@ export class ApiService implements CanActivate{
 
   reservaPagar(data,params?) : Observable<any>{
     let parseParams = new HttpParams();
-    const headers = new HttpHeaders()
-
-    .set('Accept', '*/*')
-
-    .set('Content-Type', 'multipart/form-data');
+  
     if (params) {
       Object.keys(params).forEach(p => {
         parseParams = parseParams.append(p, params[p]);
       });
     }
     return this.http.post(
-      environment.apiUrlCars + "/reserva/pagar",data, {params : parseParams,headers: headers} )
+      environment.apiUrlCars + "/reserva/pagar",data, {params : parseParams} )
       .pipe(
         tap(_ => this.log('response received')),
         catchError(this.handleError('carshoraentrega', []))
