@@ -12,6 +12,7 @@ import {
   HttpClientModule 
 } from '@angular/common/http';
 import { HttpConfigInterceptor } from './services/httpConfig.interceptor';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,7 +23,8 @@ import { HttpConfigInterceptor } from './services/httpConfig.interceptor';
       provide: HTTP_INTERCEPTORS,
       useClass: HttpConfigInterceptor,
       multi: true
-    }
+    },
+    InAppBrowser
   ],
   bootstrap: [AppComponent],
 })

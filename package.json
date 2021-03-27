@@ -1,8 +1,8 @@
 {
   "name": "hencok",
   "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "https://ionicframework.com/",
+  "author": "K-Digital",
+  "homepage": "https://hencok.com/",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -21,7 +21,10 @@
     "@angular/router": "~11.2.0",
     "@capacitor/android": "^2.4.6",
     "@capacitor/core": "2.4.6",
+    "@ionic-native/core": "^5.31.1",
+    "@ionic-native/in-app-browser": "^5.31.1",
     "@ionic/angular": "^5.5.2",
+    "cordova-plugin-inappbrowser": "^5.0.0",
     "moment": "^2.29.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
@@ -52,5 +55,5 @@
     "tslint": "~6.1.0",
     "typescript": "~4.0.2"
   },
-  "description": "An Ionic project"
+  "description": "Proyecto para reservas de coches y barcos"
 }
