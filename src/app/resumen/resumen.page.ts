@@ -1,4 +1,4 @@
-import { MenuController } from '@ionic/angular';
+import { MenuController, NavController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -16,6 +16,7 @@ export class ResumenPage implements OnInit {
     private service: ApiService,
     private router: Router,
     private route: ActivatedRoute,
+    private navCtrl: NavController
   ) { }
 
   ngOnInit() {
@@ -41,6 +42,12 @@ export class ResumenPage implements OnInit {
   
   back() {
     this.router.navigate(['/']);
+  }
+  gotopolitica() {
+    this.navCtrl.navigateForward('politicas');
+  }
+  gotoaviso() {
+    this.navCtrl.navigateForward('avisolegal');
   }
 
 }

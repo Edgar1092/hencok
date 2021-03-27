@@ -93,6 +93,9 @@ export class DetallesyatesPage implements OnInit {
   gotopoliticas() {
     this.navCtrl.navigateForward('politicas');
   }
+  gotoaviso() {
+    this.navCtrl.navigateForward('avisolegal');
+  }
 
   obtenerentrega(){
     this.service.yatesEntrega()

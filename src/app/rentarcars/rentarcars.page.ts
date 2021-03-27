@@ -163,6 +163,9 @@ export class RentarcarsPage implements OnInit {
   gotopoliticas() {
     this.navCtrl.navigateForward('politicas');
   }
+  gotoaviso() {
+    this.navCtrl.navigateForward('avisolegal');
+  }
 
     
 }

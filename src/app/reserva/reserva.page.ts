@@ -75,6 +75,9 @@ export class ReservaPage implements OnInit {
   gotopoliticas() {
     this.navCtrl.navigateForward('politicas');
   }
+  gotoaviso() {
+    this.navCtrl.navigateForward('avisolegal');
+  }
 
   obetenerDetalleSC(){
     this.spinner = true;
