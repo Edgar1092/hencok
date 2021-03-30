@@ -49,7 +49,7 @@ export class ResumenyatesPage implements OnInit {
     this.navCtrl.navigateForward('avisolegal');
   }
 
-  gotopoliticas() {
+  gotopolitica() {
     this.navCtrl.navigateForward('politicas');
   }
 
