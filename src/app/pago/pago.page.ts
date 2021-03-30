@@ -6,6 +6,8 @@ import { environment } from '../../environments/environment'
 import { NgForm } from '@angular/forms';
 import { Capacitor, Plugins } from '@capacitor/core'
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+const { Device } = Plugins;
+
 @Component({
   selector: 'app-pago',
   templateUrl: './pago.page.html',
@@ -22,6 +24,7 @@ export class PagoPage implements OnInit {
   paymentcheckout
   Paymentmethodcheckout
   reserva:[]
+  info
   constructor(
    private menu: MenuController,
    private navCtrl: NavController,
@@ -31,7 +34,8 @@ export class PagoPage implements OnInit {
    private iab: InAppBrowser
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.info = await Device.getInfo();
     this.spinner = true;
     this.idCheckout=this.route.snapshot.paramMap.get('id')
     this.paymentcheckout=this.route.snapshot.paramMap.get('payment')
@@ -51,6 +55,7 @@ export class PagoPage implements OnInit {
     formHtml+='<input type="hidden" value="'+this.paymentcheckout+'" id="payment" name="payment"/>';
     formHtml+='<input type="hidden" value="'+this.Paymentmethodcheckout+'" id="payment_method_id" name="payment_method_id"/>';
 
+    let file = ''
     let url = this.url
     let payScript = "var form = document.getElementById('ts-app-payment-form-redirect'); ";
     payScript += "form.innerHTML = '" + formHtml + "';";
@@ -58,47 +63,55 @@ export class PagoPage implements OnInit {
     payScript += "form.method = 'POST';" ;
     payScript += "form.submit();" ;
     if (Capacitor.isNative) {
-      let browser = this.iab.create('file:///android_asset/redirect.html','_blank', 'location=no');
-      browser.show();
-      browser.on("loadstart")
-      .subscribe(
-          event => {
-            console.log("loadstop -->",event);
-            if(event.url.indexOf("some error url") > -1){
-            browser.close();
-            this.router.navigate(['/']);
-            }
+      if(this.info && this.info.platform == 'ios'){
+        file = 'assets/redirect.html'
+      }else{
+        file = 'file:///android_asset/redirect.html'
+      }
+      if(file != ''){
 
-            if(event.url.indexOf("hencok.com/resumen") > -1){
+        let browser = this.iab.create(file,'_blank', 'location=no');
+        browser.show();
+        browser.on("loadstart")
+        .subscribe(
+            event => {
+              console.log("loadstop -->",event);
+              if(event.url.indexOf("some error url") > -1){
               browser.close();
-              this.router.navigate(['/resumen',this.idCheckout]);
+              this.router.navigate(['/']);
               }
-          },
-          err => {
-            console.log("InAppBrowser loadstart Event Error: " + err);
-      });
-      //on url load stop
-      browser.on("loadstop")
-      .subscribe(
-          event => {
-              //here we call executeScript method of inappbrowser and pass object 
-              //with attribute code and value script string which will be executed in the inappbrowser
-              browser.executeScript({
-                  code:payScript
-              });
-          console.log("loadstart -->",event);
-          },
-      err => {
-          console.log("InAppBrowser loadstop Event Error: " + err);
-      });
-      //on closing the browser
-      browser.on("exit")
-      .subscribe(event => {
-        console.log("exit -->",event);
-      },
-      err => {
-      console.log("InAppBrowser loadstart Event Error: " + err);
-      });
+
+              if(event.url.indexOf("hencok.com/resumen") > -1){
+                browser.close();
+                this.router.navigate(['/resumen',this.idCheckout]);
+                }
+            },
+            err => {
+              console.log("InAppBrowser loadstart Event Error: " + err);
+        });
+        //on url load stop
+        browser.on("loadstop")
+        .subscribe(
+            event => {
+                //here we call executeScript method of inappbrowser and pass object 
+                //with attribute code and value script string which will be executed in the inappbrowser
+                browser.executeScript({
+                    code:payScript
+                });
+            console.log("loadstart -->",event);
+            },
+        err => {
+            console.log("InAppBrowser loadstop Event Error: " + err);
+        });
+        //on closing the browser
+        browser.on("exit")
+        .subscribe(event => {
+          console.log("exit -->",event);
+        },
+        err => {
+        console.log("InAppBrowser loadstart Event Error: " + err);
+        });
+      }
     }
   }
     // this.router.navigate(['/']);

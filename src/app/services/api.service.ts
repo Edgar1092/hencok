@@ -229,6 +229,8 @@ export class ApiService implements CanActivate{
 
   yates(params?) : Observable<any>{
     let parseParams = new HttpParams();
+    const headers = new HttpHeaders()
+    .set('Accept', '*/*');
     if (params) {
       Object.keys(params).forEach(p => {
         parseParams = parseParams.append(p, params[p]);
@@ -236,7 +238,7 @@ export class ApiService implements CanActivate{
     }
     parseParams = parseParams.append("api_key", environment.apiKey);
     return this.http.get(
-      environment.apiUrlBoat + "/api/booking/frontend/products", {params : parseParams})
+      environment.apiUrlBoat + "/api/booking/frontend/products", {params : parseParams, headers:headers})
       .pipe(
         tap(_ => this.log('response received')),
         catchError(this.handleError('yates', []))

@@ -42,7 +42,7 @@ import {
       if (!request.headers.has('Content-Type')) {
         request = request.clone({
           setHeaders: {
-            'content-type': 'application/json'
+            'Content-type': 'application/json'
           }
         });
       }
