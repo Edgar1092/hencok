@@ -30,9 +30,15 @@
             <ion-text *ngIf="detail" color="vino">{{detail.booking.booking_lines[0].item_description}}</ion-text>
             
           </h5>
-          <h1 class="ion-text-left text-bold margin-t-10 margin-b-0"><br>
+          <h1 class="ion-text-left text-bold margin-t-10 margin-b-10"><br>
             <ion-text>Detalle de la Reserva</ion-text>
           </h1>
+
+          <ion-item *ngIf="detail">
+            <ion-label [innerHTML]="detail.booking.summary_status">
+        
+            </ion-label>
+          </ion-item>
         </ion-row>
         <ion-col size="12" class="ion-padding ion-text-center">
           <ion-img *ngIf="detail" [src]="detail.booking.booking_lines[0].photo_full"> </ion-img>

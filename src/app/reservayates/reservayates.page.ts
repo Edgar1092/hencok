@@ -2,6 +2,8 @@ import { MenuController, NavController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Capacitor, Plugins } from '@capacitor/core'
+import { environment } from '../../environments/environment'
 
 
 @Component({
@@ -10,6 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./reservayates.page.scss'],
 })
 export class ReservayatesPage implements OnInit {
+  url = environment.apiUrlCars+'/reserva/pagar'
   free_access_id = ''
   spinner=false
   detail
@@ -22,6 +25,9 @@ export class ReservayatesPage implements OnInit {
   telefono=''
   telefonoAlternativo=''
   comentarios=''
+  idCheckout
+  Paymentmethodcheckout
+  paymentcheckout
 
   constructor(
     private navCtrl: NavController, 
@@ -104,12 +110,14 @@ export class ReservayatesPage implements OnInit {
               formData.append('id',response.free_access_id);
               formData.append('payment','deposit');
               formData.append('payment_method',response.payment_method_id);
+              let payco='deposit'
               // let dataPago = {id:response.free_access_id,payment:'deposit',payment_method:response.payment_method_id}
-              this.service.reservaPagarYate(formData).subscribe((res)=>{
-                console.log("reserva pagar",res)
-              },(error)=>{
-                console.log(error)
-              })
+              // this.service.reservaPagarYate(formData).subscribe((res)=>{
+              //   console.log("reserva pagar",res)
+              // },(error)=>{
+              //   console.log(error)
+              // })
+              this.router.navigate(['/pagoyate/',  response.free_access_id,payco,this.Paymentmethodcheckout ]);
             }
           }
           // console.log("detail",this.detail);

@@ -211,6 +211,23 @@ export class ApiService implements CanActivate{
       );
   }
 
+  createCheckoutYates(shoppingCart,data,params?) : Observable<any>{
+    let parseParams = new HttpParams();
+    if (params) {
+      Object.keys(params).forEach(p => {
+        parseParams = parseParams.append(p, params[p]);
+      });
+    }
+    parseParams = parseParams.append("api_key", environment.apiKey);
+    return this.http.post(
+      environment.apiUrlBoat + "/api/booking/frontend/shopping-cart/"+shoppingCart+"/checkout",data, {params : parseParams})
+      .pipe(
+        tap(_ => this.log('response received')),
+        catchError(this.handleError('carshoraentrega', []))
+      );
+  }
+
+
   reservaPagar(data,params?) : Observable<any>{
     let parseParams = new HttpParams();
   

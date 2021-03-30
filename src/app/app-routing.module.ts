@@ -84,6 +84,11 @@ const routes: Routes = [
     path: 'pago/:id/:payment/:paymentmethodid',
     loadChildren: () => import('./pago/pago.module').then( m => m.PagoPageModule)
   },
+  {
+    path: 'pagoyate/:id/:payment/:paymentmethodid',
+    loadChildren: () => import('./pagoyate/pagoyate.module').then( m => m.PagoyatePageModule)
+  },
+
  
 ];
 @NgModule({
