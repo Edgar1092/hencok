@@ -55,8 +55,7 @@ export class DetallesyatesPage implements OnInit {
 
   ngOnInit() {
     this.obteneryate();
-    
-     
+        
     let fechaInicio = Moment().format('YYYY-MM-DD');
  
     this.fechas(fechaInicio);
@@ -97,33 +96,33 @@ export class DetallesyatesPage implements OnInit {
     this.navCtrl.navigateForward('avisolegal');
   }
 
-  obtenerentrega(){
-    this.service.yatesEntrega()
-        .subscribe(res => {
-          console.log(res);
-          this.yates2 = res;
-        }, err => {
+  // obtenerentrega(){
+  //   this.service.yatesEntrega()
+  //       .subscribe(res => {
+  //         console.log(res);
+  //         this.yates2 = res;
+  //       }, err => {
          
-          console.log(err);
-        });
-    }
+  //         console.log(err);
+  //       });
+  //   }
 
-    obtenerdevolucion(value){
-      console.log('ver value',value)
-      this.entregaSelecionada = value;
-      let params = {pickup_place:this.entregaSelecionada};
-      this.service.yatesDevolucion(params).subscribe(
-        (response: any) => {
-          console.log("res",response);
-            this.yates3 = response; 
-           console.log("yates3",this.yates3);
-          // this.fechaEntrega();
-        },
-        (error) => {
+  //   obtenerdevolucion(value){
+  //     console.log('ver value',value)
+  //     this.entregaSelecionada = value;
+  //     let params = {pickup_place:this.entregaSelecionada};
+  //     this.service.yatesDevolucion(params).subscribe(
+  //       (response: any) => {
+  //         console.log("res",response);
+  //           this.yates3 = response; 
+  //          console.log("yates3",this.yates3);
+  //         // this.fechaEntrega();
+  //       },
+  //       (error) => {
          
-          console.log('error')
-        });  
-    }
+  //         console.log('error')
+  //       });  
+  //   }
 
     
   fechas(fechaInicio){
@@ -170,38 +169,37 @@ console.log('posicion final ',Moment(arregloFinal[arregloFinal.length-1]).endOf(
       if(value!=''){
         this.fechas(Moment(value).format('YYYY-MM-DD'))
       }
-
     }
 
-    obtenerHoras(){
-      if(this.fecha1!='' && this.pickup_place!=''){
-        let params = {date:this.fecha1,action:'deliveries',place:this.pickup_place};
-        this.service.yatesHoras(params).subscribe(
-          (response: any) => {
-            console.log('hora de entrega1 ',response);
-            this.horaMinEntrega=response[0]
-            this.horaMaxEntrega=response[response.length-1]
+    // obtenerHoras(){
+    //   if(this.fecha1!='' && this.pickup_place!=''){
+    //     let params = {date:this.fecha1,action:'deliveries',place:this.pickup_place};
+    //     this.service.yatesHoras(params).subscribe(
+    //       (response: any) => {
+    //         console.log('hora de entrega1 ',response);
+    //         this.horaMinEntrega=response[0]
+    //         this.horaMaxEntrega=response[response.length-1]
 
-            let params2 = {date:this.fecha2,action:'collections',place:this.return_place};
-            this.service.yatesHoras(params2).subscribe(
-              (response: any) => {
-                console.log('hora de entrega2 ',response);
-                this.horaMinDevolucion=response[0]
-                this.horaMaxDevolucion=response[response.length-1]
-              });
-          });
-      }
-    }
+    //         let params2 = {date:this.fecha2,action:'collections',place:this.return_place};
+    //         this.service.yatesHoras(params2).subscribe(
+    //           (response: any) => {
+    //             console.log('hora de entrega2 ',response);
+    //             this.horaMinDevolucion=response[0]
+    //             this.horaMaxDevolucion=response[response.length-1]
+    //           });
+    //       });
+    //   }
+    // }
 
     reserva(){
-      if(this.fecha1 !=''  && this.fecha2 !=''){
+     
+      if(this.date_from! && this.date_to!){
       this.spinnerForm = true
        let data = {
-       "date_from": Moment(this.fecha1).format("DD/MM/YYYY"),
-       "date_to": Moment(this.fecha2).format("DD/MM/YYYY")
+       "date_from": Moment(this.date_from).format("DD/MM/YYYY"),
+       "date_to": Moment(this.date_to).format("DD/MM/YYYY"),
      }
      let params = {include_products:true}
-   
      this.service.shoppingYate(data, params).subscribe((response)=>{
        
        console.log(response)

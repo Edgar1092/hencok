@@ -32,26 +32,22 @@
     <ion-row>
       <ion-col size="12" class="ion-padding">
 
-        
         <ion-item class="color-fondo">
           <ion-label class="color-label">Fecha de entrega</ion-label>
-
-          <ion-datetime  [(ngModel)]="date_from" 
-          (ionChange)="fechaDevolucion($event.target.value)"
-          doneText="Ok" cancelText="Cancelar" displayFormat="DD/MM/YYYY"  [min]="fechaMinEn" [max]="fechaMaxEn">
-        </ion-datetime>
+        
+          <ion-datetime [(ngModel)]="date_from" (ionChange)="fechaDevolucion($event.target.value)" doneText="Ok"
+            cancelText="Cancelar" displayFormat="DD/MM/YYYY" [min]="fechaMinEn" [max]="fechaMaxEn">
+          </ion-datetime>
           <ion-icon src="/assets/img/001-calendar1.svg"></ion-icon>
         </ion-item>
 
         <ion-item class="color-fondo">
           <ion-label class="color-label">Fecha de devolución</ion-label>
-
-          <ion-datetime
-          [disabled]="date_from == '' "  [(ngModel)]="date_to" [min]="fechaMinDe" 
-          [max]="fechaMaxDe"
-          doneText="Ok" cancelText="Cancelar" displayFormat="DD/MM/YYYY">
+        
+          <ion-datetime [disabled]="date_from == '' " [(ngModel)]="date_to" [min]="fechaMinDe" [max]="fechaMaxDe" doneText="Ok"
+            cancelText="Cancelar" displayFormat="DD/MM/YYYY">
           </ion-datetime>
-
+        
           <ion-icon src="/assets/img/001-calendar1.svg"></ion-icon>
         </ion-item>
 
