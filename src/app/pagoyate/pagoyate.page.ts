@@ -6,7 +6,7 @@ import { environment } from '../../environments/environment'
 import { NgForm } from '@angular/forms';
 import { Capacitor, Plugins } from '@capacitor/core'
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
-
+const { Device } = Plugins;
 @Component({
   selector: 'app-pagoyate',
   templateUrl: './pagoyate.page.html',
@@ -18,12 +18,13 @@ export class PagoyatePage implements OnInit {
  @ViewChild('submitButton', {static:false}) public buttonsiyo: ElementRef;
  // @ViewChild('submitButton') submitButton: ElementRef;
  // @ViewChild('myFormPost', { read: NgForm }) form: any;
- url = environment.apiUrlCars+'/reserva/pagar'
+ url = environment.apiUrlBoat+'/reserva/pagar'
  spinner = false;
  idCheckout
  paymentcheckout
  Paymentmethodcheckout
  reserva:[]
+ info
  constructor(
   private menu: MenuController,
   private navCtrl: NavController,
@@ -33,7 +34,8 @@ export class PagoyatePage implements OnInit {
   private iab: InAppBrowser
  ) { }
 
- ngOnInit() {
+ async ngOnInit() {
+  this.info = await Device.getInfo();
    this.spinner = true;
    this.idCheckout=this.route.snapshot.paramMap.get('id')
    this.paymentcheckout=this.route.snapshot.paramMap.get('payment')
@@ -52,7 +54,7 @@ export class PagoyatePage implements OnInit {
    formHtml+='<input type="hidden" value="'+this.idCheckout+'" id="id" name="id"/>';
    formHtml+='<input type="hidden" value="'+this.paymentcheckout+'" id="payment" name="payment"/>';
    formHtml+='<input type="hidden" value="'+this.Paymentmethodcheckout+'" id="payment_method_id" name="payment_method_id"/>';
-
+   let file = ''
    let url = this.url
    let payScript = "var form = document.getElementById('ts-app-payment-form-redirect'); ";
    payScript += "form.innerHTML = '" + formHtml + "';";
@@ -60,6 +62,12 @@ export class PagoyatePage implements OnInit {
    payScript += "form.method = 'POST';" ;
    payScript += "form.submit();" ;
    if (Capacitor.isNative) {
+    if(this.info && this.info.platform == 'ios'){
+      file = 'assets/redirect.html'
+    }else{
+      file = 'file:///android_asset/redirect.html'
+    }
+    if(file != ''){
      let browser = this.iab.create('file:///android_asset/redirect.html','_blank', 'location=no');
      browser.show();
      browser.on("loadstart")
@@ -71,7 +79,7 @@ export class PagoyatePage implements OnInit {
            this.router.navigate(['/']);
            }
 
-           if(event.url.indexOf("hencok.com/resumen") > -1){
+           if(event.url.indexOf("barcos.hencok.com/resumen") > -1){
              browser.close();
              this.router.navigate(['/resumen',this.idCheckout]);
              }
@@ -101,7 +109,9 @@ export class PagoyatePage implements OnInit {
      err => {
      console.log("InAppBrowser loadstart Event Error: " + err);
      });
+     
    }
+  }
  }
    // this.router.navigate(['/']);
  

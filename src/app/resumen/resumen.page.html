@@ -44,7 +44,7 @@
           <ion-img *ngIf="detail" [src]="detail.booking.booking_lines[0].photo_full"> </ion-img>
         </ion-col>
         <ion-col size="12" class="ion-padding ion-text-left">
-          <h4>
+          <!-- <h4>
             <ion-text class="text-bold">Incluye:</ion-text>
           </h4>
           <h4>
@@ -52,30 +52,30 @@
           </h4>
           <h4>
             <ion-text>Incluidos 200km por día</ion-text>
-          </h4>
-          <h4>
+          </h4> -->
+          <!-- <h4>
             <ion-text class="text-bold">Lugar de recogida</ion-text>
           </h4>
           <h4 *ngIf="detail">
             <ion-text>{{detail.booking.pickup_place}}</ion-text>
           </h4>
-          <h4>
-            <ion-text class="text-bold">Fecha y hora de recogida</ion-text>
+          <h4> -->
+            <ion-text class="text-bold">Fecha de recogida</ion-text>
           </h4>
           <h4 *ngIf="detail" >
-            <ion-text>{{detail.booking.date_from_full_format}} {{detail.booking.time_from}}</ion-text>
+            <ion-text>{{detail.booking.date_from_full_format}}</ion-text>
           </h4>
-          <h4>
+          <!-- <h4>
             <ion-text class="text-bold">Lugar de devolución</ion-text>
           </h4>
           <h4 *ngIf="detail" >
             <ion-text>{{detail.booking.return_place}}</ion-text>
           </h4>
-          <h4>
-            <ion-text class="text-bold">Fecha y hora de devolución</ion-text>
+          <h4> -->
+            <ion-text class="text-bold">Fecha de devolución</ion-text>
           </h4>
           <h4 *ngIf="detail" >
-            <ion-text>{{detail.booking.date_to_full_format}} {{detail.booking.time_to}}</ion-text>
+            <ion-text>{{detail.booking.date_to_full_format}}</ion-text>
           </h4>
           <h4>
             <ion-text class="text-bold">Duración del alquiler</ion-text>
@@ -86,16 +86,16 @@
         </ion-col>
         <ion-col size="12">
           <h4 *ngIf="detail" >
-            <ion-text class="text-bold texto-izquierda">VEHÍCULO</ion-text>
+            <ion-text class="text-bold texto-izquierda">BARCO</ion-text>
             <ion-text class="text-bold texto-derecha">{{detail.booking.item_cost}}€</ion-text>
           </h4>
         </ion-col>
-        <ion-col size="12">
+        <!-- <ion-col size="12">
           <h4 *ngIf="detail" >
             <ion-text class="text-bold texto-izquierda">EXTRAS</ion-text>
             <ion-text class="text-bold texto-derecha">{{detail.booking.extras_cost}}€</ion-text>
           </h4>
-        </ion-col>
+        </ion-col> -->
         <ion-col size="12">
           <h1 *ngIf="detail" >
             <ion-text class="text-bold texto-izquierda" color="vino">TOTAL</ion-text>
