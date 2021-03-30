@@ -109,7 +109,7 @@ export class ReservayatesPage implements OnInit {
           if(response){
             if(this.tipoPago=='solicitud_reserva'){
         
-                this.router.navigate(['/resumen/',  response.free_access_id ]);
+                this.router.navigate(['/resumenyates/',  response.free_access_id ]);
             }else if(this.tipoPago=='pagar_ahora') {
               this.Paymentmethodcheckout=pay
               if(this.detail.sales_process.can_pay_deposit){
