@@ -194,15 +194,11 @@ console.log('posicion final ',Moment(arregloFinal[arregloFinal.length-1]).endOf(
     }
 
     reserva(){
-      if(this.pickup_place !='' && this.return_place !='' && this.fecha1 !='' && this.horaEntreg !=''  && this.fecha2 !='' && this.horaDev !=''){
+      if(this.fecha1 !=''  && this.fecha2 !=''){
       this.spinnerForm = true
        let data = {
        "date_from": Moment(this.fecha1).format("DD/MM/YYYY"),
-       "time_from": Moment(this.horaEntreg).format("HH:mm"),
-       "date_to": Moment(this.fecha2).format("DD/MM/YYYY"),
-       "time_to": Moment(this.horaDev).format("HH:mm"),
-       "pickup_place": this.pickup_place,
-       "return_place": this.return_place
+       "date_to": Moment(this.fecha2).format("DD/MM/YYYY")
      }
      let params = {include_products:true}
    
