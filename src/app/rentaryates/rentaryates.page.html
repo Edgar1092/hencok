@@ -1,9 +1,9 @@
 
 <ion-content [fullscreen]="true">
-<!-- 
+
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content refreshingSpinner="crescent"></ion-refresher-content>
-  </ion-refresher> -->
+  </ion-refresher>
 
   <ion-grid>
     <ion-row>
@@ -31,44 +31,40 @@
 
 <ion-grid>
   <ion-row>
-    <!-- <ion-col size="12" class="ion-text-center">
+    <ion-col size="12" class="ion-text-center">
       <ion-spinner *ngIf="spinner" name="crescent"></ion-spinner>
-    </ion-col> -->
+    </ion-col>
 
     <ion-col size="12" *ngFor="let yate of yates" class="imagenY">
-      <!-- <ion-img [src]="yate.photo_path" class="ion-padding"></ion-img> -->
-      <!-- <ion-img *ngIf="free_access_id == '' " [src]="yate.photo_path" class="ion-padding"></ion-img>
-      <ion-img *ngIf="free_access_id != '' " [src]="yate.full_photo" class="ion-padding"></ion-img> -->
+      <ion-img *ngIf="free_access_id == '' " [src]="yate.photo_path" class="ion-padding"></ion-img>
+      <ion-img *ngIf="free_access_id != '' " [src]="yate.full_photo" class="ion-padding"></ion-img>
       <ion-item class="color-fondo" lines="none">
         <h3 class="ion-text-left text-bold">
           <ion-text class="text-bold titulo-c">
             {{yate.name}}
           </ion-text>
         </h3>
-        <ion-button slot="end" class="texto-m" size="default" color="vino" routerLink="/detallesyates/{{yate.code}}">
-          desde {{yate.from_price}}€
-        </ion-button>
-        <!-- <ion-button *ngIf="free_access_id == '' " slot="end" class="texto-m" size="default" color="vino" routerLink="/detallesyates/{{yate.code}}">
+        <ion-button *ngIf="free_access_id == '' " slot="end" class="texto-m" size="default" color="vino" routerLink="/detallesyates/{{yate.code}}">
           desde {{yate.from_price}}€
         </ion-button>
         <ion-button *ngIf="free_access_id != '' " slot="end" class="texto-m" size="default" color="vino" (click)="addProduct(yate.code)">
           desde {{yate.price}}€
-        </ion-button> -->
+        </ion-button>
       </ion-item>
     </ion-col>
 
-    <!-- <ion-col size="12" *ngIf="!spinner && yates.length == 0">
+    <ion-col size="12" *ngIf="!spinner && yates.length == 0">
       <h5 class="ion-text-center text-bold">No hay datos para mostrar</h5>
-    </ion-col> -->
+    </ion-col>
   </ion-row>
 </ion-grid>
   
-<!-- <ion-infinite-scroll threshold="100px" (ionInfinite)="doInfinite($event)">
+<ion-infinite-scroll threshold="100px" (ionInfinite)="doInfinite($event)">
   <ion-infinite-scroll-content
     loadingSpinner="crescent"
     loadingText="">
   </ion-infinite-scroll-content>
-</ion-infinite-scroll> -->
+</ion-infinite-scroll>
 
 <ion-grid class="espacio">
   <h6 class="ion-text-center">

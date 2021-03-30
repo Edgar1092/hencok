@@ -49,7 +49,9 @@ export class YatesPage implements OnInit {
 
   ngOnInit() {
  
-    this.fechaEntrega();
+    let fechaInicio = Moment().format('YYYY-MM-DD');
+ 
+    this.fechaEntrega(fechaInicio);
   }
 
   back(){
@@ -93,11 +95,12 @@ export class YatesPage implements OnInit {
     //     });  
     // }
 
-    fechaEntrega(){
-      this.fechaD = Moment().startOf('month').format("YYYY-MM-DD");
-      this.fechaH = Moment().endOf('month').format("YYYY-MM-DD");
-      // this.fechaD = fechaInicio;
-      // this.fechaH = Moment(this.fechaD).add(2, 'months').format('YYYY-MM-DD');
+    fechaEntrega(fechaInicio){
+      // this.fechaD = Moment().startOf('month').format("YYYY-MM-DD");
+      // this.fechaH = Moment().endOf('month').format("YYYY-MM-DD");
+      this.fechaD = fechaInicio;
+      this.fechaH = Moment(this.fechaD).add(2, 'months').format('YYYY-MM-DD');
+
         let params = {from:this.fechaD, to:this.fechaH, action:'deliveries'};
         this.service.yatesFechas(params).subscribe(
           (response: any) => {
@@ -106,42 +109,41 @@ export class YatesPage implements OnInit {
               this.fechaH = response;
               this.fechaMinEn = this.fechaD[0];
               this.fechaMaxEn = this.fechaH[this.fechaH.length-1];
-            // console.log("FECHA Minimo entrega",this.fechaMinEn);
-            // console.log("FECHA Maximo entrega",this.fechaMaxEn);
-            // console.log("ENTREGA SELECCIONADA",this.entregaSelecionada);
+            console.log("FECHA Minimo entrega",this.fechaMinEn);
+            console.log("FECHA Maximo entrega",this.fechaMaxEn);
           },
           (error) => {
             console.log('error')
           });       
       }
 
-      // fechaDevolucion(value){
-      //   this.fechaSeleccionada = Moment().startOf('month').format("YYYY-MM-DD");
-      //   this.fechaMaxDe =Moment(this.fechaSeleccionada).add(2, 'months').format('YYYY-MM-DD');
-      //     this.fechaSeleccionada = Moment(value).format("YYYY-MM-DD");
-      //     let params = {from:this.fechaSeleccionada, to:this.fechaMaxDe, place:this.entregaSelecionada};
-      //     this.service.yatesFechas(params).subscribe(
-      //       (response: any) => {
-      //       console.log("res",response);
-      //       this.fechaMinDe = response;
-      //       this.fechaMaxDe = response;
-      //       console.log(this.fechaMinDe[0], this.fechaSeleccionada)
-      //       if(this.fechaMinDe[0] == this.fechaSeleccionada){
-      //         this.fechaMinDe = this.fechaMinDe[1];
-      //       }else{
-      //         this.fechaMinDe = this.fechaMinDe[0];
-      //       }
-      //       this.fechaMaxDe = this.fechaMaxDe[this.fechaMaxDe.length-1];
-      //       //  console.log("ENTREGA SELECCIONADA devolucion",this.entregaSelecionada);
-      //        console.log("FECHA MINIMA EN DEVOLUCION",this.fechaMinDe);
-      //        console.log("FECHA MAXIMA EN DEVOLUCION",this.fechaMaxDe);
-      //        console.log("FECHA SELECCIONADA MOSTRADA ENTREGA",this.fechaSeleccionada);
+      fechaDevolucion(value){
+        this.fechaSeleccionada = Moment().startOf('month').format("YYYY-MM-DD");
+        this.fechaMaxDe =Moment(this.fechaSeleccionada).add(2, 'months').format('YYYY-MM-DD');
+          this.fechaSeleccionada = Moment(value).format("YYYY-MM-DD");
+          let params = {from:this.fechaSeleccionada, to:this.fechaMaxDe, place:this.entregaSelecionada};
+          this.service.yatesFechas(params).subscribe(
+            (response: any) => {
+            console.log("res",response);
+            this.fechaMinDe = response;
+            this.fechaMaxDe = response;
+            console.log(this.fechaMinDe[0], this.fechaSeleccionada)
+            if(this.fechaMinDe[0] == this.fechaSeleccionada){
+              this.fechaMinDe = this.fechaMinDe[1];
+            }else{
+              this.fechaMinDe = this.fechaMinDe[0];
+            }
+            this.fechaMaxDe = this.fechaMaxDe[this.fechaMaxDe.length-1];
+            //  console.log("ENTREGA SELECCIONADA devolucion",this.entregaSelecionada);
+             console.log("FECHA MINIMA EN DEVOLUCION",this.fechaMinDe);
+             console.log("FECHA MAXIMA EN DEVOLUCION",this.fechaMaxDe);
+             console.log("FECHA SELECCIONADA MOSTRADA ENTREGA",this.fechaSeleccionada);
            
-      //       },
-      //       (error) => {
-      //         console.log('error')
-      //       }); 
-      //   }
+            },
+            (error) => {
+              console.log('error')
+            }); 
+        }
 
         // horaEntrega(){
         //   let params = {date:this.fechaSeleccionada , place:this.entregaSelecionada};

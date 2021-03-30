@@ -47,7 +47,7 @@
           <ion-label class="color-label">Fecha de devolución</ion-label>
 
           <ion-datetime
-          [disabled]="return_place == '' "  [(ngModel)]="date_from" [min]="fechaMinDe" 
+          [disabled]="date_from == '' "  [(ngModel)]="date_to" [min]="fechaMinDe" 
           [max]="fechaMaxDe"
           doneText="Ok" cancelText="Cancelar" displayFormat="DD/MM/YYYY">
           </ion-datetime>

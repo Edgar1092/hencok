@@ -55,7 +55,7 @@ export class DetallesyatesPage implements OnInit {
 
   ngOnInit() {
     this.obteneryate();
-    this.obtenerentrega();
+    
      
     let fechaInicio = Moment().format('YYYY-MM-DD');
  
