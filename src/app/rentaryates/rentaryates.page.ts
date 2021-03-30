@@ -27,13 +27,13 @@ export class RentaryatesPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    // if(this.route.snapshot.paramMap.get('id')){
-    //   this.free_access_id=this.route.snapshot.paramMap.get('id');
-    //   this.obetenerYatesSC()
-    // }else{
-    //   this.obtenerYates();
-    // }
-    this.obtenerYates();
+    if(this.route.snapshot.paramMap.get('id')){
+      this.free_access_id=this.route.snapshot.paramMap.get('id');
+      this.obetenerYatesSC()
+    }else{
+      this.obtenerYates();
+    }
+
   }
 
   obtenerYates(){
@@ -47,6 +47,26 @@ export class RentaryatesPage implements OnInit {
         this.yates = response.data; 
         this.total = response.total
         console.log('Total de Yates',this.total)
+      },
+      (error) => {
+        this.spinner = false
+        console.log('error')
+      });
+  }
+
+  obetenerYatesSC(){
+    this.spinner = true;
+    this.offset=0
+    let params = {include_products:true};
+    this.service.shoppingYateGet(this.free_access_id, params).subscribe(
+      (response: any) => {
+        this.spinner = false
+        console.log("res",response);
+        if(response && response.products){
+          this.yates = response.products; 
+          // this.total = response.total
+        }
+        console.log("cars",this.yates);
       },
       (error) => {
         this.spinner = false
