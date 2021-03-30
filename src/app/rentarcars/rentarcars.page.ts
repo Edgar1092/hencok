@@ -61,14 +61,14 @@ export class RentarcarsPage implements OnInit {
   obetenerCarrosSC(){
     this.spinner = true;
     this.offset=0
-    let params = {include_products:true};
+    let params = {include_products:true,limit:this.limit, offset:0};
     this.service.shoppingCartGet(this.free_access_id, params).subscribe(
       (response: any) => {
         this.spinner = false
         console.log("res",response);
         if(response && response.products){
           this.cars = response.products; 
-          // this.total = response.total
+          this.total = response.total
         }
         console.log("cars",this.cars);
       },
@@ -84,7 +84,7 @@ export class RentarcarsPage implements OnInit {
   doRefresh(event) {
     if(this.free_access_id != ''){
       this.offset=0
-    let params = {include_products:true};
+    let params = {include_products:true,limit:this.limit, offset:0};
     this.service.shoppingCartGet(this.free_access_id, params).subscribe(
       (response: any) => {
         event.target.complete();
@@ -120,43 +120,47 @@ export class RentarcarsPage implements OnInit {
   }
 
   doInfinite(event){
-    if(this.cars.length < this.total && this.free_access_id == ''){
-      this.offset+=10;
-      let params = {limit:this.limit, offset:this.offset};
-      setTimeout(() => {
-        this.service.cars(params).subscribe(
-          (response: any) => {
-            let d = JSON.parse(JSON.stringify(response.data)) 
-            console.log(d);
-            d.forEach((element,index) => {
-              this.cars.push(element)
+    if(this.free_access_id == ''){
+      if(this.cars.length < this.total){
+        this.offset+=10;
+        let params = {limit:this.limit, offset:this.offset};
+        setTimeout(() => {
+          this.service.cars(params).subscribe(
+            (response: any) => {
+              let d = JSON.parse(JSON.stringify(response.data)) 
+              console.log(d);
+              d.forEach((element,index) => {
+                this.cars.push(element)
+              });
+              event.target.complete();
+            },
+            (error) => {
+              event.target.complete();
+              console.log('error')
             });
-            event.target.complete();
-          },
-          (error) => {
-            event.target.complete();
-            console.log('error')
-          });
-      }, 1000);
+        }, 1000);
+      }
     }else{
-      event.target.complete();
-    //   this.offset+=10;
-    //   let params = {include_products:true,limit:this.limit, offset:this.offset};
-    //   setTimeout(() => {
-    //     this.service.shoppingCartGet(this.free_access_id,params).subscribe(
-    //       (response: any) => {
-    //         let d = JSON.parse(JSON.stringify(response.products)) 
-    //         console.log(d);
-    //         d.forEach((element,index) => {
-    //           this.cars.push(element)
-    //         });
-    //         event.target.complete();
-    //       },
-    //       (error) => {
-    //         event.target.complete();
-    //         console.log('error')
-    //       });
-    //   }, 1000);
+      // event.target.complete();
+      if(this.cars.length < this.total){
+        this.offset+=10;
+        let params = {include_products:true,limit:this.limit, offset:this.offset};
+        setTimeout(() => {
+          this.service.shoppingCartGet(this.free_access_id,params).subscribe(
+            (response: any) => {
+              let d = JSON.parse(JSON.stringify(response.products)) 
+              console.log(d);
+              d.forEach((element,index) => {
+                this.cars.push(element)
+              });
+              event.target.complete();
+            },
+            (error) => {
+              event.target.complete();
+              console.log('error')
+            });
+        }, 1000);
+      }
     }
   }
 

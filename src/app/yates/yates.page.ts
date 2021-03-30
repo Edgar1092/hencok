@@ -190,7 +190,7 @@ export class YatesPage implements OnInit {
     "date_from": Moment(this.date_from).format("DD/MM/YYYY"),
     "date_to": Moment(this.date_to).format("DD/MM/YYYY"),
        }
-    let params = {include_products:true}
+    let params = {include_products:true,limit:10, offset:0}
                 
    this.service.shoppingYate(data, params).subscribe((response)=>{
      this.spinnerForm =false

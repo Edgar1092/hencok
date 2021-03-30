@@ -57,14 +57,14 @@ export class RentaryatesPage implements OnInit {
   obetenerYatesSC(){
     this.spinner = true;
     this.offset=0
-    let params = {include_products:true};
+    let params = {include_products:true,limit:this.limit, offset:0};
     this.service.shoppingYateGet(this.free_access_id, params).subscribe(
       (response: any) => {
         this.spinner = false
         console.log("res",response);
         if(response && response.products){
           this.yates = response.products; 
-          // this.total = response.total
+          this.total = response.total
         }
         console.log("cars",this.yates);
       },
@@ -80,7 +80,7 @@ export class RentaryatesPage implements OnInit {
 
   doRefresh(event) {
     if(this.free_access_id != ''){
-    let params = {include_products:true};
+    let params = {include_products:true,limit:this.limit, offset:0};
     this.service.shoppingYateGet(this.free_access_id, params).subscribe(
       (response: any) => {
         event.target.complete();
@@ -88,7 +88,7 @@ export class RentaryatesPage implements OnInit {
         console.log("res",response);
         if(response && response.products){
           this.yates = response.products; 
-          // this.total = response.total
+          this.total = response.total
         }
         console.log("yates",this.yates);
       },
@@ -116,26 +116,50 @@ export class RentaryatesPage implements OnInit {
   }
   
 doInfinite(event){
-    if(this.yates.length < this.total && this.free_access_id == ''){
-      this.offset+=10;
-      let params = {limit:this.limit, offset:this.offset};
-      setTimeout(() => {
-        this.service.yates(params).subscribe(
-          (response: any) => {
-            let d = JSON.parse(JSON.stringify(response.data)) 
-            console.log(d);
-            d.forEach((element,index) => {
-              this.yates.push(element)
+    if(this.free_access_id == ''){
+      if(this.yates.length < this.total){
+        this.offset+=10;
+        let params = {limit:this.limit, offset:this.offset};
+        setTimeout(() => {
+          this.service.yates(params).subscribe(
+            (response: any) => {
+              let d = JSON.parse(JSON.stringify(response.data)) 
+              console.log(d);
+              d.forEach((element,index) => {
+                this.yates.push(element)
+              });
+              event.target.complete();
+            },
+            (error) => {
+              event.target.complete();
+              console.log('error')
             });
-            event.target.complete();
-          },
-          (error) => {
-            event.target.complete();
-            console.log('error')
-          });
-      }, 1000);
+        }, 1000);
+      }else{
+        event.target.complete();
+      }
     }else{
-      event.target.complete();
+      if(this.yates.length < this.total){
+        this.offset+=10;
+        let params = {include_products:true,limit:this.limit, offset:this.offset};
+        setTimeout(() => {
+          this.service.shoppingYateGet(this.free_access_id,params).subscribe(
+            (response: any) => {
+              let d = JSON.parse(JSON.stringify(response.products)) 
+              console.log(d);
+              d.forEach((element,index) => {
+                this.yates.push(element)
+              });
+              event.target.complete();
+            },
+            (error) => {
+              event.target.complete();
+              console.log('error')
+            });
+        }, 1000);
+      }else{
+        event.target.complete();
+      }
     }
   }
 

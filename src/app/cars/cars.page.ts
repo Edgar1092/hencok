@@ -207,7 +207,7 @@ export class CarsPage implements OnInit {
     "limit":10,
     "offset":0
   }
-  let params = {include_products:true}
+  let params = {include_products:true,limit:10, offset:0}
 
   this.service.shoppingCart(data, params).subscribe((response)=>{
     this.spinnerForm =false
