@@ -24,10 +24,10 @@
       <ion-col size="12" class="ion-padding padding-rl">
         <ion-row class="titulos">
           <h5 class="ion-text-left text-bold margin-b-0">
-            <ion-text color="vino">Hencok Coches</ion-text>
+            <ion-text color="vino">Hencok Barcos</ion-text>
           </h5>
           <h1 class="ion-text-left text-bold margin-t-10 margin-b-0"><br>
-            <ion-text>Datos del Conductor</ion-text>
+            <ion-text>Datos del Cliente</ion-text>
           </h1>
         </ion-row>
           
@@ -55,7 +55,7 @@
               <ion-item class="item-form">
                 <ion-textarea [(ngModel)]="comentarios" placeholder="Comentarios"></ion-textarea>
               </ion-item>
-              <ion-radio-group [(ngModel)]="tipoPago">
+              <ion-radio-group *ngIf="detail && detail.sales_process.can_pay" [(ngModel)]="tipoPago">
               <ion-item class="color-fondo">
                 <ion-radio  value="solicitud_reserva" mode="android" color="vino" slot="start"></ion-radio>
                 <label><h6>
@@ -72,7 +72,7 @@
               <ion-row *ngIf="detail && tipoPago == 'pagar_ahora' " class="ion-padding bg-info-pay">
                 <h5><ion-text color="vino">Para confirmar su reserva ha de realizarse un pago de </ion-text> <ion-text class="text-bold" color="vino">{{detail.shopping_cart.booking_amount}}€</ion-text></h5>
               </ion-row>
-              <ion-item class="color-fondo">
+              <ion-item *ngIf="detail && detail.sales_process.can_pay" class="color-fondo">
                 <ion-checkbox [(ngModel)]="terminos" mode="ios" color="vino" slot="start" class="margin"></ion-checkbox>
                 <h6>
                   <ion-text class="">Acepto los terminos y condiciones y la politica de privacidad</ion-text>
@@ -95,38 +95,19 @@
           <ion-img *ngIf="detail" [src]="detail.shopping_cart.items[0].photo_full"> </ion-img>
         </ion-col>
         <ion-col size="12" class="ion-padding ion-text-left">
+          
           <h4>
-            <ion-text class="text-bold">Incluye:</ion-text>
-          </h4>
-          <h4>
-            <ion-text>Seguro a todo Riesgo</ion-text>
-          </h4>
-          <h4>
-            <ion-text>Incluidos 200km por día</ion-text>
-          </h4>
-          <h4>
-            <ion-text class="text-bold">Lugar de recogida</ion-text>
-          </h4>
-          <h4 *ngIf="detail">
-            <ion-text>{{detail.shopping_cart.pickup_place}}</ion-text>
-          </h4>
-          <h4>
-            <ion-text class="text-bold">Fecha y hora de recogida</ion-text>
+            <ion-text class="text-bold">Fecha recogida</ion-text>
           </h4>
           <h4 *ngIf="detail" >
-            <ion-text>{{detail.shopping_cart.date_from_full_format}} {{detail.shopping_cart.time_from}}</ion-text>
+            <ion-text>{{detail.shopping_cart.date_from_full_format}} </ion-text>
           </h4>
+          
           <h4>
-            <ion-text class="text-bold">Lugar de devolución</ion-text>
+            <ion-text class="text-bold">Fecha devolución</ion-text>
           </h4>
           <h4 *ngIf="detail" >
-            <ion-text>{{detail.shopping_cart.return_place}}</ion-text>
-          </h4>
-          <h4>
-            <ion-text class="text-bold">Fecha y hora de devolución</ion-text>
-          </h4>
-          <h4 *ngIf="detail" >
-            <ion-text>{{detail.shopping_cart.date_to_full_format}} {{detail.shopping_cart.time_to}}</ion-text>
+            <ion-text>{{detail.shopping_cart.date_to_full_format}}</ion-text>
           </h4>
           <h4>
             <ion-text class="text-bold">Duración del alquiler</ion-text>
@@ -137,14 +118,8 @@
         </ion-col>
         <ion-col size="12">
           <h4 *ngIf="detail" >
-            <ion-text class="text-bold texto-izquierda">VEHÍCULO</ion-text>
+            <ion-text class="text-bold texto-izquierda">BARCO</ion-text>
             <ion-text class="text-bold texto-derecha">{{detail.shopping_cart.item_cost}}€</ion-text>
-          </h4>
-        </ion-col>
-        <ion-col size="12">
-          <h4 *ngIf="detail" >
-            <ion-text class="text-bold texto-izquierda">EXTRAS</ion-text>
-            <ion-text class="text-bold texto-derecha">{{detail.shopping_cart.extras_cost}}€</ion-text>
           </h4>
         </ion-col>
         <ion-col size="12">

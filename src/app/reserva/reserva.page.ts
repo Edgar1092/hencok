@@ -111,7 +111,11 @@ export class ReservaPage implements OnInit {
       if(this.tipoPago=='solicitud_reserva'){
         pay ="none"
       }else if(this.tipoPago=='pagar_ahora'){
-        // pay=this.detail.sales_process.payment_methods.tpv_virtual
+        if(this.detail && this.detail.sales_process.payment_methods){
+          pay=this.detail.sales_process.payment_methods.tpv_virtual
+        }else{
+          pay = "redsys256"
+        }
       }
       let data = {
         "customer_name": this.nombre,
@@ -120,6 +124,7 @@ export class ReservaPage implements OnInit {
         "customer_phone_number": this.telefono,
         "payment": pay
       }
+      if(this.detail && this.detail.sales_process.can_pay){
       this.service.createCheckout(this.free_access_id, data).subscribe(
         (response: any) => {
           this.spinner = false
@@ -129,23 +134,18 @@ export class ReservaPage implements OnInit {
         
                 this.router.navigate(['/resumen/',  response.free_access_id ]);
             }else if(this.tipoPago=='pagar_ahora') {
-              this.Paymentmethodcheckout='redsys256'
-              this.paymentcheckout='deposit'
-              let formData:FormData = new FormData();
-              formData.append('id',response.free_access_id);
-              formData.append('payment','deposit');
-              formData.append('payment_method_id',this.Paymentmethodcheckout);
+              this.Paymentmethodcheckout=pay
+              if(this.detail.sales_process.can_pay_deposit){
+                this.paymentcheckout='deposit'
+              }else if(this.detail.sales_process.can_pay_on_delivery){
+                this.paymentcheckout='pending'
+              }else if(this.detail.sales_process.can_pay_total){
+                this.paymentcheckout='total'
+              }
+              
               this.idCheckout=response.free_access_id
-              let payco='deposit'
-           
-               let dataPago = {id:response.free_access_id,payment:'deposit',payment_method_id:this.Paymentmethodcheckout}
 
-              // this.service.reservaPagar(dataPago).subscribe((res)=>{
-              //   console.log("reserva pagar",res)
-              // },(error)=>{
-              //   console.log(error)
-              // })
-              this.router.navigate(['/pago/',  response.free_access_id,payco,this.Paymentmethodcheckout ]);
+              this.router.navigate(['/pago/',  response.free_access_id,this.paymentcheckout,this.Paymentmethodcheckout ]);
             }
           }
           // console.log("detail",this.detail);
@@ -154,7 +154,7 @@ export class ReservaPage implements OnInit {
           this.spinner = false
           console.log('error')
         });
-
+      }
      
 
     }else{

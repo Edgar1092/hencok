@@ -56,7 +56,7 @@
               <ion-item class="item-form">
                 <ion-textarea [(ngModel)]="comentarios" placeholder="Comentarios"></ion-textarea>
               </ion-item>
-              <ion-radio-group [(ngModel)]="tipoPago">
+              <ion-radio-group *ngIf="detail && detail.sales_process.can_pay" [(ngModel)]="tipoPago">
               <ion-item class="color-fondo">
                 <ion-radio  value="solicitud_reserva" mode="android" color="vino" slot="start"></ion-radio>
                 <label><h6>
@@ -73,7 +73,7 @@
               <ion-row *ngIf="detail && tipoPago == 'pagar_ahora' " class="ion-padding bg-info-pay">
                 <h5><ion-text color="vino">Para confirmar su reserva ha de realizarse un pago de </ion-text> <ion-text class="text-bold" color="vino">{{detail.shopping_cart.booking_amount}}€</ion-text></h5>
               </ion-row>
-              <ion-item class="color-fondo">
+              <ion-item *ngIf="detail && detail.sales_process.can_pay" class="color-fondo">
                 <ion-checkbox [(ngModel)]="terminos" mode="ios" color="vino" slot="start" class="margin"></ion-checkbox>
                 <h6>
                   <ion-text class="">Acepto los terminos y condiciones y la politica de privacidad</ion-text>
