@@ -121,7 +121,7 @@ export class YatesPage implements OnInit {
         this.fechaSeleccionada = Moment().startOf('month').format("YYYY-MM-DD");
         this.fechaMaxDe =Moment(this.fechaSeleccionada).add(2, 'months').format('YYYY-MM-DD');
           this.fechaSeleccionada = Moment(value).format("YYYY-MM-DD");
-          let params = {from:this.fechaSeleccionada, to:this.fechaMaxDe, place:this.entregaSelecionada};
+          let params = {from:this.fechaSeleccionada, to:this.fechaMaxDe, action:'collections'};
           this.service.yatesFechas(params).subscribe(
             (response: any) => {
             console.log("res",response);
@@ -134,7 +134,6 @@ export class YatesPage implements OnInit {
               this.fechaMinDe = this.fechaMinDe[0];
             }
             this.fechaMaxDe = this.fechaMaxDe[this.fechaMaxDe.length-1];
-            //  console.log("ENTREGA SELECCIONADA devolucion",this.entregaSelecionada);
              console.log("FECHA MINIMA EN DEVOLUCION",this.fechaMinDe);
              console.log("FECHA MAXIMA EN DEVOLUCION",this.fechaMaxDe);
              console.log("FECHA SELECCIONADA MOSTRADA ENTREGA",this.fechaSeleccionada);
@@ -184,37 +183,31 @@ export class YatesPage implements OnInit {
         //     });
         // }
 
-              // search(){
-              //   if(this.pickup_place !='' && this.return_place !='' && this.date_from !='' && this.time_from !=''  && this.date_to !='' && this.time_to !=''){
-              //   this.spinnerForm = true
-              //   let data = {
-              //   "date_from": Moment(this.date_from).format("DD/MM/YYYY"),
-              //   "time_from": Moment(this.time_from).format("HH:mm"),
-              //   "date_to": Moment(this.date_to).format("DD/MM/YYYY"),
-              //   "time_to": Moment(this.time_to).format("HH:mm"),
-              //   "pickup_place": this.pickup_place,
-              //   "return_place": this.return_place
-              // }
-              // let params = {include_products:true}
-            
-              // this.service.shoppingYate(data, params).subscribe((response)=>{
-              //   this.spinnerForm =false
-              //   console.log(response)
-              //   let shopping_cart = response.shopping_cart
-              //   // localStorage.setItem("free_access_id", shopping_cart.free_access_id)
-              //   this.router.navigate(['/rentaryates/',  shopping_cart.free_access_id ]);
-              // },(error)=>{
-              //   this.spinnerForm =false
-              //   console.log(error)
-              // })
-              
-              // console.log(data)
-              // }else{
-              //   this.service.presentToast("Datos incompletos !");
-              // }
-              // }
-
-
+  search(){
+    if(this.date_from !='' && this.date_to !=''){
+    this.spinnerForm = true
+   let data = {
+    "date_from": Moment(this.date_from).format("DD/MM/YYYY"),
+    "date_to": Moment(this.date_to).format("DD/MM/YYYY"),
+       }
+    let params = {include_products:true}
+                
+   this.service.shoppingYate(data, params).subscribe((response)=>{
+     this.spinnerForm =false
+     console.log(response)
+        let shopping_cart = response.shopping_cart
+      // localStorage.setItem("free_access_id", shopping_cart.free_access_id)
+      this.router.navigate(['/rentaryates/',  shopping_cart.free_access_id ]);
+       },(error)=>{
+       this.spinnerForm =false
+       console.log(error)
+           })
+                  
+         console.log(data)
+           }else{
+         this.service.presentToast("Datos incompletos !");
+             }
+            }
 }
 
 

@@ -51,11 +51,15 @@ const routes: Routes = [
     loadChildren: () => import('./rentaryates/rentaryates.module').then( m => m.RentaryatesPageModule)
   },
   {
+    path: 'rentaryates/:id',
+    loadChildren: () => import('./rentaryates/rentaryates.module').then( m => m.RentaryatesPageModule)
+  },
+  {
     path: 'detallesyates/:code',
     loadChildren: () => import('./detallesyates/detallesyates.module').then( m => m.DetallesyatesPageModule)
   },
   {
-    path: 'reservayates',
+    path: 'reservayates/:id',
     loadChildren: () => import('./reservayates/reservayates.module').then( m => m.ReservayatesPageModule)
   },
   {
@@ -71,7 +75,7 @@ const routes: Routes = [
     loadChildren: () => import('./resumen/resumen.module').then( m => m.ResumenPageModule)
   },
   {
-    path: 'resumenyates',
+    path: 'resumenyates/:shoppingYateGet',
     loadChildren: () => import('./resumenyates/resumenyates.module').then( m => m.ResumenyatesPageModule)
   },
   
