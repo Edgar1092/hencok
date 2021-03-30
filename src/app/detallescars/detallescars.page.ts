@@ -198,7 +198,7 @@ console.log('posicion final ',Moment(arregloFinal[arregloFinal.length-1]).endOf(
     }
 
     reserva(){
-      if(this.pickup_place !='' && this.return_place !='' && this.fecha1 !='' && this.horaEntreg !=''  && this.fecha2 !='' && this.horaDev !=''){
+      if(this.pickup_place !='' && this.return_place !='' && this.fecha1! && this.horaEntreg!  && this.fecha2! && this.horaDev!){
       this.spinnerForm = true
        let data = {
        "date_from": Moment(this.fecha1).format("DD/MM/YYYY"),

@@ -91,9 +91,11 @@
             <ion-text>Detalle de la Reserva</ion-text>
           </h1>
         </ion-row>
-        <ion-col size="12" class="ion-padding ion-text-center">
-          <ion-img *ngIf="detail" [src]="detail.shopping_cart.items[0].photo_full"> </ion-img>
+
+        <ion-col size="12" class="">
+          <ion-img *ngIf="detail" [src]="detail.shopping_cart.items[0].photo_full" class=""> </ion-img>
         </ion-col>
+
         <ion-col size="12" class="ion-padding ion-text-left">
           
           <h4>

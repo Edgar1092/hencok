@@ -184,9 +184,11 @@ export class YatesPage implements OnInit {
         // }
 
   search(){
+    
     if(this.date_from !='' && this.date_to !=''){
     this.spinnerForm = true
    let data = {
+     
     "date_from": Moment(this.date_from).format("DD/MM/YYYY"),
     "date_to": Moment(this.date_to).format("DD/MM/YYYY"),
        }
