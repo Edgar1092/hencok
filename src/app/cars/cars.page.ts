@@ -203,7 +203,9 @@ export class CarsPage implements OnInit {
     "date_to": Moment(this.date_to).format("DD/MM/YYYY"),
     "time_to": Moment(this.time_to).format("HH:mm"),
     "pickup_place": this.pickup_place,
-    "return_place": this.return_place
+    "return_place": this.return_place,
+    "limit":10,
+    "offset":0
   }
   let params = {include_products:true}
 
