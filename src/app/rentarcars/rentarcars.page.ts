@@ -61,7 +61,7 @@ export class RentarcarsPage implements OnInit {
   obetenerCarrosSC(){
     this.spinner = true;
     this.offset=0
-    let params = {include_products:true,limit:this.limit, offset:0};
+    let params = {include_products:true};
     this.service.shoppingCartGet(this.free_access_id, params).subscribe(
       (response: any) => {
         this.spinner = false
@@ -84,7 +84,7 @@ export class RentarcarsPage implements OnInit {
   doRefresh(event) {
     if(this.free_access_id != ''){
       this.offset=0
-    let params = {include_products:true,limit:this.limit, offset:0};
+    let params = {include_products:true};
     this.service.shoppingCartGet(this.free_access_id, params).subscribe(
       (response: any) => {
         event.target.complete();
@@ -139,23 +139,24 @@ export class RentarcarsPage implements OnInit {
           });
       }, 1000);
     }else{
-      this.offset+=10;
-      let params = {include_products:true,limit:this.limit, offset:this.offset};
-      setTimeout(() => {
-        this.service.shoppingCartGet(this.free_access_id,params).subscribe(
-          (response: any) => {
-            let d = JSON.parse(JSON.stringify(response.products)) 
-            console.log(d);
-            d.forEach((element,index) => {
-              this.cars.push(element)
-            });
-            event.target.complete();
-          },
-          (error) => {
-            event.target.complete();
-            console.log('error')
-          });
-      }, 1000);
+      event.target.complete();
+    //   this.offset+=10;
+    //   let params = {include_products:true,limit:this.limit, offset:this.offset};
+    //   setTimeout(() => {
+    //     this.service.shoppingCartGet(this.free_access_id,params).subscribe(
+    //       (response: any) => {
+    //         let d = JSON.parse(JSON.stringify(response.products)) 
+    //         console.log(d);
+    //         d.forEach((element,index) => {
+    //           this.cars.push(element)
+    //         });
+    //         event.target.complete();
+    //       },
+    //       (error) => {
+    //         event.target.complete();
+    //         console.log('error')
+    //       });
+    //   }, 1000);
     }
   }
 
