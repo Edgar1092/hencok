@@ -247,6 +247,8 @@ export class ApiService implements CanActivate{
   yates(params?) : Observable<any>{
     let parseParams = new HttpParams();
     const headers = new HttpHeaders()
+    .set('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT')
+    .set('Access-Control-Allow-Origin' , '*')
     .set('Accept', '*/*');
     if (params) {
       Object.keys(params).forEach(p => {
