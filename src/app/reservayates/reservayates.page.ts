@@ -104,7 +104,7 @@ export class ReservayatesPage implements OnInit {
           if(response){
             if(this.tipoPago=='solicitud_reserva'){
         
-                this.router.navigate(['/resumen/',  response.free_access_id ]);
+                this.router.navigate(['/resumenyates/',  response.free_access_id ]);
             }else if(this.tipoPago=='pagar_ahora') {
               let formData:FormData = new FormData();
               formData.append('id',response.free_access_id);

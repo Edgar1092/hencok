@@ -149,4 +149,20 @@ doInfinite(event){
     this.navCtrl.navigateForward('avisolegal');
   }
 
+  addProduct(product){
+    if(this.free_access_id != ""){
+      let data = { "product": product }
+      this.service.setProductYate(this.free_access_id, data).subscribe((response)=>{
+        console.log(response)
+        this.router.navigate(['/reservayates/',  this.free_access_id ]);
+      },(error)=>{
+        this.service.presentToast("Error Inesperado, Contacte con soporte !");
+        console.log(error)
+      })
+    }else{
+      this.service.presentToast("Error Inesperado, Carrito de compras no disponible !");
+    }
+  }
+
+
 }

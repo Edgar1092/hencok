@@ -101,32 +101,35 @@
           <h4>
             <ion-text>Seguro a todo Riesgo</ion-text>
           </h4>
-          <h4>
+          <!-- <h4>
             <ion-text>Incluidos 200km por día</ion-text>
-          </h4>
-          <h4>
+          </h4> -->
+          <!-- <h4>
             <ion-text class="text-bold">Lugar de recogida</ion-text>
           </h4>
           <h4 *ngIf="detail">
             <ion-text>{{detail.shopping_cart.pickup_place}}</ion-text>
-          </h4>
-          <h4>
+          </h4> -->
+          <!-- <h4>
             <ion-text class="text-bold">Fecha y hora de recogida</ion-text>
           </h4>
           <h4 *ngIf="detail" >
             <ion-text>{{detail.shopping_cart.date_from_full_format}} {{detail.shopping_cart.time_from}}</ion-text>
-          </h4>
-          <h4>
+          </h4> -->
+          <!-- <h4>
             <ion-text class="text-bold">Lugar de devolución</ion-text>
-          </h4>
-          <h4 *ngIf="detail" >
+          </h4> -->
+          <!-- <h4 *ngIf="detail" >
             <ion-text>{{detail.shopping_cart.return_place}}</ion-text>
-          </h4>
+          </h4> -->
           <h4>
-            <ion-text class="text-bold">Fecha y hora de devolución</ion-text>
+            <ion-text class="text-bold">Fecha</ion-text>
           </h4>
           <h4 *ngIf="detail" >
-            <ion-text>{{detail.shopping_cart.date_to_full_format}} {{detail.shopping_cart.time_to}}</ion-text>
+            <ion-text>{{detail.shopping_cart.date_from_full_format}}</ion-text>
+          </h4>
+          <h4 *ngIf="detail" >
+            <ion-text>{{detail.shopping_cart.date_to_full_format}}</ion-text>
           </h4>
           <h4>
             <ion-text class="text-bold">Duración del alquiler</ion-text>
@@ -137,15 +140,15 @@
         </ion-col>
         <ion-col size="12">
           <h4 *ngIf="detail" >
-            <ion-text class="text-bold texto-izquierda">VEHÍCULO</ion-text>
+            <ion-text class="text-bold texto-izquierda">PRODUCTO</ion-text>
             <ion-text class="text-bold texto-derecha">{{detail.shopping_cart.item_cost}}€</ion-text>
           </h4>
         </ion-col>
         <ion-col size="12">
-          <h4 *ngIf="detail" >
+          <!-- <h4 *ngIf="detail" >
             <ion-text class="text-bold texto-izquierda">EXTRAS</ion-text>
             <ion-text class="text-bold texto-derecha">{{detail.shopping_cart.extras_cost}}€</ion-text>
-          </h4>
+          </h4> -->
         </ion-col>
         <ion-col size="12">
           <h1 *ngIf="detail" >
