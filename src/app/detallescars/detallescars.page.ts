@@ -1,7 +1,7 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { ApiService } from '../services/api.service';
-import { NavParams, LoadingController, NavController, AlertController, MenuController } from '@ionic/angular';
+import { NavController, MenuController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as Moment from 'moment';
 
@@ -52,31 +52,34 @@ idCarro
     private service: ApiService,
     private route: ActivatedRoute,
     private router: Router,
-    private loadingController: LoadingController,
     private navCtrl: NavController,
-    private menu: MenuController
+    private menu: MenuController,
+    private ngZone: NgZone,
     ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.obtenercarro();
-    this.obtenerentrega();
+    await this.obtenerentrega();
      
     let fechaInicio = Moment().format('YYYY-MM-DD');
-    this.fechas(fechaInicio);
+    await this.fechas(fechaInicio);
 
     if(this.route.snapshot.paramMap.get('edit')){
       let d = localStorage.getItem("edit_reserva");
       let dd =  JSON.parse(d)
-
+      this.ngZone.run(async () => {
           this.pickup_place = dd.pickup_place
+          this.obtenerdevolucion()
           this.return_place = dd.return_place
           this.fecha1 = dd.date_from
           this.fecha2 = dd.date_to
-          this.horaEntreg = dd.time_from
-          this.horaDev = dd.time_to
-          this.obtenerdevolucion()
+          this.horaEntreg = dd.date_from+' '+dd.time_from
+          this.horaDev = dd.date_to+' '+dd.time_to
           this.fechas2()
           this.obtenerHoras()
+      })
+          
+          
 
     }
 
@@ -223,7 +226,7 @@ console.log('posicion final ',Moment(arregloFinal[arregloFinal.length-1]).endOf(
        "pickup_place": this.pickup_place,
        "return_place": this.return_place
      }
-     let params = {include_products:true}
+     let params = {include_products:true,limit:this.limit, offset:0}
    
      this.service.shoppingCart(data, params).subscribe((response)=>{
        

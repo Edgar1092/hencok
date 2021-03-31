@@ -208,7 +208,7 @@ console.log('posicion final ',Moment(arregloFinal[arregloFinal.length-1]).endOf(
        "date_from": Moment(this.date_from).format("DD/MM/YYYY"),
        "date_to": Moment(this.date_to).format("DD/MM/YYYY"),
      }
-     let params = {include_products:true}
+     let params = {include_products:true,limit:this.limit, offset:0}
      this.service.shoppingYate(data, params).subscribe((response)=>{
        
        console.log(response)

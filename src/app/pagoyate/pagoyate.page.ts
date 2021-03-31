@@ -1,9 +1,8 @@
 import { MenuController,NavController } from '@ionic/angular';
-import { Component, ElementRef, OnInit,ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from '../../environments/environment'
-import { NgForm } from '@angular/forms';
 import { Capacitor, Plugins } from '@capacitor/core'
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 const { Device } = Plugins;
@@ -14,10 +13,6 @@ const { Device } = Plugins;
 })
 export class PagoyatePage implements OnInit {
 
- // @ViewChild('myFormPost') form: ElementRef;
- @ViewChild('submitButton', {static:false}) public buttonsiyo: ElementRef;
- // @ViewChild('submitButton') submitButton: ElementRef;
- // @ViewChild('myFormPost', { read: NgForm }) form: any;
  url = environment.apiUrlBoat+'/reserva/pagar'
  spinner = false;
  idCheckout
@@ -40,16 +35,9 @@ export class PagoyatePage implements OnInit {
    this.idCheckout=this.route.snapshot.paramMap.get('id')
    this.paymentcheckout=this.route.snapshot.paramMap.get('payment')
    this.Paymentmethodcheckout=this.route.snapshot.paramMap.get('paymentmethodid')
-
-   // document.forms['myFormPost'].submit();
-   //  this.form.nativeElement.submit();
-   //  console.log('se ejecuto esa mierda');
-
-   // this.buttonsiyo.nativeElement.click();
  }
 
  ionViewDidEnter(){
-   // this.buttonsiyo.nativeElement.click();
    let formHtml:string = '';
    formHtml+='<input type="hidden" value="'+this.idCheckout+'" id="id" name="id"/>';
    formHtml+='<input type="hidden" value="'+this.paymentcheckout+'" id="payment" name="payment"/>';
@@ -68,7 +56,7 @@ export class PagoyatePage implements OnInit {
       file = 'file:///android_asset/redirect.html'
     }
     if(file != ''){
-     let browser = this.iab.create('file:///android_asset/redirect.html','_blank', 'location=no');
+     let browser = this.iab.create(file,'_blank', 'location=no');
      browser.show();
      browser.on("loadstart")
      .subscribe(
@@ -81,7 +69,7 @@ export class PagoyatePage implements OnInit {
 
            if(event.url.indexOf("barcos.hencok.com/resumen") > -1){
              browser.close();
-             this.router.navigate(['/resumen',this.idCheckout]);
+             this.router.navigate(['/resumenyates',this.idCheckout]);
              }
          },
          err => {
@@ -113,15 +101,6 @@ export class PagoyatePage implements OnInit {
    }
   }
  }
-   // this.router.navigate(['/']);
- 
-
- openBrowser(){
-
- }
-
-
-
 
  openMenu(){
    this.menu.open('menu');
