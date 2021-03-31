@@ -58,12 +58,12 @@ import {
       return next.handle(request).pipe(
         map((event: HttpEvent<any>) => {
           if (event instanceof HttpResponse) {
-            console.log('event--->>>', event);
+            // console.log('event--->>>', event);
           }
           return event;
         }),
         catchError((error: HttpErrorResponse) => {
-          console.error(error);
+          // console.error(error);
           if(navigator.onLine){
             this.presentToast("Error inesperado, contacte con soporte!");
           }

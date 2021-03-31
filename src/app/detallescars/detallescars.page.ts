@@ -59,11 +59,26 @@ idCarro
 
   ngOnInit() {
     this.obtenercarro();
-     this.obtenerentrega();
+    this.obtenerentrega();
      
     let fechaInicio = Moment().format('YYYY-MM-DD');
- 
     this.fechas(fechaInicio);
+
+    if(this.route.snapshot.paramMap.get('edit')){
+      let d = localStorage.getItem("edit_reserva");
+      let dd =  JSON.parse(d)
+
+          this.pickup_place = dd.pickup_place
+          this.return_place = dd.return_place
+          this.fecha1 = dd.date_from
+          this.fecha2 = dd.date_to
+          this.horaEntreg = dd.time_from
+          this.horaDev = dd.time_to
+          this.obtenerdevolucion()
+          this.fechas2()
+          this.obtenerHoras()
+
+    }
 
   }
   

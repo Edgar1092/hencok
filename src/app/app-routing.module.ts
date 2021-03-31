@@ -92,7 +92,14 @@ const routes: Routes = [
     path: 'pagoyate/:id/:payment/:paymentmethodid',
     loadChildren: () => import('./pagoyate/pagoyate.module').then( m => m.PagoyatePageModule)
   },
-
+  {
+    path: 'detallescars/:code/:edit',
+    loadChildren: () => import('./detallescars/detallescars.module').then( m => m.DetallescarsPageModule)
+  },
+  {
+    path: 'detallesyates/:code/:edit',
+    loadChildren: () => import('./detallesyates/detallesyates.module').then( m => m.DetallesyatesPageModule)
+  },
  
 ];
 @NgModule({

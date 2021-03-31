@@ -141,4 +141,16 @@ export class ReservayatesPage implements OnInit {
 
   }
 
+  modificar(){
+    if(this.detail){
+      let data = {
+        "date_from": this.detail.shopping_cart.date_from,
+        "date_to": this.detail.shopping_cart.date_to
+      }
+      let car_id = this.detail.shopping_cart.items[0].item_id
+      localStorage.setItem("edit_reserva_yates", JSON.stringify(data))
+      this.router.navigate(["detallesyates", car_id, true]);
+    }
+  }
+
 }

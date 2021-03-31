@@ -59,6 +59,15 @@ export class DetallesyatesPage implements OnInit {
     let fechaInicio = Moment().format('YYYY-MM-DD');
  
     this.fechas(fechaInicio);
+
+    if(this.route.snapshot.paramMap.get('edit')){
+      let d = localStorage.getItem("edit_reserva_yates");
+      let dd =  JSON.parse(d)
+          this.date_from = dd.date_from
+          this.date_to = dd.date_to
+          this.fechas2()
+
+    }
   }
 
   async obteneryate(){

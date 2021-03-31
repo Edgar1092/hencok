@@ -164,6 +164,19 @@ export class ReservaPage implements OnInit {
   }
 
   modificar(){
-    
+    if(this.detail){
+      let data = {
+        "date_from": this.detail.shopping_cart.date_from,
+        "time_from": this.detail.shopping_cart.time_from,
+        "date_to": this.detail.shopping_cart.date_to,
+        "time_to": this.detail.shopping_cart.time_to,
+        "pickup_place": this.detail.shopping_cart.pickup_place,
+        "return_place": this.detail.shopping_cart.return_place
+      }
+      let car_id = this.detail.shopping_cart.items[0].item_id
+      localStorage.setItem("edit_reserva", JSON.stringify(data))
+      this.router.navigate(["detallescars", car_id, true]);
+    }
   }
+
 }

@@ -36,11 +36,11 @@
           <ion-img *ngIf="cars" [src]="cars.photo_path" class="ion-padding"></ion-img>
 
           <ion-item class="color-fondo" lines="none">
-              <ion-row class="padding-rl ion-padding">
-              <h3 class="">
-            <p *ngIf="cars" [innerHTML]="cars.description" class=""></p>
-          </h3>
-          </ion-row>
+            <ion-row class="padding-rl ion-padding-horizontal">
+              <h3 class="margin-t-0">
+                <p *ngIf="cars" [innerHTML]="cars.description" class="margin-t-0"></p>
+              </h3>
+            </ion-row>
           </ion-item>
       
         </ion-col>
