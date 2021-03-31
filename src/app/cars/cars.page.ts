@@ -15,6 +15,7 @@ import * as Moment from 'moment';
 export class CarsPage implements OnInit {
   cars:any[] = [];
   cars2:any[] = [];
+  cars3:any[] = [];
   horas:any;
   fechaMinEn:any;
   fechaMaxEn:any;
@@ -240,10 +241,10 @@ export class CarsPage implements OnInit {
       this.spinner = false
       console.log("res",response);
       if(response && response.data){
-        this.cars = response.data; 
+        this.cars3 = response.data; 
         this.total = response.total
       }
-      console.log("cars",this.cars);
+      console.log("cars3",this.cars3);
     },
     (error) => {
       this.spinner = false

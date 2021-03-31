@@ -75,32 +75,6 @@ export class YatesPage implements OnInit {
     this.navCtrl.navigateForward('avisolegal');
   }
 
-  // obtenerentrega(){
-  //   this.service.yatesEntrega()
-  //       .subscribe(res => {
-  //         console.log(res);
-  //         this.yates = res;
-  //       }, err => {
-         
-  //         console.log(err);
-  //       });
-  //   }
-
-    // obtenerdevolucion(value){
-    //   this.entregaSelecionada = value;
-    //   let params = {pickup_place:this.entregaSelecionada};
-    //   this.service.yatesDevolucion(params).subscribe(
-    //     (response: any) => {
-    //       console.log("res",response);
-    //         this.yates2 = response; 
-    //       // console.log("yates2",this.yates2);
-    //       // this.fechaEntrega();
-    //     },
-    //     (error) => {
-         
-    //       console.log('error')
-    //     });  
-    // }
 
     fechaEntrega(fechaInicio){
       // this.fechaD = Moment().startOf('month').format("YYYY-MM-DD");
@@ -151,44 +125,7 @@ export class YatesPage implements OnInit {
             }); 
         }
 
-        // horaEntrega(){
-        //   let params = {date:this.fechaSeleccionada , place:this.entregaSelecionada};
-        //   this.service.yatesHoras(params).subscribe(
-        //     (response: any) => {
-        //       console.log("res",response);
-        //       this.horas= response;
-        //       this.horaMinEn = this.horas[0];
-        //       this.horaMaxEn = this.horas[this.horas.length-1]
-        //       // console.log("fechaSeleccionada",this.fechaSeleccionada);
-        //       console.log("HORAAS", this.horas );
-        //       console.log("hora Minima", this.horaMinEn);
-        //       console.log("hora Max", this.horaMaxEn);
-        //     },
-        //     (error) => {
-             
-        //       console.log('error')
-        //     });
-        // }
-
-        // horaDevolucion(value){
-        //   this.fechaSeleccionada = value;
-        //   let params = {date:this.fechaSeleccionada , place:this.entregaSelecionada};
-        //   this.service.yatesHoras(params).subscribe(
-        //     (response: any) => {
-        //       console.log("res",response);
-        //       this.horas= response;
-        //       this.horaMinDe = this.horas[0];
-        //       this.horaMaxDe = this.horas[this.horas.length-1]
-        //       console.log("fechaSeleccionada devolucion",this.date_to);
-        //       console.log("HORAAS   DEVOLUCION", this.horas );
-        //       console.log("hora Minima DE", this.horaMinDe);
-        //       console.log("hora Max DE", this.horaMaxDe);
-        //     },
-        //     (error) => {
-             
-        //       console.log('error')
-        //     });
-        // }
+    
 
   search(){
     
