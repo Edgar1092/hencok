@@ -35,7 +35,7 @@
         <ion-item class="color-fondo">
           <ion-label class="color-label">Fecha de entrega</ion-label>
         
-          <ion-datetime [(ngModel)]="date_from" (ionChange)="fechaDevolucion($event.target.value)" doneText="Ok"
+          <ion-datetime [(ngModel)]="date_from" (ionChange)="fechaDevolucion()" doneText="Ok"
             cancelText="Cancelar" displayFormat="DD/MM/YYYY" [min]="fechaMinEn" [max]="fechaMaxEn">
           </ion-datetime>
           <ion-icon src="/assets/img/001-calendar1.svg"></ion-icon>

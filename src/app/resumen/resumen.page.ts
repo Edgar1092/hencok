@@ -10,7 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ResumenPage implements OnInit {
   spinner = false;
-  detail:[]
+  detail:any
   constructor(
     private menu: MenuController,
     private service: ApiService,

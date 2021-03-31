@@ -16,8 +16,8 @@ import * as Moment from 'moment';
 export class DetallescarsPage implements OnInit {
 
 cars;
-cars2:[];
-cars3:[];
+cars2:any[] = [];
+cars3:any[] = [];
 spinner = false;
 offset = 0
 limit = 10
@@ -113,9 +113,9 @@ idCarro
         });
     }
   
-    obtenerdevolucion(value){
-      console.log('ver value',value)
-      this.entregaSelecionada = value;
+    obtenerdevolucion(){
+      console.log('ver value',this.pickup_place)
+      this.entregaSelecionada = this.pickup_place;
       let params = {pickup_place:this.entregaSelecionada};
       this.service.carsdevolucion(params).subscribe(
         (response: any) => {
@@ -170,9 +170,9 @@ console.log('posicion final ',Moment(arregloFinal[arregloFinal.length-1]).endOf(
         });       
     }
 
-    fechas2(value){
-      if(value!=''){
-        this.fechas(Moment(value).format('YYYY-MM-DD'))
+    fechas2(){
+      if(this.fecha1!=''){
+        this.fechas(Moment(this.fecha1).format('YYYY-MM-DD'))
       }
 
     }

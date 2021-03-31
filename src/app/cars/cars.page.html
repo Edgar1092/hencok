@@ -36,7 +36,7 @@
           <ion-label class="color-label">Lugar de entrega</ion-label>
 
           <ion-select [(ngModel)]="pickup_place" doneText="Ok" cancelText="Cancelar" icon="chevron-down-outline"
-            (ionChange)="obtenerdevolucion($event.target.value)">
+            (ionChange)="obtenerdevolucion()">
           
             <ion-select-option *ngFor="let entrega of cars" [value]="entrega.id">
               {{entrega.id}}
@@ -49,7 +49,7 @@
 
         <ion-item class="color-fondo">
           <ion-label class="color-label">Fecha de entrega</ion-label>
-          <ion-datetime [disabled]="pickup_place == '' " [(ngModel)]="date_from" (ionChange)="fechaDevolucion($event.target.value)"
+          <ion-datetime [disabled]="pickup_place == '' " [(ngModel)]="date_from" (ionChange)="fechaDevolucion()"
           doneText="Ok" cancelText="Cancelar" displayFormat="DD/MM/YYYY"  [min]="fechaMinEn" [max]="fechaMaxEn">
         </ion-datetime>
           <ion-icon src="/assets/img/001-calendar1.svg"></ion-icon>
@@ -78,7 +78,7 @@
         <ion-item class="color-fondo">
           <ion-label class="color-label">Fecha de devolución</ion-label>
 
-          <ion-datetime (ionChange)="horaDevolucion($event.target.value)"
+          <ion-datetime (ionChange)="horaDevolucion()"
           [disabled]="return_place == '' "  [(ngModel)]="date_to" [min]="fechaMinDe" 
           [max]="fechaMaxDe"
           doneText="Ok" cancelText="Cancelar" displayFormat="DD/MM/YYYY">

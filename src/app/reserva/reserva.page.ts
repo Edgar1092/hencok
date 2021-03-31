@@ -162,4 +162,8 @@ export class ReservaPage implements OnInit {
     }
 
   }
+
+  modificar(){
+    
+  }
 }

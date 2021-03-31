@@ -10,7 +10,7 @@ import { MenuController, NavController } from '@ionic/angular';
 })
 export class ResumenyatesPage implements OnInit {
   spinner = false;
-  detail:[]
+  detail:any
 
   constructor(
     private menu: MenuController,

@@ -13,8 +13,8 @@ import * as Moment from 'moment';
   styleUrls: ['./cars.page.scss'],
 })
 export class CarsPage implements OnInit {
-  cars:[];
-  cars2:[];
+  cars:any[] = [];
+  cars2:any[] = [];
   horas:any;
   fechaMinEn:any;
   fechaMaxEn:any;
@@ -85,8 +85,8 @@ export class CarsPage implements OnInit {
       });
   }
 
-  obtenerdevolucion(value){
-    this.entregaSelecionada = value;
+  obtenerdevolucion(){
+    this.entregaSelecionada = this.pickup_place;
     let params = {pickup_place:this.entregaSelecionada};
     this.service.carsdevolucion(params).subscribe(
       (response: any) => {
@@ -123,10 +123,10 @@ export class CarsPage implements OnInit {
       });       
   }
 
-  fechaDevolucion(value){
+  fechaDevolucion(){
     this.fechaSeleccionada = Moment().startOf('month').format("YYYY-MM-DD");
     this.fechaMaxDe =Moment(this.fechaSeleccionada).add(2, 'months').format('YYYY-MM-DD');
-      this.fechaSeleccionada = Moment(value).format("YYYY-MM-DD");
+      this.fechaSeleccionada = Moment(this.date_from).format("YYYY-MM-DD");
       let params = {from:this.fechaSeleccionada, to:this.fechaMaxDe, place:this.entregaSelecionada};
       this.service.carsdateentrega(params).subscribe(
         (response: any) => {
@@ -172,8 +172,8 @@ export class CarsPage implements OnInit {
       });
   }
 
-  horaDevolucion(value){
-    this.fechaSeleccionada = value;
+  horaDevolucion(){
+    this.fechaSeleccionada = this.date_to;
     let params = {date:this.fechaSeleccionada , place:this.entregaSelecionada};
     this.service.carsHoraEntrega(params).subscribe(
       (response: any) => {

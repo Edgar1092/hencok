@@ -165,9 +165,9 @@ console.log('posicion final ',Moment(arregloFinal[arregloFinal.length-1]).endOf(
         });       
     }
 
-    fechas2(value){
-      if(value!=''){
-        this.fechas(Moment(value).format('YYYY-MM-DD'))
+    fechas2(){
+      if(this.fechaMinEn!=''){
+        this.fechas(Moment(this.fechaMinEn).format('YYYY-MM-DD'))
       }
     }
 

@@ -46,7 +46,7 @@
      
         <ion-item class="color-fondo">
           <ion-label class="color-label">Fecha de entrega</ion-label>
-          <ion-datetime [(ngModel)]="date_from" doneText="Ok" cancelText="Cancelar" [min]="fechaMinEn" (ionChange)="fechas2($event.target.value)" displayFormat="DD/MM/YYYY"></ion-datetime>
+          <ion-datetime [(ngModel)]="date_from" doneText="Ok" cancelText="Cancelar" [min]="fechaMinEn" (ionChange)="fechas2()" displayFormat="DD/MM/YYYY"></ion-datetime>
           <ion-icon src="/assets/img/001-calendar1.svg"></ion-icon>
         </ion-item>
 

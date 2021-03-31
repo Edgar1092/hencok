@@ -10,8 +10,8 @@ import * as Moment from 'moment';
   styleUrls: ['./yates.page.scss'],
 })
 export class YatesPage implements OnInit {
-  yates:[];
-  yates2:[];
+  yates:any[] = [];
+  yates2:any[] = [];
   horas:any;
   fechaMinEn:any;
   fechaMaxEn:any;
@@ -117,10 +117,10 @@ export class YatesPage implements OnInit {
           });       
       }
 
-      fechaDevolucion(value){
+      fechaDevolucion(){
         this.fechaSeleccionada = Moment().startOf('month').format("YYYY-MM-DD");
         this.fechaMaxDe =Moment(this.fechaSeleccionada).add(2, 'months').format('YYYY-MM-DD');
-          this.fechaSeleccionada = Moment(value).format("YYYY-MM-DD");
+          this.fechaSeleccionada = Moment(this.date_from).format("YYYY-MM-DD");
           let params = {from:this.fechaSeleccionada, to:this.fechaMaxDe, action:'collections'};
           this.service.yatesFechas(params).subscribe(
             (response: any) => {
