@@ -27,6 +27,7 @@ export class YatesPage implements OnInit {
   devolucionSeleccionada: any;
   fechaSeleccionada: any;
   horaSeleccionada: any;
+
   
   /** formulario */
   pickup_place = ''
@@ -38,6 +39,11 @@ export class YatesPage implements OnInit {
 
   spinner = false;
   spinnerForm = false;
+
+  
+  offset = 0
+  limit = 3
+  total = 0
 
   constructor(
     private navCtrl: NavController,
@@ -52,6 +58,7 @@ export class YatesPage implements OnInit {
     let fechaInicio = Moment().format('YYYY-MM-DD');
  
     this.fechaEntrega(fechaInicio);
+    this.obtenerYates();
   }
 
   back(){
@@ -210,6 +217,28 @@ export class YatesPage implements OnInit {
          this.service.presentToast("Datos incompletos !");
              }
             }
+
+            
+  obtenerYates(){
+  this.spinner = true;
+  this.offset=0
+  let params = {limit:this.limit, offset:0};
+  this.service.yates(params).subscribe(
+    (response: any) => {
+      this.spinner = false
+      console.log("res",response);
+      if(response && response.data){
+        this.yates = response.data; 
+        this.total = response.total
+      }
+      console.log("yates",this.yates);
+    },
+    (error) => {
+      this.spinner = false
+      console.log('error')
+    });
+}
+ 
 }
 
 

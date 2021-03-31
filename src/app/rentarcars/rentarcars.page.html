@@ -35,11 +35,16 @@
       <ion-spinner *ngIf="spinner" name="crescent"></ion-spinner>
     </ion-col>
     <ion-col size="12" *ngFor="let carros of cars">
-      <ion-img *ngIf="free_access_id == '' " [src]="carros.photo_path" class="ion-padding"></ion-img>
-      <ion-img *ngIf="free_access_id != '' " [src]="carros.full_photo" class="ion-padding"></ion-img>
+      <ion-img *ngIf="free_access_id == '' " [src]="carros.photo_path" class="ion-padding" routerLink="/detallescars/{{carros.code}}" ></ion-img>
+      <ion-img *ngIf="free_access_id != '' " [src]="carros.full_photo" class="ion-padding" (click)="addProduct(carros.code)"></ion-img>
       <ion-item class="color-fondo" lines="none">
         <h3 class="ion-text-left text-bold">
-          <ion-text class="text-bold titulo-c">
+          <ion-text *ngIf="free_access_id == '' " class="text-bold titulo-c" routerLink="/detallescars/{{carros.code}}">
+            {{carros.name}}
+          </ion-text>
+        </h3>
+        <h3 class="ion-text-left text-bold">
+          <ion-text *ngIf="free_access_id != '' " class="text-bold titulo-c" (click)="addProduct(carros.code)">
             {{carros.name}}
           </ion-text>
         </h3>

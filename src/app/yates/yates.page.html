@@ -68,27 +68,20 @@
           <ion-text>Últimos Modelos</ion-text>
         </h1>
       </ion-col>
-      <ion-col size="12" class="ion-padding ion-text-center">
-        <ion-img src="assets/img/AnyConv.com__1.jpeg"> </ion-img>
+
+      <ion-col size="12" class="ion-padding ion-text-center" *ngFor="let barcos of yates">
+
+        <ion-img [src]="barcos.photo_path" routerLink="/detallesyates/{{barcos.code}}"></ion-img>
         <h2 class="ion-text-center text-bold margin-t-10 margin-b-0">
-          <ion-text>D50</ion-text>
+          <ion-text routerLink="/detallesyates/{{barcos.code}}">{{barcos.name}}</ion-text>
         </h2>
       </ion-col>
-      <ion-col size="12" class="ion-padding ion-text-center">
-        <ion-img src="assets/img/SunseekerPredator62.1.png"> </ion-img>
-        <h2 class="ion-text-center text-bold margin-t-10 margin-b-0">
-          <ion-text>Sunseeker Predator 62</ion-text>
-        </h2>
-      </ion-col>
-      <ion-col size="12" class="ion-padding ion-text-center">
-        <ion-img src="assets/img/AnyConv.com__2.jpeg"> </ion-img>
-        <h2 class="ion-text-center text-bold margin-t-10 margin-b-0">
-          <ion-text>Predator 82 Just Smile</ion-text>
-        </h2>
-      </ion-col>
+     
+
       <ion-col size="12" class="ion-padding">
         <ion-button expand="block" class="btn" routerLink="/rentaryates">Ver Todos</ion-button>
       </ion-col>
+
     </ion-row>
 
   </ion-grid>

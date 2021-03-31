@@ -42,6 +42,10 @@ export class CarsPage implements OnInit {
   spinner = false;
   spinnerForm = false;
 
+  offset = 0
+  limit = 3
+  total = 0
+
   constructor(
     private navCtrl: NavController,
     private menu: MenuController,
@@ -56,7 +60,7 @@ export class CarsPage implements OnInit {
     let fechaInicio = Moment().format('YYYY-MM-DD');
  
     this.fechaEntrega(fechaInicio);
-    
+    this.obetenerCarros();
   }
 
 
@@ -225,6 +229,27 @@ export class CarsPage implements OnInit {
     this.service.presentToast("Datos incompletos !");
   }
  }
+
+ 
+ obetenerCarros(){
+  this.spinner = true;
+  this.offset=0
+  let params = {limit:this.limit, offset:0};
+  this.service.cars(params).subscribe(
+    (response: any) => {
+      this.spinner = false
+      console.log("res",response);
+      if(response && response.data){
+        this.cars = response.data; 
+        this.total = response.total
+      }
+      console.log("cars",this.cars);
+    },
+    (error) => {
+      this.spinner = false
+      console.log('error')
+    });
+}
  
   
 

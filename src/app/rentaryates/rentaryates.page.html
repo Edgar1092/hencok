@@ -36,11 +36,16 @@
     </ion-col>
 
     <ion-col size="12" *ngFor="let yate of yates" class="imagenY">
-      <ion-img *ngIf="free_access_id == '' " [src]="yate.photo_path" class="ion-padding"></ion-img>
-      <ion-img *ngIf="free_access_id != '' " [src]="yate.full_photo" class="ion-padding"></ion-img>
+      <ion-img *ngIf="free_access_id == '' " [src]="yate.photo_path" class="ion-padding" routerLink="/detallesyates/{{yate.code}}" ></ion-img>
+      <ion-img *ngIf="free_access_id != '' " [src]="yate.full_photo" class="ion-padding" (click)="addProduct(yate.code)"></ion-img>
       <ion-item class="color-fondo" lines="none">
         <h3 class="ion-text-left text-bold">
-          <ion-text class="text-bold titulo-c">
+          <ion-text class="text-bold titulo-c" *ngIf="free_access_id == '' " routerLink="/detallesyates/{{yate.code}}">
+            {{yate.name}}
+          </ion-text>
+        </h3>
+        <h3 class="ion-text-left text-bold">
+          <ion-text class="text-bold titulo-c" *ngIf="free_access_id != '' " (click)="addProduct(yate.code)">
             {{yate.name}}
           </ion-text>
         </h3>

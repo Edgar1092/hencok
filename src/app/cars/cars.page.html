@@ -111,24 +111,15 @@
           <ion-text>Últimos Modelos</ion-text>
         </h1>
       </ion-col>
-      <ion-col size="12" class="ion-padding ion-text-center">
-        <ion-img src="/assets/img/mercedes-g63.png"> </ion-img>
+
+      <ion-col size="12" class="ion-padding ion-text-center" *ngFor="let carros of cars">
+
+        <ion-img [src]="carros.photo_path" routerLink="/detallescars/{{carros.code}}"></ion-img>
         <h2 class="ion-text-center text-bold margin-t-10 margin-b-0">
-          <ion-text>Mercedez GC3</ion-text>
+          <ion-text routerLink="/detallescars/{{carros.code}}">{{carros.name}}</ion-text>
         </h2>
       </ion-col>
-      <ion-col size="12" class="ion-padding ion-text-center">
-        <ion-img src="/assets/img/lamborghini-aventador.png"> </ion-img>
-        <h2 class="ion-text-center text-bold margin-t-10 margin-b-0">
-          <ion-text>Lamborghini Aventador</ion-text>
-        </h2>
-      </ion-col>
-      <ion-col size="12" class="ion-padding ion-text-center">
-        <ion-img src="/assets/img/rolls-royce-wraith.png"> </ion-img>
-        <h2 class="ion-text-center text-bold margin-t-10 margin-b-0">
-          <ion-text>Rolls Royce Wraith</ion-text>
-        </h2>
-      </ion-col>
+
       <ion-col size="12" class="ion-padding">
         <ion-button expand="block" class="btn" routerLink="/rentarcars">Ver Todos</ion-button>
       </ion-col>
