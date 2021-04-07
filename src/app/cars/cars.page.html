@@ -50,7 +50,9 @@
         <ion-item class="color-fondo">
           <ion-label class="color-label">Fecha de entrega</ion-label>
           <ion-datetime [disabled]="pickup_place == '' " [(ngModel)]="date_from" (ionChange)="fechaDevolucion()"
-          doneText="Ok" cancelText="Cancelar" displayFormat="DD/MM/YYYY"  [min]="fechaMinEn" [max]="fechaMaxEn">
+          doneText="Ok" cancelText="Cancelar" displayFormat="DD/MMM/YYYY"  [min]="fechaMinEn" [max]="fechaMaxEn"
+          monthShortNames="Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre"
+          >
         </ion-datetime>
           <ion-icon src="/assets/img/001-calendar1.svg"></ion-icon>
         </ion-item>
@@ -81,7 +83,9 @@
           <ion-datetime (ionChange)="horaDevolucion()"
           [disabled]="return_place == '' "  [(ngModel)]="date_to" [min]="fechaMinDe" 
           [max]="fechaMaxDe"
-          doneText="Ok" cancelText="Cancelar" displayFormat="DD/MM/YYYY">
+          doneText="Ok" cancelText="Cancelar" displayFormat="DD/MMM/YYYY"
+          monthShortNames="Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre"
+          >
           </ion-datetime>
 
           <ion-icon src="/assets/img/001-calendar1.svg"></ion-icon>

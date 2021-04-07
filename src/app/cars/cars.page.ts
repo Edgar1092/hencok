@@ -47,6 +47,7 @@ export class CarsPage implements OnInit {
   limit = 3
   total = 0
 
+
   constructor(
     private navCtrl: NavController,
     private menu: MenuController,
