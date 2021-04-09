@@ -26,7 +26,7 @@ export class ResumenyatesPage implements OnInit {
 
   async obtenerreserva(){
     this.spinner = true;
-    this.service.reservaGetYate(this.route.snapshot.paramMap.get('shoppingCart'))
+    this.service.reservaGetYate(this.route.snapshot.paramMap.get('shoppingYateGet'))
       .subscribe(res => {
         this.spinner = false
         console.log('reserva',res);
