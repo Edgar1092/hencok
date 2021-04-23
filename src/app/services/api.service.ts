@@ -43,10 +43,50 @@ export class ApiService implements CanActivate{
     console.log(message);
   }
 
-  login(data){
-    return this.http.post<any>(
-    environment.apiUrlCars + "/api/auth/login", data);
+
+
+  signup(data,params?) : Observable<any>{
+    let parseParams = new HttpParams();
+  
+    if (params) {
+      Object.keys(params).forEach(p => {
+        parseParams = parseParams.append(p, params[p]);
+      });
+    }
+    return this.http.post(
+      environment.apiUrlCars + "/api/v1/signup/customer",data, {params : parseParams} )
+      .pipe(
+        tap(_ => this.log('response received')),
+        catchError(this.handleError('signup', []))
+      );
   }
+
+
+  login(data,params?) : Observable<any>{
+    let parseParams = new HttpParams();
+    const headers = new HttpHeaders()
+  
+ 
+    if (params) {
+      Object.keys(params).forEach(p => {
+        parseParams = parseParams.append(p, params[p]);
+      });
+    }
+    return this.http.post(
+      environment.apiUrlCars + "/api/v1/login",data, {params : parseParams})
+      .pipe(
+        tap(_ => this.log('response received')),
+        catchError(this.handleError('signup', []))
+      );
+  }
+ 
+
+  // login(data){
+  //    return this.http.post<any>(
+  //    environment.losig + "/api/auth/login", data);
+  //  }
+
+  
 
   cars(params?) : Observable<any>{
     let parseParams = new HttpParams();

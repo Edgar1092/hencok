@@ -23,13 +23,13 @@
           <ion-col size="12">
             <ion-list lines="none">
               <ion-item>
-                <ion-input placeholder="Email"></ion-input>
+                <ion-input [(ngModel)]="username" placeholder="Nombre de Usuario" type="text"></ion-input>
               </ion-item>
               <ion-item>
-                <ion-input placeholder="Contraseña"></ion-input>
+                <ion-input  [(ngModel)]="password"placeholder="Contraseña" type="password"></ion-input>
               </ion-item>
             </ion-list>
-            <ion-button expand="block" color="vino" class="btn">Entrar</ion-button>
+            <ion-button expand="block" color="vino" class="btn" (click)="Login()">Entrar</ion-button>
           </ion-col>
         </ion-row>
         
