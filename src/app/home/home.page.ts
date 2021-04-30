@@ -1,6 +1,8 @@
-import { NavController } from '@ionic/angular';
+import { MenuController, NavController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ApiService } from '../services/api.service';
+import { take } from 'rxjs/operators';
 
 
 @Component({
@@ -10,13 +12,29 @@ import { Router } from '@angular/router';
 })
 export class HomePage implements OnInit {
 
+  spinner = false;
+  spinnerForm = false;
+
+  usuario
   constructor(
     private router: Router,
-    private navCtrl:NavController
-    ) { }
+    private  service : ApiService,
+    private navCtrl:NavController,
+    private menu: MenuController
+    ) { 
+      
+    }
 
   ngOnInit() {
+   this.ping();
+  
   }
+  
+  ionViewWillEnter(){
+    this.ping(); 
+    //  this.menu.enable(false);
+  }
+
   go(ruta){
     this.router.navigateByUrl(ruta);
   }
@@ -26,4 +44,25 @@ export class HomePage implements OnInit {
   gotoaviso() {
     this.navCtrl.navigateForward('avisolegal');
   }
+
+ 
+  ping(){
+    let data    =   localStorage.getItem('token');
+    this.usuario =  localStorage.getItem('usuario');
+    if(data){
+       this.service.ping(data).subscribe((response)=>{
+       console.log('Usuario', this.usuario)
+       console.log(response) 
+         },(error)=>{
+         this.spinnerForm =false
+         console.log(error)
+             })
+     console.log(data);
+    }
+    else{
+    //  this.service.presentToast("Inicie sesion");
+  }
+  }
+
+
 }

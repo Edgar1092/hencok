@@ -1,15 +1,24 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams} from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { HttpClient, HttpParams, HttpResponse} from '@angular/common/http';
+import { merge, observable, Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { CanActivate } from '@angular/router';
 import { NavController, ToastController } from '@ionic/angular';
 import { environment } from "../../environments/environment";
 import { HttpHeaders } from '@angular/common/http';
+import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService implements CanActivate{
+
+  menu: BehaviorSubject<any> = new BehaviorSubject<String>('');
+  menu$ = this.menu.asObservable();
+
+  obtenerUsuario(nombreUsuario){
+    this.menu.next(nombreUsuario);
+  }
+
 
   constructor(private http: HttpClient, private navCtrl: NavController, private toastController : ToastController) { }
 
@@ -44,7 +53,6 @@ export class ApiService implements CanActivate{
   }
 
 
-
   signup(data,params?) : Observable<any>{
     let parseParams = new HttpParams();
   
@@ -64,29 +72,61 @@ export class ApiService implements CanActivate{
 
   login(data,params?) : Observable<any>{
     let parseParams = new HttpParams();
-    const headers = new HttpHeaders()
-  
- 
+    const header1= {'Content-Type':'application/json',};
     if (params) {
       Object.keys(params).forEach(p => {
         parseParams = parseParams.append(p, params[p]);
       });
     }
     return this.http.post(
-      environment.apiUrlCars + "/api/v1/login",data, {params : parseParams})
+      environment.apiUrlCars + "/api/v1/login",data, {params : parseParams, headers: header1,
+        observe: 'response',
+        responseType: 'json'})
       .pipe(
         tap(_ => this.log('response received')),
         catchError(this.handleError('signup', []))
       );
   }
- 
 
-  // login(data){
-  //    return this.http.post<any>(
-  //    environment.losig + "/api/auth/login", data);
-  //  }
+  logout(params?) : Observable<any>{
+    let parseParams = new HttpParams();
+    const headers1= {'Content-Type':'application/json',};
+    if (params) {
+      Object.keys(params).forEach(p => {
+        parseParams = parseParams.append(p, params[p]);
+      });
+    }
+    return this.http.delete(
+      environment.apiUrlCars + "/api/v1/logout", {params : parseParams, headers: headers1,
+        observe: 'response',
+        responseType: 'json'
+        })
+      .pipe(
+        tap(_ => this.log('response received')),
+        catchError(this.handleError('logout', []))
+      );
+  }
 
-  
+  ping(data,params?) : Observable<any>{
+    let parseParams = new HttpParams();
+    const headers1= {'Authorization':data,};
+    let menu = this.menu$
+    console.log('Menuuuu',menu)
+    if (params) {
+      Object.keys(params).forEach(p => {
+        parseParams = parseParams.append(p, params[p]);
+      });
+    }
+    parseParams = parseParams.append("value", "conectado");
+    return this.http.get(
+      environment.apiUrlCars + "/api/v1/ping", {params : parseParams, headers: headers1,
+        observe: 'response',
+        responseType: 'json'})
+      .pipe(
+        tap(_ => this.log('response received')),
+        catchError(this.handleError('ping', []))
+      );
+  }
 
   cars(params?) : Observable<any>{
     let parseParams = new HttpParams();
