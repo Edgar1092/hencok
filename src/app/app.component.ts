@@ -3,7 +3,7 @@ import { MenuController, NavController } from '@ionic/angular';
 import { ApiService } from './services/api.service';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
-
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -16,39 +16,44 @@ export class AppComponent {
   spinner = false;
   spinnerForm = false;
 
-
   public selectedIndex = 0;
   public appPages = [
     {
-      title: 'Inicio',
+      title: 'INICIO',
       url: '',
       icon: 'chevron-forward'
     },
     {
-      title: 'Tu perfil',
+      title: 'PERFIL',
       url: '/perfil',
       icon: 'chevron-forward'
     },
     {
-      title: 'Barcos',
+      title: 'BARCOS',
       url: '/rentaryates',
       icon: 'chevron-forward'
     },
     {
-      title: 'Coches',
+      title: 'COCHES',
       url: '/rentarcars',
       icon: 'chevron-forward'
     } 
 
   ];
+  lang = 'es'
   constructor(
     private menu: MenuController,
     private  service : ApiService,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private translateService: TranslateService
     ) {
-      
-    this.ping();
-    console.log('Menuuuu',this.usuario)
+      // Idioma
+      this.translateService.setDefaultLang('es');
+      this.translateService.use('es'); 
+      // this.lang = this.translateService.currentLang.toString();
+      this.ping();
+      console.log('Lang menu',this.lang)
+
 
   }
 
@@ -105,7 +110,10 @@ export class AppComponent {
      this.service.presentToast("Inicie sesion");
     }
    }
-
+   changeLanguage(){
+     console.log(this.lang)
+     this.translateService.use(this.lang)
+   }
 
 }
 

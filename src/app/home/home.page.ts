@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from '../services/api.service';
 import { take } from 'rxjs/operators';
-
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-home',
@@ -14,15 +14,17 @@ export class HomePage implements OnInit {
 
   spinner = false;
   spinnerForm = false;
-
   usuario
   constructor(
     private router: Router,
     private  service : ApiService,
     private navCtrl:NavController,
-    private menu: MenuController
+    private menu: MenuController,
+    private translateService: TranslateService
     ) { 
-      
+      // this.translateService.setDefaultLang('en');
+      // this.translateService.use(this.translateService.currentLang); 
+      console.log("lang=>",this.translateService.currentLang)
     }
 
   ngOnInit() {

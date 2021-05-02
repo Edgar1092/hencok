@@ -22,26 +22,42 @@
               </ion-avatar>
 
               <ion-label *ngIf="usuario ==null" class="texto1">
-                <ion-text color="vino">Bienvenido invitado</ion-text><br>
-                <ion-text color="vino" class="texto-footer" (click)="gotologin()">Accede</ion-text>
-                <ion-text color="vino"> o </ion-text>
-                <ion-text color="vino" class="texto-footer" (click)="gotosignin()">Registrate</ion-text>
+                <ion-text color="vino">{{ 'BIENVENIDO_INVITADO' | translate }}</ion-text><br>
+                <ion-text color="vino" class="texto-footer" (click)="gotologin()">{{ 'ACCEDE' | translate }} {{usuario}}</ion-text>
+                <ion-text color="vino"> {{ 'O' | translate }} </ion-text>
+                <ion-text color="vino" class="texto-footer" (click)="gotosignin()">{{ 'REGISTRATE' | translate }} {{usuario}}</ion-text>
               </ion-label>
 
               <ion-label *ngIf="usuario !=null" class="texto1">
-                <ion-text color="vino">Bienvenido {{usuario}}</ion-text><br>
-                <ion-text color="vino" class="texto-footer" (click)="logout()">Cerrar Sesion</ion-text>
+                <ion-text color="vino">{{ 'BIENVENIDO' | translate }} {{usuario}}</ion-text><br>
+                <ion-text color="vino" class="texto-footer" (click)="logout()">{{ 'CERRAR_SESION' | translate }} {{usuario}}</ion-text>
               </ion-label>
+              <!-- <ion-label><ion-text color="vino">{{language}}</ion-text></ion-label> -->
               
             </ion-item>
           </ion-row>
+          
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index" class="list-menu">
             <ion-item (click)="selectedIndex = i" routerDirection="root" [routerLink]="[p.url]" detail="false"
               [class.selected]="selectedIndex == i">
               <ion-icon slot="end" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
-              <ion-label>{{ p.title }}</ion-label>
+              <ion-label>{{ p.title | translate }}</ion-label>
             </ion-item>
           </ion-menu-toggle>
+          <ion-item>
+            <ion-label>{{ 'LENGUAJE' | translate }}</ion-label>
+            <ion-select doneText="Ok" cancelText="Cancelar" [(ngModel)]="lang" (ionChange)="changeLanguage()">
+              
+              <ion-select-option value="en">
+                {{ 'INGLES' | translate }}
+              </ion-select-option>
+              <ion-select-option value="es">
+                {{ 'ESPANOL' | translate }}
+              </ion-select-option>
+  
+            </ion-select>
+            <ion-icon src="/assets/img/002-down-arrow1.svg"></ion-icon>
+          </ion-item>
         </ion-list>
       </ion-content>
     </ion-menu>

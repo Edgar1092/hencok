@@ -9,7 +9,7 @@
             <img src="/assets/img/HENCOK-logo2.png">
           </ion-col>
           <ion-col size="4">
-            <ion-button *ngIf="usuario==undefined" color="vino" class="btn1" routerLink="/login">Entrar</ion-button>
+            <ion-button *ngIf="usuario==undefined" color="vino" class="btn1" routerLink="/login">{{ 'ENTRAR' | translate }}</ion-button>
             <ion-text *ngIf="usuario !=undefined" color="vino"></ion-text>
           </ion-col>
         </ion-row>
@@ -28,14 +28,14 @@
     </ion-row>
   </ion-grid>
 
-  <ion-button size="large" fill="outline" color="light" class="entre-img2" routerLink="/cars">Coches</ion-button>
-  <ion-button size="large" fill="outline" color="light" class="entre-img1" routerLink="/yates">Barcos</ion-button>
+  <ion-button size="large" fill="outline" color="light" class="entre-img2 min-w-btn" routerLink="/cars">{{ 'COCHES' | translate }}</ion-button>
+  <ion-button size="large" fill="outline" color="light" class="entre-img1 min-w-btn" routerLink="/yates">{{ 'BARCOS' | translate }}</ion-button>
 
   <ion-grid class="bg-home2 margen-bajo">
     <h6 class="ion-text-center footer">
-      <ion-text class="texto-footer " color="vino" (click)="gotopoliticas()">Politica de Privacidad</ion-text>
+      <ion-text class="texto-footer " color="vino" (click)="gotopoliticas()">{{ 'POLITICA_PRIVACIDAD' | translate }}</ion-text>
       <ion-text color="vino"> | </ion-text>
-      <ion-text class="texto-footer " color="vino" (click)="gotoaviso()">Aviso Legal</ion-text>
+      <ion-text class="texto-footer " color="vino" (click)="gotoaviso()">{{ 'AVISO_LEGAL' | translate }}</ion-text>
     </h6>
   </ion-grid>
 </ion-content>
