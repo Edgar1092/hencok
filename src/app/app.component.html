@@ -20,15 +20,15 @@
               <ion-avatar slot="start">
                 <img src="/assets/img/user.png">
               </ion-avatar>
-
-              <ion-label *ngIf="usuario ==null" class="texto1">
+       
+              <ion-label *ngIf="usuario ==''" class="texto1">
                 <ion-text color="vino">Bienvenido invitado</ion-text><br>
                 <ion-text color="vino" class="texto-footer" (click)="gotologin()">Accede</ion-text>
                 <ion-text color="vino"> o </ion-text>
                 <ion-text color="vino" class="texto-footer" (click)="gotosignin()">Registrate</ion-text>
               </ion-label>
 
-              <ion-label *ngIf="usuario !=null" class="texto1">
+              <ion-label *ngIf="usuario !=''" class="texto1">
                 <ion-text color="vino">Bienvenido {{usuario}}</ion-text><br>
                 <ion-text color="vino" class="texto-footer" (click)="logout()">Cerrar Sesion</ion-text>
               </ion-label>
@@ -47,4 +47,4 @@
     </ion-menu>
     <ion-router-outlet id="main-content"></ion-router-outlet>
   </ion-split-pane>
-</ion-app>
+</ion-app>  

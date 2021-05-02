@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MenuController, NavController } from '@ionic/angular';
 import { ApiService } from '../services/api.service';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
@@ -22,6 +22,8 @@ export class LoginPage implements OnInit {
 /*Formulario*/
 username = ''
 password = ''
+ @Output() enviarUsuario = new EventEmitter<any>();
+  
 
   constructor(
     private menu: MenuController,
@@ -39,6 +41,12 @@ password = ''
   gotosignin() {
     this.navCtrl.navigateForward('signin');
   }
+  updatePost(){
+    this.service.publish(this.nombreUsuario);
+    console.log('Usuario Enviado', this.nombreUsuario)
+    // or 
+    // this.eventService.publish({name: 'postupdate', value: 'value you need to pass'});
+} 
 
  
 
@@ -61,10 +69,11 @@ password = ''
            this.usuario = JSON.parse(this.usuario);
            this.nombreUsuario= this.usuario.user.full_name
            localStorage.setItem("token" ,bearer.headers.get('Authorization'));
-           localStorage.setItem("usuario", this.nombreUsuario)
+           localStorage.setItem("user", this.nombreUsuario)
+           this.updatePost();
            this.navCtrl.navigateForward('');
            this.service.presentToast("Bienvenido "+this.nombreUsuario); 
-          this.enviarUsuario(this.nombreUsuario);
+          
              },(error)=>{
              this.spinnerForm =false
              console.log(error)
@@ -76,9 +85,11 @@ password = ''
                }
   }
 
-  enviarUsuario(nomUsuario) {
-    this.service.obtenerUsuario(nomUsuario);
-  }
+
+
+  // enviarUsuario(nomUsuario) {
+  //   this.service.obtenerUsuario(nomUsuario);
+  // }
 
   logout(){
    let data =  localStorage.getItem('token');

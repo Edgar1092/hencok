@@ -5,6 +5,7 @@ import { NavParams,LoadingController,NavController, AlertController } from '@ion
 import { MenuController } from '@ionic/angular';
 import { ApiService } from '../services/api.service';
 import * as Moment from 'moment';
+import { take } from 'rxjs/operators';
 
 
 @Component({
@@ -47,6 +48,8 @@ export class CarsPage implements OnInit {
   limit = 3
   total = 0
 
+  usuario
+
 
   constructor(
     private navCtrl: NavController,
@@ -72,7 +75,9 @@ export class CarsPage implements OnInit {
 
   openMenu(){
     this.menu.open('menu');
-  }
+    }
+ 
+
   gotopoliticas() {
     this.navCtrl.navigateForward('politicas');
   }

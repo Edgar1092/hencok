@@ -7,21 +7,29 @@ import { NavController, ToastController } from '@ionic/angular';
 import { environment } from "../../environments/environment";
 import { HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
+import { inject } from '@angular/core/testing';
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService implements CanActivate{
 
-  menu: BehaviorSubject<any> = new BehaviorSubject<String>('');
-  menu$ = this.menu.asObservable();
-
-  obtenerUsuario(nombreUsuario){
-    this.menu.next(nombreUsuario);
-  }
+  private dataObserved = new BehaviorSubject<any>('');
+ currentEvent = this.dataObserved.asObservable();
 
 
-  constructor(private http: HttpClient, private navCtrl: NavController, private toastController : ToastController) { }
 
+  public $uid: string
+  constructor(
+    private http: HttpClient, 
+    private navCtrl: NavController, 
+    private toastController : ToastController,
+  
+    ) { }
+
+    publish(param):void {
+      this.dataObserved.next(param);
+    }
+    
   canActivate() {
     //Validamos que existe un usuario en el localstorage almacenado
     let token = localStorage.getItem('token');
@@ -110,8 +118,6 @@ export class ApiService implements CanActivate{
   ping(data,params?) : Observable<any>{
     let parseParams = new HttpParams();
     const headers1= {'Authorization':data,};
-    let menu = this.menu$
-    console.log('Menuuuu',menu)
     if (params) {
       Object.keys(params).forEach(p => {
         parseParams = parseParams.append(p, params[p]);

@@ -5,6 +5,8 @@ import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 
 
+
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -13,6 +15,8 @@ import { take } from 'rxjs/operators';
 export class AppComponent {
   
   usuario
+  
+
   spinner = false;
   spinnerForm = false;
 
@@ -41,17 +45,22 @@ export class AppComponent {
     } 
 
   ];
+  
   constructor(
-    private menu: MenuController,
+    private  menu: MenuController,
     private  service : ApiService,
-    private navCtrl: NavController
-    ) {
-      
-    this.ping();
-    console.log('Menuuuu',this.usuario)
-
+    private  navCtrl: NavController,
+     
+    ) { 
+      console.log('UsuarioEmpezando',this.usuario)
+      // this.ping();
+     
+      this.service.currentEvent.subscribe(data=>{
+        this.usuario = data;
+        // console.log('UsuarioooOO', this.usuario)
+       });
   }
-
+  
   closeMenu(){
     this.menu.close();
   }
@@ -62,16 +71,10 @@ export class AppComponent {
     this.navCtrl.navigateForward('login');
   }
 
-  obtenerUsuario(){
-    this.service.menu$.pipe(take(1)).subscribe(
-      nombreUsuario => this.usuario = nombreUsuario
-    );
-     console.log('UsuarioObtenido',this.usuario)
-  }
 
   ping(){
     let data     =  localStorage.getItem('token');
-    this.usuario =  localStorage.getItem('usuario');
+    this.usuario =  localStorage.getItem('user');
     if(data){
        this.service.ping(data).subscribe((response)=>{
        console.log('Usuario', this.usuario)
@@ -89,7 +92,7 @@ export class AppComponent {
 
   logout(){
     let data =  localStorage.getItem('token');
-    localStorage.getItem('usuario');
+    localStorage.getItem('user');
     if(data){
        this.service.logout(data).subscribe((response)=>{
        console.log(response) 
@@ -99,7 +102,8 @@ export class AppComponent {
              })
      console.log(data);
      localStorage.removeItem('token');
-     localStorage.removeItem('usuario');
+     localStorage.removeItem('user');
+      this.usuario= '';
     }
     else{
      this.service.presentToast("Inicie sesion");
