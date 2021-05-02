@@ -5,6 +5,8 @@ import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 
+
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -13,6 +15,8 @@ import { TranslateService } from '@ngx-translate/core';
 export class AppComponent {
   
   usuario
+  
+
   spinner = false;
   spinnerForm = false;
 
@@ -42,7 +46,7 @@ export class AppComponent {
   ];
   lang = 'es'
   constructor(
-    private menu: MenuController,
+    private  menu: MenuController,
     private  service : ApiService,
     private navCtrl: NavController,
     private translateService: TranslateService
@@ -51,12 +55,19 @@ export class AppComponent {
       this.translateService.setDefaultLang('es');
       this.translateService.use('es'); 
       // this.lang = this.translateService.currentLang.toString();
-      this.ping();
+      // this.ping();
+      console.log('UsuarioEmpezando',this.usuario)
+      // this.ping();
+     
+      this.service.currentEvent.subscribe(data=>{
+        this.usuario = data;
+        // console.log('UsuarioooOO', this.usuario)
+       });
       console.log('Lang menu',this.lang)
 
 
   }
-
+  
   closeMenu(){
     this.menu.close();
   }
@@ -67,16 +78,10 @@ export class AppComponent {
     this.navCtrl.navigateForward('login');
   }
 
-  obtenerUsuario(){
-    this.service.menu$.pipe(take(1)).subscribe(
-      nombreUsuario => this.usuario = nombreUsuario
-    );
-     console.log('UsuarioObtenido',this.usuario)
-  }
 
   ping(){
     let data     =  localStorage.getItem('token');
-    this.usuario =  localStorage.getItem('usuario');
+    this.usuario =  localStorage.getItem('user');
     if(data){
        this.service.ping(data).subscribe((response)=>{
        console.log('Usuario', this.usuario)
@@ -94,7 +99,7 @@ export class AppComponent {
 
   logout(){
     let data =  localStorage.getItem('token');
-    localStorage.getItem('usuario');
+    localStorage.getItem('user');
     if(data){
        this.service.logout(data).subscribe((response)=>{
        console.log(response) 
@@ -104,7 +109,8 @@ export class AppComponent {
              })
      console.log(data);
      localStorage.removeItem('token');
-     localStorage.removeItem('usuario');
+     localStorage.removeItem('user');
+      this.usuario= '';
     }
     else{
      this.service.presentToast("Inicie sesion");

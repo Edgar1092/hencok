@@ -29,13 +29,13 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
    this.ping();
-  
+ 
   }
   
   ionViewWillEnter(){
     this.ping(); 
-    //  this.menu.enable(false);
   }
+  
 
   go(ruta){
     this.router.navigateByUrl(ruta);
@@ -50,10 +50,10 @@ export class HomePage implements OnInit {
  
   ping(){
     let data    =   localStorage.getItem('token');
-    this.usuario =  localStorage.getItem('usuario');
+    this.usuario =  localStorage.getItem('user');
     if(data){
        this.service.ping(data).subscribe((response)=>{
-       console.log('Usuario', this.usuario)
+       console.log('Usuario recibido', this.usuario)
        console.log(response) 
          },(error)=>{
          this.spinnerForm =false
@@ -65,6 +65,7 @@ export class HomePage implements OnInit {
     //  this.service.presentToast("Inicie sesion");
   }
   }
+
 
 
 }
