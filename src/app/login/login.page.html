@@ -12,10 +12,10 @@
         </ion-row>
         
         <ion-row class="titulos">
-          <h5 class="ion-text-left text-bold margin-b-0"><ion-text color="vino">Bienvenido/a a Hencok</ion-text></h5>
-          <h1 class="ion-text-left text-bold margin-t-10 margin-b-0"><ion-text>Accede a tu panel de control</ion-text></h1>
+          <h5 class="ion-text-left text-bold margin-b-0"><ion-text color="vino">{{'BIENVENIDO' | translate }} {{'A' | translate}} Hencok</ion-text></h5>
+          <h1 class="ion-text-left text-bold margin-t-10 margin-b-0"><ion-text>{{'ACCEDE_A_TU_PANEL_DE_CONTROL' | translate}}</ion-text></h1>
           <h5 class="ion-text-center">
-            <ion-text class="texto-footer" color="vino" (click)="gotosignin()">¿No tienes Cuenta? Registrate </ion-text>
+            <ion-text class="texto-footer" color="vino" (click)="gotosignin()">{{'NO_TIENES_CUENTA' | translate}} {{'REGISTRATE' | translate}} </ion-text>
           </h5>        
         </ion-row>
         
@@ -23,14 +23,13 @@
           <ion-col size="12">
             <ion-list lines="none">
               <ion-item>
-                <ion-input [(ngModel)]="username" placeholder="Nombre de Usuario" type="text"></ion-input>
+                <ion-input [(ngModel)]="username" placeholder="{{'NOMBRE_DE_USUARIO' | translate}}" type="text"></ion-input>
               </ion-item>
               <ion-item>
-                <ion-input  [(ngModel)]="password" placeholder="Contraseña" type="password"></ion-input>
+                <ion-input  [(ngModel)]="password" placeholder="{{'CONTRASENA' | translate}}" type="password"></ion-input>
               </ion-item>
             </ion-list>
-            <ion-button expand="block" color="vino" class="btn" (click)="Login()">Entrar</ion-button>
-           
+            <ion-button expand="block" color="vino" class="btn" (click)="Login()">{{'ENTRAR' | translate}}</ion-button>
            </ion-col>
         </ion-row>
         
@@ -40,7 +39,7 @@
 
   <ion-grid class="espacio">
     <h6 class="ion-text-center">
-      <ion-text class="texto-footer" color="vino">¿Has olvidado tu contraseña?</ion-text>
+      <ion-text class="texto-footer" color="vino">{{'HAS_OLVIDADO_TU_CONTRASENA' | translate}}</ion-text>
     </h6>
   </ion-grid>
   

@@ -21,16 +21,16 @@
                 <img src="/assets/img/user.png">
               </ion-avatar>
 
-              <ion-label *ngIf="usuario ==null" class="texto1">
+              <ion-label *ngIf="usuario ==''" class="texto1">
                 <ion-text color="vino">{{ 'BIENVENIDO_INVITADO' | translate }}</ion-text><br>
                 <ion-text color="vino" class="texto-footer" (click)="gotologin()">{{ 'ACCEDE' | translate }} {{usuario}}</ion-text>
                 <ion-text color="vino"> {{ 'O' | translate }} </ion-text>
                 <ion-text color="vino" class="texto-footer" (click)="gotosignin()">{{ 'REGISTRATE' | translate }} {{usuario}}</ion-text>
               </ion-label>
 
-              <ion-label *ngIf="usuario !=null" class="texto1">
-                <ion-text color="vino">{{ 'BIENVENIDO' | translate }} {{usuario}}</ion-text><br>
-                <ion-text color="vino" class="texto-footer" (click)="logout()">{{ 'CERRAR_SESION' | translate }} {{usuario}}</ion-text>
+              <ion-label *ngIf="usuario !=''" class="texto1">
+                <ion-text color="vino">{{ 'BIENVENIDO' | translate }} {{ usuario }}</ion-text><br>
+                <ion-text color="vino" class="texto-footer" (click)="logout()">{{ 'CERRAR_SESION' | translate }}</ion-text>
               </ion-label>
               <!-- <ion-label><ion-text color="vino">{{language}}</ion-text></ion-label> -->
               

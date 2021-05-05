@@ -15,37 +15,63 @@
 
         <ion-row class="titulos ">
           <h5 class="ion-text-left text-bold margin-b-0 width-100">
-            <ion-text color="vino">Bienvenido/a a Hencok</ion-text>
+            <ion-text color="vino">{{'BIENVENIDO' | translate}} {{'A' | translate}} Hencok</ion-text>
           </h5>
           <h1 class="ion-text-left text-bold margin-t-10 margin-b-0 width-100">
-            <ion-text>Regístrate</ion-text>
+            <ion-text>{{'REGISTRATE' | translate}}</ion-text>
           </h1><br>
           <h5 class="ion-text-center">
-            <ion-text class="texto-footer" color="vino" (click)="gotologin()">¿Ya posees cuenta? Inicia Sesión
+            <ion-text class="texto-footer" color="vino" (click)="gotologin()">{{'YA_POSEES_CUENTA' | translate}} {{'INICIA_SESION' | translate}}
             </ion-text>
           </h5>
         </ion-row>
 
         <ion-row class="form ">
           <ion-col size="12">
-            <ion-list lines="none">
-              <ion-item>
-                <ion-input [(ngModel)]="username" placeholder="Nombre de Usuario"></ion-input>
-              </ion-item>
-              <ion-item>
-                <ion-input [(ngModel)]="email" placeholder="Correo" type="email"></ion-input>
-              </ion-item>
-              <ion-item>
-                <ion-input [(ngModel)]="password" placeholder="Contraseña" type="password"></ion-input>
-              </ion-item>
-              <ion-item>
-                <ion-input [(ngModel)]="name" placeholder="Nombres" type="text"></ion-input>
-              </ion-item>
-              <ion-item>
-                <ion-input [(ngModel)]="surname" placeholder="Apellidos"></ion-input>
-              </ion-item>
-            </ion-list>
-            <ion-button expand="block" color="vino" class="btn" (click)=' Registro()'>Registrate</ion-button>
+              <ion-list lines="none">
+                <form [formGroup]="FormularioLogin">
+                  <ion-item>
+                    <ion-input formControlName="username" placeholder="{{'NOMBRE_DE_USUARIO' | translate}}"></ion-input>
+                  </ion-item>
+                  <span class="ion-padding" *ngIf="isSubmitted && errorControl.username.errors?.required">
+                    Nombre de Usuario no puede quedar vacio
+                  </span>
+                  <ion-item>
+                    <ion-input formControlName="email" placeholder="{{'CORREO' | translate}}" type="email"></ion-input>
+                  </ion-item>
+                  <span class="ion-padding" *ngIf="isSubmitted && errorControl.email.errors?.required">
+                    Correo no puede quedar vacio
+                  </span>
+                  <span class="ion-padding" *ngIf="isSubmitted && errorControl.email.errors?.pattern">
+                    Proporcione un correo valido
+                  </span>
+                  <ion-item>
+                    <ion-input formControlName="password" placeholder="{{'CONTRASENA' | translate}}" type="password"></ion-input>
+                  </ion-item>
+                  <span class="error ion-padding" *ngIf="isSubmitted && errorControl.password.errors?.required">
+                   Contraseña no puede quedar vacio
+                  </span>
+                  <span class="error ion-padding" *ngIf="isSubmitted && errorControl.password.errors?.pattern">
+                   Prorcione una contraseña valida: tamaño minino 8, una letra minuscula,una letra mayuscula, un digito y un 
+                   simbolo -!#$%&/()?¡_
+                   </span>
+                  <ion-item>
+                    <ion-input formControlName="name" placeholder="{{'NOMBRES' | translate}}" type="text"></ion-input>
+                  </ion-item>
+                  <span class="error ion-padding" *ngIf="isSubmitted && errorControl.name.errors?.required">
+                    Nombre no puede quedar vacio
+                   </span>
+                  <ion-item>
+                    <ion-input formControlName="surname" placeholder="{{'APELLIDOS' | translate}}"></ion-input>
+                  </ion-item>
+                  <span class="error ion-padding" *ngIf="isSubmitted && errorControl.surname.errors?.required">
+                    Apellido no puede quedar vacio
+                   </span>
+                </form>
+              </ion-list>
+              <ion-button expand="block" color="vino" class="btn" (click)=' Registro()'>{{'REGISTRATE' | translate}}</ion-button>
+          
+
           </ion-col>
         </ion-row>
         
@@ -55,9 +81,9 @@
 
   <ion-grid class="espacio">
     <h6 class="ion-text-center">
-      <ion-text class="texto-footer" color="vino" (click)="gotopoliticas()">Politica de Privacidad</ion-text>
+      <ion-text class="texto-footer" color="vino" (click)="gotopoliticas()">{{'POLITICA_PRIVACIDAD' | translate}}</ion-text>
       <ion-text color="vino"> | </ion-text>
-      <ion-text class="texto-footer " color="vino" (click)="gotoaviso()">Aviso Legal</ion-text>
+      <ion-text class="texto-footer " color="vino" (click)="gotoaviso()">{{'AVISO_LEGAL' | translate}}</ion-text>
     </h6>
   </ion-grid>
 

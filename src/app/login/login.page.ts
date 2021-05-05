@@ -3,6 +3,7 @@ import { MenuController, NavController } from '@ionic/angular';
 import { ApiService } from '../services/api.service';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -18,19 +19,22 @@ export class LoginPage implements OnInit {
 
    usuario
    nombreUsuario
+ @Output() enviarUsuario = new EventEmitter<any>();
 
 /*Formulario*/
 username = ''
 password = ''
- @Output() enviarUsuario = new EventEmitter<any>();
+
+
+/* Validar Clave */
+
   
 
   constructor(
     private menu: MenuController,
     private navCtrl: NavController,
     private  service : ApiService,
-
-    ) { }
+    ) {  }
 
   ngOnInit() {
 
@@ -51,7 +55,7 @@ password = ''
  
 
   Login(){
-    if(this.username !=''  && this.password !=''){
+    if(this.username !=''  && this.password !='' ){
       this.spinnerForm = true
      let data = {
           'username': this.username,
@@ -72,8 +76,7 @@ password = ''
            localStorage.setItem("user", this.nombreUsuario)
            this.updatePost();
            this.navCtrl.navigateForward('');
-           this.service.presentToast("Bienvenido "+this.nombreUsuario); 
-          
+           this.service.presentToast("Bienvenido " + this.nombreUsuario); 
              },(error)=>{
              this.spinnerForm =false
              console.log(error)
@@ -125,9 +128,6 @@ password = ''
      this.service.presentToast("Inicie sesion");
   }
   }
-
-
-
 
 
  
