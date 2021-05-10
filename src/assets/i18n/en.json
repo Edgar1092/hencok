@@ -73,5 +73,13 @@
     "EXTRAS":"ADDITIONAL FEATURES",
     "TOTAL":"TOTAL",
     "MODIFICAR_RESERVA":"MODIFY RESERVATION",
-    "LOCALIZADOR":"LOCATOR"
+    "LOCALIZADOR":"LOCATOR",
+    "NOMBRE_DE_USUARIO_NO_PUEDE_QUEDAR_VACIO":"Username cannot be left empty",
+    "CORREO_NO_PUEDE_QUEDAR_VACIO":"email cannot be empty",
+    "PROPORCIONE_UN_CORREO_VALIDO":"provide a valid email",
+    "CONTRASEÑA_NO_PUEDE_QUEDAR_VACIO":"password cannot be empty",
+    "CONTRASEÑA_VALIDA":"Provide a valid password: minimum size 8, a lowercase letter, an uppercase letter, a digit and a symbol -! # $% & / ()? ¡_",
+    "NOMBRE_NO_PUEDE_QUEDAR_VACIO":"name cannot be empty",
+    "APELLIDO_NO_PUEDE_QUEDAR_VACIO":"surname cannot be left empty"
+    
 }

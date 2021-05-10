@@ -34,38 +34,37 @@
                     <ion-input formControlName="username" placeholder="{{'NOMBRE_DE_USUARIO' | translate}}"></ion-input>
                   </ion-item>
                   <span class="ion-padding" *ngIf="isSubmitted && errorControl.username.errors?.required">
-                    Nombre de Usuario no puede quedar vacio
+                    {{'NOMBRE_DE_USUARIO_NO_PUEDE_QUEDAR_VACIO' | translate}}
                   </span>
                   <ion-item>
                     <ion-input formControlName="email" placeholder="{{'CORREO' | translate}}" type="email"></ion-input>
                   </ion-item>
                   <span class="ion-padding" *ngIf="isSubmitted && errorControl.email.errors?.required">
-                    Correo no puede quedar vacio
+                    {{'CORREO_NO_PUEDE_QUEDAR_VACIO' | translate}}
                   </span>
                   <span class="ion-padding" *ngIf="isSubmitted && errorControl.email.errors?.pattern">
-                    Proporcione un correo valido
+                    {{'PROPORCIONE_UN_CORREO_VALIDO' | translate}}
                   </span>
                   <ion-item>
                     <ion-input formControlName="password" placeholder="{{'CONTRASENA' | translate}}" type="password"></ion-input>
                   </ion-item>
                   <span class="error ion-padding" *ngIf="isSubmitted && errorControl.password.errors?.required">
-                   Contraseña no puede quedar vacio
+                    {{'CONTRASEÑA_NO_PUEDE_QUEDAR_VACIO' | translate}}
                   </span>
                   <span class="error ion-padding" *ngIf="isSubmitted && errorControl.password.errors?.pattern">
-                   Prorcione una contraseña valida: tamaño minino 8, una letra minuscula,una letra mayuscula, un digito y un 
-                   simbolo -!#$%&/()?¡_
+                    {{'CONTRASEÑA_VALIDA' | translate}}
                    </span>
                   <ion-item>
                     <ion-input formControlName="name" placeholder="{{'NOMBRES' | translate}}" type="text"></ion-input>
                   </ion-item>
                   <span class="error ion-padding" *ngIf="isSubmitted && errorControl.name.errors?.required">
-                    Nombre no puede quedar vacio
+                    {{'NOMBRE_NO_PUEDE_QUEDAR_VACIO' | translate}}
                    </span>
                   <ion-item>
                     <ion-input formControlName="surname" placeholder="{{'APELLIDOS' | translate}}"></ion-input>
                   </ion-item>
                   <span class="error ion-padding" *ngIf="isSubmitted && errorControl.surname.errors?.required">
-                    Apellido no puede quedar vacio
+                    {{'APELLIDO_NO_PUEDE_QUEDAR_VACIO' | translate}}
                    </span>
                 </form>
               </ion-list>
