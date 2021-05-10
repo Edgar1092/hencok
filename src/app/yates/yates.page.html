@@ -18,10 +18,10 @@
     <ion-row>
       <ion-col size="12" class="ion-padding">
         <h5 class="ion-text-left">
-          <ion-text class="ion-text-left text-bold margin-b-0" color="vino">Hencok Barcos</ion-text>
+          <ion-text class="ion-text-left text-bold margin-b-0" color="vino">Hencok {{'BARCOS' | translate}}</ion-text>
         </h5>
         <h1 class="ion-text-left text-bold margin-t-10 margin-b-0">
-          <ion-text>Reserva tu Yate</ion-text>
+          <ion-text>{{'RESERVA_TU_BARCO' | translate}}</ion-text>
         </h1>
       </ion-col>
     </ion-row>
@@ -33,23 +33,23 @@
       <ion-col size="12" class="ion-padding">
 
         <ion-item class="color-fondo">
-          <ion-label class="color-label">Fecha de entrega</ion-label>
+          <ion-label class="color-label">{{'FECHA_DE_ENTREGA' | translate}}</ion-label>
         
           <ion-datetime [(ngModel)]="date_from" (ionChange)="fechaDevolucion()" doneText="Ok"
             cancelText="Cancelar" displayFormat="DD/MMM/YYYY" [min]="fechaMinEn" [max]="fechaMaxEn"
-            monthShortNames="Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre"
+            monthShortNames="{{'MESES' | translate}}"
             >
           </ion-datetime>
           <ion-icon src="/assets/img/001-calendar1.svg"></ion-icon>
         </ion-item>
 
         <ion-item class="color-fondo">
-          <ion-label class="color-label">Fecha de devolución</ion-label>
+          <ion-label class="color-label">{{'FECHA_DE_DEVOLUCION' | translate}}</ion-label>
         
           <ion-datetime [disabled]="date_from == '' " [(ngModel)]="date_to" 
           [min]="fechaMinDe" [max]="fechaMaxDe" doneText="Ok"
             cancelText="Cancelar" displayFormat="DD/MMM/YYYY"
-            monthShortNames="Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre"
+            monthShortNames="{{'MESES' | translate}}"
             >
           </ion-datetime>
         
@@ -60,17 +60,17 @@
         <div class="ion-text-center width-100">
           <ion-spinner *ngIf="spinnerForm" color="vino" name="crescent"></ion-spinner>
         </div>
-        <ion-button [disabled]="spinnerForm" expand="block" class="btn" (click)="search()">Buscar</ion-button>
+        <ion-button [disabled]="spinnerForm" expand="block" class="btn" (click)="search()">{{'BUSCAR' | translate}}</ion-button>
       </ion-col>
     </ion-row>
 
     <ion-row>
       <ion-col size="12" class="ion-padding">
         <h5 class="ion-text-left text-bold margin-b-0">
-          <ion-text class="text-color text-bold">Descubre Hencok</ion-text>
+          <ion-text class="text-color text-bold">{{'DESCUBRE' | translate}} Hencok</ion-text>
         </h5>
         <h1 class="ion-text-left text-bold margin-t-10 margin-b-0">
-          <ion-text>Últimos Modelos</ion-text>
+          <ion-text>{{'ULTIMOS_MODELOS' | translate}}</ion-text>
         </h1>
       </ion-col>
 
@@ -84,7 +84,7 @@
      
 
       <ion-col size="12" class="ion-padding">
-        <ion-button expand="block" class="btn" routerLink="/rentaryates">Ver Todos</ion-button>
+        <ion-button expand="block" class="btn" routerLink="/rentaryates">{{'VER_TODOS' | translate}}</ion-button>
       </ion-col>
 
     </ion-row>
@@ -93,9 +93,9 @@
 
   <ion-grid class="espacio">
     <h6 class="ion-text-center">
-      <ion-text class="texto-footer text-color" (click)="gotopoliticas()">Politica de Privacidad</ion-text>
+      <ion-text class="texto-footer text-color" (click)="gotopoliticas()">{{'POLITICA_PRIVACIDAD' | translate}}</ion-text>
       <ion-text class="text-color"> | </ion-text>
-      <ion-text class="texto-footer text-color" (click)="gotoaviso()">Aviso Legal</ion-text>
+      <ion-text class="texto-footer text-color" (click)="gotoaviso()">{{'AVISO_LEGAL' | translate}}</ion-text>
     </h6>
   </ion-grid>
 

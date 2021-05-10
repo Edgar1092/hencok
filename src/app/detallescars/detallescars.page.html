@@ -23,7 +23,7 @@
         <ion-col size="12" class="">
           <ion-row class="titulos padding-rl">
             <h5 class="text-bold">
-              <ion-text color="vino" class="margin-b-10">Hencok Coches</ion-text>
+              <ion-text color="vino" class="margin-b-10">Hencok {{'COCHES' | translate}}</ion-text>
             </h5>
           </ion-row>
           <h1 class="text-bold">
@@ -50,7 +50,7 @@
     <ion-row>
       <ion-col size="12" class="ion-padding">
         <ion-item class="color-fondo formulario">
-          <ion-label class="color-label">Lugar de entrega</ion-label>
+          <ion-label class="color-label">{{'LUGAR_DE_ENTREGA' | translate}}</ion-label>
     
           <ion-select [(ngModel)]="pickup_place" doneText="Ok" cancelText="Cancelar" icon="chevron-down-outline"
           (ionChange)="obtenerdevolucion()">
@@ -64,7 +64,7 @@
         </ion-item>
 
         <ion-item class="color-fondo formulario">
-          <ion-label class="color-label">Lugar de devolución</ion-label>
+          <ion-label class="color-label">{{'LUGAR_DE_DEVOLUCION' | translate}}</ion-label>
           <ion-select [disabled]="!pickup_place" [(ngModel)]="return_place" doneText="Ok" cancelText="Cancelar">
             
             <ion-select-option *ngFor="let devolucion of cars3" [value]="devolucion.id">
@@ -76,34 +76,34 @@
         </ion-item>
 
         <ion-item class="color-fondo formulario">
-          <ion-label class="color-label">Fecha de entrega</ion-label>
+          <ion-label class="color-label">{{'FECHA_DE_ENTREGA' | translate}}</ion-label>
           <ion-datetime [disabled]="!return_place" [(ngModel)]="fecha1"
            doneText="Ok" cancelText="Cancelar" [min]="fechaMinEn" (ionChange)="fechas2()" 
            displayFormat="DD/MMM/YYYY"
-           monthShortNames="Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre"
+           monthShortNames="{{'MESES' | translate}}"
            ></ion-datetime>
           <ion-icon src="/assets/img/001-calendar1.svg"></ion-icon>
         </ion-item>
 
         <ion-item class="color-fondo formulario">
-          <ion-label class="color-label">Fecha de devolución</ion-label>
+          <ion-label class="color-label">{{'FECHA_DE_DEVOLUCION' | translate}}</ion-label>
           <ion-datetime  [(ngModel)]="fecha2" doneText="Ok" cancelText="Cancelar" 
           [disabled]="!fecha1" [min]="fechaMinDe" [max]="fechaMaxEn" (ionChange)="obtenerHoras()"
            displayFormat="DD/MMM/YYYY"
-           monthShortNames="Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre"
+           monthShortNames="{{'MESES' | translate}}"
            ></ion-datetime>
           <ion-icon src="/assets/img/001-calendar1.svg"></ion-icon>
         </ion-item>
 
         <ion-item class="color-fondo formulario">
-          <ion-label class="color-label">Hora de entrega</ion-label>
+          <ion-label class="color-label">{{'HORA_DE_ENTREGA' | translate}}</ion-label>
           <ion-datetime doneText="Ok" [(ngModel)]="horaEntreg" cancelText="Cancelar" minuteValues="00,30" 
           [min]="horaMinEntrega" [disabled]="!fecha1" [max]="horaMaxEntrega" displayFormat="HH:mm"></ion-datetime>
           <ion-icon src="/assets/img/003-clock1.svg"></ion-icon>
         </ion-item>
 
         <ion-item class="color-fondo formulario">
-          <ion-label class="color-label">Hora de devolución</ion-label>
+          <ion-label class="color-label">{{'HORA_DE_DEVOLUCION' | translate}}</ion-label>
 
           <ion-datetime doneText="Ok" [disabled]="!horaEntreg" [(ngModel)]="horaDev" 
           [min]="horaMinDevolucion" [max]="horaMaxDevolucion"
@@ -115,16 +115,16 @@
           <ion-spinner *ngIf="spinnerForm" color="vino" name="crescent"></ion-spinner>
         </div>
 
-        <ion-button expand="block" class="btn" (click)="reserva()" [disabled]="spinnerForm">Reservar</ion-button>
+        <ion-button expand="block" class="btn" (click)="reserva()" [disabled]="spinnerForm">{{'RESERVAR' | translate}}</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>
 
   <ion-grid class="espacio">
     <h6 class="ion-text-center">
-      <ion-text class="texto-footer text-color" (click)="gotopoliticas()">Politica de Privacidad</ion-text>
+      <ion-text class="texto-footer text-color" (click)="gotopoliticas()">{{'POLITICA_PRIVACIDAD' | translate}}</ion-text>
       <ion-text class="text-color"> | </ion-text>
-      <ion-text class="texto-footer text-color" (click)="gotoaviso()">Aviso Legal</ion-text>
+      <ion-text class="texto-footer text-color" (click)="gotoaviso()">{{'AVISO_LEGAL' | translate}}</ion-text>
     </h6>
   </ion-grid>
 </ion-content>

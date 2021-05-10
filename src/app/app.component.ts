@@ -14,7 +14,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class AppComponent {
   
-  usuario
+  usuario = ''
   
 
   spinner = false;
@@ -55,17 +55,13 @@ export class AppComponent {
       this.translateService.setDefaultLang('es');
       this.translateService.use('es'); 
       // this.lang = this.translateService.currentLang.toString();
-      // this.ping();
       console.log('UsuarioEmpezando',this.usuario)
-      // this.ping();
-     
+         
       this.service.currentEvent.subscribe(data=>{
         this.usuario = data;
         // console.log('UsuarioooOO', this.usuario)
        });
       console.log('Lang menu',this.lang)
-
-
   }
   
   closeMenu(){
@@ -116,6 +112,7 @@ export class AppComponent {
      this.service.presentToast("Inicie sesion");
     }
    }
+   
    changeLanguage(){
      console.log(this.lang)
      this.translateService.use(this.lang)

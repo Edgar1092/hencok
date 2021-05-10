@@ -23,10 +23,10 @@
       <ion-col size="12" class="ion-padding padding-rl">
         <ion-row class="titulos">
           <h5 class="ion-text-left text-bold margin-b-0">
-            <ion-text color="vino">Hencok Coches</ion-text>
+            <ion-text color="vino">Hencok {{'COCHES' | translate}}</ion-text>
           </h5>
           <h1 class="ion-text-left text-bold margin-t-10 margin-b-0"><br>
-            <ion-text>Datos del Conductor</ion-text>
+            <ion-text>{{'DATOS_DEL_CONDUCTOR' | translate}}</ion-text>
           </h1>
         </ion-row>
 
@@ -36,52 +36,52 @@
           <ion-col size="12">
             <ion-list lines="none">
               <ion-item class="item-form">
-                <ion-input [(ngModel)]="nombre" placeholder="Nombre*"></ion-input>
+                <ion-input [(ngModel)]="nombre" placeholder="{{'NOMBRES' | translate}}*"></ion-input>
               </ion-item>
               <ion-item class="item-form">
-                <ion-input [(ngModel)]="apellidos" placeholder="Apellidos*"></ion-input>
+                <ion-input [(ngModel)]="apellidos" placeholder="{{'APELLIDOS' | translate}}*"></ion-input>
               </ion-item>
               <ion-item class="item-form">
-                <ion-input [(ngModel)]="email" placeholder="Email*"></ion-input>
+                <ion-input [(ngModel)]="email" placeholder="{{'CORREO' | translate}}*"></ion-input>
               </ion-item>
               <ion-item class="item-form">
-                <ion-input [(ngModel)]="confirmEmail" placeholder="Confirma tu email"></ion-input>
+                <ion-input [(ngModel)]="confirmEmail" placeholder="{{'CONFIRMA_TU_CORREO' | translate}}"></ion-input>
               </ion-item>
               <ion-item class="item-form">
-                <ion-input [(ngModel)]="telefono" placeholder="Telefono*"></ion-input>
+                <ion-input [(ngModel)]="telefono" placeholder="{{'TELEFONO' | translate}}*"></ion-input>
               </ion-item>
               <ion-item class="item-form">
-                <ion-input [(ngModel)]="telefonoAlternativo" placeholder="Telefono alternativo"></ion-input>
+                <ion-input [(ngModel)]="telefonoAlternativo" placeholder="{{'TELEFONO_ALTERNATIVO' | translate}}"></ion-input>
               </ion-item>
               <ion-item class="item-form">
-                <ion-textarea [(ngModel)]="comentarios" placeholder="Comentarios"></ion-textarea>
+                <ion-textarea [(ngModel)]="comentarios" placeholder="{{'COMENTARIOS' | translate}}"></ion-textarea>
               </ion-item>
               <ion-radio-group *ngIf="detail && detail.sales_process.can_pay" [(ngModel)]="tipoPago">
               <ion-item class="color-fondo">
                 <ion-radio  value="solicitud_reserva" mode="android" color="vino" slot="start"></ion-radio>
                 <label><h6>
-                  <ion-text class="">Solicitud de Reserva</ion-text>
+                  <ion-text class="">{{'SOLICITUD_DE_RESERVA' | translate}}</ion-text>
                 </h6></label>
               </ion-item>
               <ion-item class="color-fondo">
                 <ion-radio  value="pagar_ahora" mode="android" color="vino" slot="start"></ion-radio>
                 <label><h6>
-                  <ion-text class="">Pagar ahora</ion-text>
+                  <ion-text class="">{{'PAGAR_AHORA' | translate}}</ion-text>
                 </h6></label>
               </ion-item>
             </ion-radio-group>
               <ion-row *ngIf="detail && tipoPago == 'pagar_ahora' " class="ion-padding bg-info-pay">
-                <h5><ion-text color="vino">Para confirmar su reserva ha de realizarse un pago de </ion-text> <ion-text class="text-bold" color="vino">{{detail.shopping_cart.booking_amount}}€</ion-text></h5>
+                <h5><ion-text color="vino">{{'PARA_CONFIRMAR_SU_RESERVA_HA_DE_REALIZARSE_UN_PAGO_DE' | translate}} </ion-text> <ion-text class="text-bold" color="vino">{{detail.shopping_cart.booking_amount}}€</ion-text></h5>
               </ion-row>
               <ion-item *ngIf="detail && detail.sales_process.can_pay" class="color-fondo">
                 <ion-checkbox [(ngModel)]="terminos" mode="ios" color="vino" slot="start" class="margin"></ion-checkbox>
                 <h6>
-                  <ion-text class="">Acepto los terminos y condiciones y la politica de privacidad</ion-text>
+                  <ion-text class="">{{'ACEPTO_LOS_TERMINOS_Y_CONDICIONES_Y_LA_POLIITICA_DE_PRIVACIDAD' | translate}}</ion-text>
                 </h6>
               </ion-item>
             </ion-list>
-            <ion-button *ngIf="tipoPago == '' || tipoPago == 'solicitud_reserva' " expand="block" color="vino" class="btn" [disabled]="!terminos" (click)="pagar()">Solicitud de Reserva</ion-button>
-            <ion-button *ngIf="detail && tipoPago == 'pagar_ahora' " expand="block" color="vino" class="btn"  [disabled]="!terminos" (click)="pagar()">Pagar {{detail.shopping_cart.booking_amount}}€</ion-button>
+            <ion-button *ngIf="tipoPago == '' || tipoPago == 'solicitud_reserva' " expand="block" color="vino" class="btn" [disabled]="!terminos" (click)="pagar()">{{'SOLICITUD_DE_RESERVA' | translate}}</ion-button>
+            <ion-button *ngIf="detail && tipoPago == 'pagar_ahora' " expand="block" color="vino" class="btn"  [disabled]="!terminos" (click)="pagar()">{{'PAGAR' | translate}} {{detail.shopping_cart.booking_amount}}€</ion-button>
           
           </ion-col>
         </ion-row>
@@ -90,7 +90,7 @@
             <ion-text *ngIf="detail" color="vino">{{detail.shopping_cart.items[0].item_description}}</ion-text>
           </h5>
           <h1 class="ion-text-left text-bold margin-t-10 margin-b-0"><br>
-            <ion-text>Detalle de la Reserva</ion-text>
+            <ion-text>{{'DETALLE_DE_LA_RESERVA' | translate}}</ion-text>
           </h1>
         </ion-row>
         <ion-col size="12" class="ion-padding ion-text-center">
@@ -98,72 +98,72 @@
         </ion-col>
         <ion-col size="12" class="ion-padding ion-text-left">
           <h4>
-            <ion-text class="text-bold">Incluye:</ion-text>
+            <ion-text class="text-bold">{{'INCLUYE' | translate}}:</ion-text>
           </h4>
           <h4>
-            <ion-text>Seguro a todo Riesgo</ion-text>
+            <ion-text>{{'SEGURO_A_TODO_RIESGO' | translate}}</ion-text>
           </h4>
           <h4>
-            <ion-text>Incluidos 200km por día</ion-text>
+            <ion-text>{{'INCLUIDOS_200KM_POR_DIA' | translate}}</ion-text>
           </h4>
           <h4>
-            <ion-text class="text-bold">Lugar de recogida</ion-text>
+            <ion-text class="text-bold">{{'LUGAR_DE_RECOGIDA' | translate}}</ion-text>
           </h4>
           <h4 *ngIf="detail">
             <ion-text>{{detail.shopping_cart.pickup_place}}</ion-text>
           </h4>
           <h4>
-            <ion-text class="text-bold">Fecha y hora de recogida</ion-text>
+            <ion-text class="text-bold">{{'FECHA_Y_HORA_DE_RECOGIDA' | translate}}</ion-text>
           </h4>
           <h4 *ngIf="detail" >
             <ion-text>{{detail.shopping_cart.date_from_full_format}} {{detail.shopping_cart.time_from}}</ion-text>
           </h4>
           <h4>
-            <ion-text class="text-bold">Lugar de devolución</ion-text>
+            <ion-text class="text-bold">{{'LUGAR_DE_DEVOLUCION' | translate}}</ion-text>
           </h4>
           <h4 *ngIf="detail" >
             <ion-text>{{detail.shopping_cart.return_place}}</ion-text>
           </h4>
           <h4>
-            <ion-text class="text-bold">Fecha y hora de devolución</ion-text>
+            <ion-text class="text-bold">{{'FECHA_Y_HORA_DE_DEVOLUCION' | translate}}</ion-text>
           </h4>
           <h4 *ngIf="detail" >
             <ion-text>{{detail.shopping_cart.date_to_full_format}} {{detail.shopping_cart.time_to}}</ion-text>
           </h4>
           <h4>
-            <ion-text class="text-bold">Duración del alquiler</ion-text>
+            <ion-text class="text-bold">{{'DURACION_DEL_ALQUILER' | translate}}</ion-text>
           </h4>
           <h4 *ngIf="detail" >
-            <ion-text>{{detail.shopping_cart.total_days}} día/s</ion-text>
+            <ion-text>{{detail.shopping_cart.total_days}} {{'DIAS' | translate}}</ion-text>
           </h4>
         </ion-col>
         <ion-col size="12">
           <h4 *ngIf="detail" >
-            <ion-text class="text-bold texto-izquierda">VEHÍCULO</ion-text>
+            <ion-text class="text-bold texto-izquierda">{{'VEHICULO' | translate}}</ion-text>
             <ion-text class="text-bold texto-derecha">{{detail.shopping_cart.item_cost}}€</ion-text>
           </h4>
         </ion-col>
         <ion-col size="12">
           <h4 *ngIf="detail" >
-            <ion-text class="text-bold texto-izquierda">EXTRAS</ion-text>
+            <ion-text class="text-bold texto-izquierda">{{'EXTRAS' | translate}}</ion-text>
             <ion-text class="text-bold texto-derecha">{{detail.shopping_cart.extras_cost}}€</ion-text>
           </h4>
         </ion-col>
         <ion-col size="12">
           <h1 *ngIf="detail" >
-            <ion-text class="text-bold texto-izquierda" color="vino">TOTAL</ion-text>
+            <ion-text class="text-bold texto-izquierda" color="vino">{{'TOTAL' | translate}}</ion-text>
             <ion-text class="text-bold texto-derecha" color="vino">{{detail.shopping_cart.total_cost}}€</ion-text>
           </h1>
         </ion-col>
-        <ion-button expand="block" color="vino" class="btn margin-t-40" (click)="modificar()">MODIFICAR RESERVA</ion-button>
+        <ion-button expand="block" color="vino" class="btn margin-t-40" (click)="modificar()">{{'MODIFICAR_RESERVA' | translate}}</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>
   <ion-grid class="espacio">
     <h6 class="ion-text-center">
-      <ion-text class="texto-footer text-color" (click)="gotopoliticas()">Politica de Privacidad</ion-text>
+      <ion-text class="texto-footer text-color" (click)="gotopoliticas()">{{'POLITICA_PRIVACIDAD' | translate}}</ion-text>
       <ion-text class="text-color"> | </ion-text>
-      <ion-text class="texto-footer text-color" (click)="gotoaviso()">Aviso Legal</ion-text>
+      <ion-text class="texto-footer text-color" (click)="gotoaviso()">{{'AVISO_LEGAL' | translate}}</ion-text>
     </h6>
   </ion-grid>
 </ion-content>

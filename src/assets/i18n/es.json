@@ -15,6 +15,7 @@
     "POLITICA_PRIVACIDAD" : "Politica de Privacidad",
     "AVISO_LEGAL" : "Aviso Legal",
     "O" : "o",
+    "A" : "a",
     "LENGUAJE": "Lenguaje",
     "INGLES": "Ingles",
     "ESPANOL": "Español",
@@ -26,6 +27,7 @@
     "LUGAR_DE_DEVOLUCION" : "Lugar de devolución",
     "FECHA_DE_DEVOLUCION" : "Fecha de devolución",
     "HORA_DE_DEVOLUCION" : "Hora de devolución",
+    "MESES" :["Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre"],
     "BUSCAR" : "Buscar",
     "DESCUBRE" : "Descubre",
     "ULTIMOS_MODELOS" : "Últimos Modelos",
@@ -37,6 +39,7 @@
     "CONTRASENA":"Contraseña",
     "HAS_OLVIDADO_TU_CONTRASENA":"¿Has olvidado tu contraseña?",
     "YA_POSEES_CUENTA":"¿Ya posees cuenta?",
+    "INICIA_SESION" : "Inicia Sesión",
     "CORREO":"Correo",
     "NOMBRES":"Nombres",
     "APELLIDOS":"Apellidos",
@@ -63,10 +66,13 @@
     "LUGAR_DE_RECOGIDA" : "Lugar de recogida",
     "FECHA_Y_HORA_DE_RECOGIDA":"Fecha y hora de recogida",
     "FECHA_Y_HORA_DE_DEVOLUCION":"Fecha y hora de devolución",
+    "FECHA_DE_RECOGIDA":"Fecha de recogida",
     "DURACION_DEL_ALQUILER":"Duración del alquiler",
+    "DIAS": "día/s",
     "VEHICULO":"VEHÍCULO",
     "EXTRAS":"EXTRAS",
     "TOTAL":"TOTAL",
     "MODIFICAR_RESERVA":"MODIFICAR RESERVA",
     "LOCALIZADOR":"LOCALIZADOR"
+    
 }

@@ -23,7 +23,7 @@
   <ion-col size="12" class="padding-rl">
     <ion-row class="titulos padding-rl">
       <h5 class="text-bold">
-        <ion-text color="vino" class="margin-b-10">Hencok Barcos</ion-text>
+        <ion-text color="vino" class="margin-b-10">Hencok {{'BARCOS' | translate}}</ion-text>
       </h5>
     </ion-row>
     <h1 class="text-bold ion-padding">
@@ -45,19 +45,19 @@
       <ion-col size="12" class="ion-padding">
      
         <ion-item class="color-fondo">
-          <ion-label class="color-label">Fecha de entrega</ion-label>
+          <ion-label class="color-label">{{'FECHA_DE_ENTREGA' | translate}}</ion-label>
           <ion-datetime [(ngModel)]="date_from" doneText="Ok" cancelText="Cancelar" 
           [min]="fechaMinEn" (ionChange)="fechas2()" displayFormat="DD/MMM/YYYY"
-          monthShortNames="Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre"
+          monthShortNames="{{'MESES' | translate}}"
           ></ion-datetime>
           <ion-icon src="/assets/img/001-calendar1.svg"></ion-icon>
         </ion-item>
 
         <ion-item class="color-fondo">
-          <ion-label class="color-label">Fecha de devolución</ion-label>
+          <ion-label class="color-label">{{'FECHA_DE_DEVOLUCION' | translate}}</ion-label>
           <ion-datetime  [(ngModel)]="date_to" doneText="Ok" cancelText="Cancelar" 
           [disabled]="!date_from" [min]="fechaMinDe" [max]="fechaMaxEn" displayFormat="DD/MMM/YYYY" 
-          monthShortNames="Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre"
+          monthShortNames="{{'MESES' | translate}}"
           ></ion-datetime>
           <ion-icon src="/assets/img/001-calendar1.svg"></ion-icon>
         </ion-item>
@@ -66,7 +66,7 @@
           <ion-spinner *ngIf="spinnerForm" color="vino" name="crescent"></ion-spinner>
         </div>
 
-        <ion-button expand="block" class="btn" (click)="reserva()" [disabled]="spinnerForm">Reservar</ion-button>
+        <ion-button expand="block" class="btn" (click)="reserva()" [disabled]="spinnerForm">{{'RESERVAR' | translate}}</ion-button>
 
       </ion-col>
     </ion-row>
@@ -74,9 +74,9 @@
 
   <ion-grid class="espacio">
     <h6 class="ion-text-center">
-      <ion-text class="texto-footer text-color" (click)="gotopoliticas()">Politica de Privacidad</ion-text>
+      <ion-text class="texto-footer text-color" (click)="gotopoliticas()">{{'POLITICA_PRIVACIDAD' | translate}}</ion-text>
       <ion-text class="text-color"> | </ion-text>
-      <ion-text class="texto-footer text-color" (click)="gotoaviso()">Aviso Legal</ion-text>
+      <ion-text class="texto-footer text-color" (click)="gotoaviso()">{{'AVISO_LEGAL' | translate}}</ion-text>
     </h6>
   </ion-grid>
 </ion-content>

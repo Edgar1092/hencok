@@ -26,12 +26,12 @@
      
         <ion-row class="titulos">
           <h5 class="ion-text-left text-bold margin-b-0">
-            <ion-text *ngIf="detail" class="text-bold" >LOCALIZADOR: {{detail.booking.id}}</ion-text><br><br>
+            <ion-text *ngIf="detail" class="text-bold" >{{'LOCALIZADOR' | translate}}: {{detail.booking.id}}</ion-text><br><br>
             <ion-text *ngIf="detail" color="vino">{{detail.booking.booking_lines[0].item_description}}</ion-text>
             
           </h5>
           <h1 class="ion-text-left text-bold margin-t-10 margin-b-10"><br>
-            <ion-text *ngIf="detail">Detalle de la Reserva </ion-text>
+            <ion-text *ngIf="detail">{{'DETALLE_DE_LA_RESERVA' | translate}}</ion-text>
           </h1>
 
           <ion-item *ngIf="detail">
@@ -45,60 +45,60 @@
         </ion-col>
         <ion-col size="12" class="ion-padding ion-text-left">
           <h4>
-            <ion-text class="text-bold">Incluye:</ion-text>
+            <ion-text class="text-bold">{{'INCLUYE' | translate}}:</ion-text>
           </h4>
           <h4>
-            <ion-text>Seguro a todo Riesgo</ion-text>
+            <ion-text>{{'SEGURO_A_TODO_RIESGO' | translate}}</ion-text>
           </h4>
           <h4>
-            <ion-text>Incluidos 200km por día</ion-text>
+            <ion-text>{{'INCLUIDOS_200KM_POR_DIA' | translate}}</ion-text>
           </h4> 
            <h4>
-            <ion-text class="text-bold">Lugar de recogida</ion-text>
+            <ion-text class="text-bold">{{'LUGAR_DE_RECOGIDA' | translate}}</ion-text>
           </h4>
           <h4 *ngIf="detail">
             <ion-text>{{detail.booking.pickup_place}}</ion-text>
           </h4>
           <h4> 
-            <ion-text class="text-bold">Fecha de recogida</ion-text>
+            <ion-text class="text-bold">{{'FECHA_DE_RECOGIDA' | translate}}</ion-text>
           </h4>
           <h4 *ngIf="detail" >
             <ion-text>{{detail.booking.date_from_full_format}}</ion-text>
           </h4>
           <h4>
-            <ion-text class="text-bold">Lugar de devolución</ion-text>
+            <ion-text class="text-bold">{{'LUGAR_DE_DEVOLUCION' | translate}}</ion-text>
           </h4>
           <h4 *ngIf="detail" >
             <ion-text>{{detail.booking.return_place}}</ion-text>
           </h4>
           <h4> 
-            <ion-text class="text-bold">Fecha de devolución</ion-text>
+            <ion-text class="text-bold">{{'FECHA_DE_DEVOLUCION' | translate}}</ion-text>
           </h4>
           <h4 *ngIf="detail" >
             <ion-text>{{detail.booking.date_to_full_format}}</ion-text>
           </h4>
           <h4>
-            <ion-text class="text-bold">Duración del alquiler</ion-text>
+            <ion-text class="text-bold">{{'DURACION_DEL_ALQUILER' | translate}}</ion-text>
           </h4>
           <h4 *ngIf="detail" >
-            <ion-text>{{detail.booking.days}} día/s</ion-text>
+            <ion-text>{{detail.booking.days}} {{'DIAS' | translate}}</ion-text>
           </h4>
         </ion-col>
         <ion-col size="12">
-          <h4 *ngIf="detail" >
-            <ion-text class="text-bold texto-izquierda">BARCO</ion-text>
+          <h4 *ngIf="detail">
+            <ion-text class="text-bold texto-izquierda">{{'BARCO' | translate}}</ion-text>
             <ion-text class="text-bold texto-derecha">{{detail.booking.item_cost}}€</ion-text>
           </h4>
         </ion-col>
         <ion-col size="12">
           <h4 *ngIf="detail" >
-            <ion-text class="text-bold texto-izquierda">EXTRAS</ion-text>
+            <ion-text class="text-bold texto-izquierda">{{'EXTRAS' | translate}}</ion-text>
             <ion-text class="text-bold texto-derecha">{{detail.booking.extras_cost}}€</ion-text>
           </h4>
         </ion-col>
         <ion-col size="12">
           <h1 *ngIf="detail" >
-            <ion-text class="text-bold texto-izquierda" color="vino">TOTAL</ion-text>
+            <ion-text class="text-bold texto-izquierda" color="vino">{{'TOTAL' | translate}}</ion-text>
             <ion-text class="text-bold texto-derecha" color="vino">{{detail.booking.total_cost}}€</ion-text>
           </h1>
         </ion-col>
@@ -108,9 +108,9 @@
   </ion-grid>
   <ion-grid class="espacio">
     <h6 class="ion-text-center">
-      <ion-text class="texto-footer text-color" (click)="gotopolitica()">Politica de Privacidad</ion-text>
+      <ion-text class="texto-footer text-color" (click)="gotopolitica()">{{'POLITICA_PRIVACIDAD' | translate}}</ion-text>
       <ion-text class="text-color"> | </ion-text>
-      <ion-text class="texto-footer text-color" (click)="gotoaviso()">Aviso Legal</ion-text>
+      <ion-text class="texto-footer text-color" (click)="gotoaviso()">{{'AVISO_LEGAL' | translate}}</ion-text>
     </h6>
   </ion-grid>
 </ion-content>
