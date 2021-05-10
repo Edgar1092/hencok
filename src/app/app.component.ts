@@ -82,6 +82,9 @@ export class AppComponent {
        this.service.ping(data).subscribe((response)=>{
        console.log('Usuario', this.usuario)
        console.log(response)
+       if(!response){
+        localStorage.removeItem("token");
+      }
          },(error)=>{
          this.spinnerForm =false
          console.log(error)
@@ -99,14 +102,15 @@ export class AppComponent {
     if(data){
        this.service.logout(data).subscribe((response)=>{
        console.log(response) 
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        this.usuario= '';
          },(error)=>{
          this.spinnerForm =false
          console.log(error)
              })
      console.log(data);
-     localStorage.removeItem('token');
-     localStorage.removeItem('user');
-      this.usuario= '';
+     
     }
     else{
      this.service.presentToast("Inicie sesion");

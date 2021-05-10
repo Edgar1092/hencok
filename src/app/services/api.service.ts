@@ -96,16 +96,20 @@ export class ApiService implements CanActivate{
       );
   }
 
-  logout(params?) : Observable<any>{
+  logout(data,params?) : Observable<any>{
     let parseParams = new HttpParams();
-    const headers1= {'Content-Type':'application/json',};
+    const headers1= {'Authorization':data};
+    const headers = new HttpHeaders()
+    .set('Access-Control-Allow-Origin' , '*')
+    .set('Accept', '*/*')
+    .set('Authorization', data);
     if (params) {
       Object.keys(params).forEach(p => {
         parseParams = parseParams.append(p, params[p]);
       });
     }
     return this.http.delete(
-      environment.apiUrlCars + "/api/v1/logout", {params : parseParams, headers: headers1,
+      environment.apiUrlCars + "/api/v1/logout", {params : parseParams, headers: headers,
         observe: 'response',
         responseType: 'json'
         })
@@ -117,7 +121,11 @@ export class ApiService implements CanActivate{
 
   ping(data,params?) : Observable<any>{
     let parseParams = new HttpParams();
-    const headers1= {'Authorization':data,};
+    const headers1= {'Authorization': data};
+    const headers = new HttpHeaders()
+    .set('Access-Control-Allow-Origin' , '*')
+    .set('Accept', '*/*')
+    .set('Authorization', data);
     if (params) {
       Object.keys(params).forEach(p => {
         parseParams = parseParams.append(p, params[p]);
@@ -125,7 +133,7 @@ export class ApiService implements CanActivate{
     }
     parseParams = parseParams.append("value", "conectado");
     return this.http.get(
-      environment.apiUrlCars + "/api/v1/ping", {params : parseParams, headers: headers1,
+      environment.apiUrlCars + "/api/v1/ping", {params : parseParams, headers: headers,
         observe: 'response',
         responseType: 'json'})
       .pipe(

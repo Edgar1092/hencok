@@ -83,12 +83,15 @@ export class SigninPage implements OnInit {
 
       Registro(){
         this.isSubmitted = true;
+        this.spinnerForm =false
         if(this.FormularioLogin.valid){
           console.log('Formulario correcto')
           this.service.signup(this.FormularioLogin.value).subscribe((response)=>{
             this.spinnerForm =false
             console.log(response)
+            this.service.presentToast('Usuario Registrado Correctamente!')
              // localStorage.setItem("free_access_id", data.free_access_id)
+             this.navCtrl.navigateForward('login');
               },(error)=>{
               this.spinnerForm =false
               console.log(error)

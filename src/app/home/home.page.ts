@@ -55,6 +55,9 @@ export class HomePage implements OnInit {
        this.service.ping(data).subscribe((response)=>{
        console.log('Usuario recibido', this.usuario)
        console.log(response) 
+       if(!response){
+        localStorage.removeItem("token");
+      }
          },(error)=>{
          this.spinnerForm =false
          console.log(error)

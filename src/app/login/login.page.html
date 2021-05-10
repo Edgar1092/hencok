@@ -29,7 +29,10 @@
                 <ion-input  [(ngModel)]="password" placeholder="{{'CONTRASENA' | translate}}" type="password"></ion-input>
               </ion-item>
             </ion-list>
-            <ion-button expand="block" color="vino" class="btn" (click)="Login()">{{'ENTRAR' | translate}}</ion-button>
+            <div class="ion-text-center width-100">
+              <ion-spinner *ngIf="spinnerForm" color="vino" name="crescent"></ion-spinner>
+            </div>
+            <ion-button [disabled]="spinnerForm" expand="block" color="vino" class="btn" (click)="Login()">{{'ENTRAR' | translate}}</ion-button>
            </ion-col>
         </ion-row>
         

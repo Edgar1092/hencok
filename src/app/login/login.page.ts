@@ -118,6 +118,9 @@ password = ''
     if(data){
        this.service.ping(data).subscribe((response)=>{
        console.log(response) 
+       if(!response){
+         localStorage.removeItem("token");
+       }
          },(error)=>{
          this.spinnerForm =false
          console.log(error)
@@ -125,7 +128,7 @@ password = ''
      console.log(data);
     }
     else{
-     this.service.presentToast("Inicie sesion");
+    //  this.service.presentToast("Inicie sesion");
   }
   }
 
