@@ -100,17 +100,21 @@ export class AppComponent {
     let data =  localStorage.getItem('token');
     localStorage.getItem('user');
     if(data){
-       this.service.logout(data).subscribe((response)=>{
-       console.log(response) 
-        localStorage.removeItem('token');
-        localStorage.removeItem('user');
-        this.usuario= '';
-         },(error)=>{
-         this.spinnerForm =false
-         console.log(error)
-             })
-     console.log(data);
-     
+    //    this.service.logout(data).subscribe((response)=>{
+    //    console.log(response) 
+    //     localStorage.removeItem('token');
+    //     localStorage.removeItem('user');
+    //     this.usuario= '';
+    //      },(error)=>{
+    //      this.spinnerForm =false
+    //      console.log(error)
+    //          })
+    //  console.log(data);
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      this.usuario= '';
+      this.service.publish('');
+      
     }
     else{
      this.service.presentToast("Inicie sesion");

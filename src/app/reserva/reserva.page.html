@@ -35,22 +35,22 @@
         <ion-row class="form">
           <ion-col size="12">
             <ion-list lines="none">
-              <ion-item class="item-form">
+              <ion-item *ngIf="!usuarioLog" class="item-form">
                 <ion-input [(ngModel)]="nombre" placeholder="{{'NOMBRES' | translate}}*"></ion-input>
               </ion-item>
-              <ion-item class="item-form">
+              <ion-item *ngIf="!usuarioLog" class="item-form">
                 <ion-input [(ngModel)]="apellidos" placeholder="{{'APELLIDOS' | translate}}*"></ion-input>
               </ion-item>
-              <ion-item class="item-form">
+              <ion-item *ngIf="!usuarioLog" class="item-form">
                 <ion-input [(ngModel)]="email" placeholder="{{'CORREO' | translate}}*"></ion-input>
               </ion-item>
-              <ion-item class="item-form">
+              <ion-item *ngIf="!usuarioLog" class="item-form">
                 <ion-input [(ngModel)]="confirmEmail" placeholder="{{'CONFIRMA_TU_CORREO' | translate}}"></ion-input>
               </ion-item>
-              <ion-item class="item-form">
+              <ion-item *ngIf="!usuarioLog" class="item-form">
                 <ion-input [(ngModel)]="telefono" placeholder="{{'TELEFONO' | translate}}*"></ion-input>
               </ion-item>
-              <ion-item class="item-form">
+              <ion-item *ngIf="!usuarioLog" class="item-form">
                 <ion-input [(ngModel)]="telefonoAlternativo" placeholder="{{'TELEFONO_ALTERNATIVO' | translate}}"></ion-input>
               </ion-item>
               <ion-item class="item-form">

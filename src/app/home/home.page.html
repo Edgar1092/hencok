@@ -9,8 +9,8 @@
             <img src="/assets/img/HENCOK-logo2.png">
           </ion-col>
           <ion-col size="4">
-            <ion-button *ngIf="usuario==undefined" color="vino" class="btn1" routerLink="/login">{{ 'ENTRAR' | translate }}</ion-button>
-            <ion-text *ngIf="usuario !=undefined" color="vino"></ion-text>
+            <ion-button *ngIf="usuario==undefined || usuario ==''" color="vino" class="btn1" routerLink="/login">{{ 'ENTRAR' | translate }}</ion-button>
+            <ion-text *ngIf="usuario !=undefined || usuario !=''" color="vino"></ion-text>
           </ion-col>
         </ion-row>
 

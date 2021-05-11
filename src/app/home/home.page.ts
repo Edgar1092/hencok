@@ -28,12 +28,19 @@ export class HomePage implements OnInit {
     }
 
   ngOnInit() {
-   this.ping();
+  //  this.ping();
  
   }
   
   ionViewWillEnter(){
-    this.ping(); 
+    // this.ping();
+    if(localStorage.getItem('token') && localStorage.getItem('user')){
+      this.usuario =  localStorage.getItem('user');
+      this.service.publish(this.usuario);
+    } else{
+      this.usuario =  '';
+      this.service.publish('');
+    }
   }
   
 

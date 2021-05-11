@@ -102,6 +102,7 @@ export class ApiService implements CanActivate{
     const headers = new HttpHeaders()
     .set('Access-Control-Allow-Origin' , '*')
     .set('Accept', '*/*')
+    .set('Content-type', '*/*')
     .set('Authorization', data);
     if (params) {
       Object.keys(params).forEach(p => {
@@ -125,6 +126,7 @@ export class ApiService implements CanActivate{
     const headers = new HttpHeaders()
     .set('Access-Control-Allow-Origin' , '*')
     .set('Accept', '*/*')
+    .set('Content-type', '*/*')
     .set('Authorization', data);
     if (params) {
       Object.keys(params).forEach(p => {
@@ -290,7 +292,12 @@ export class ApiService implements CanActivate{
       );
   }
 
-  createCheckout(shoppingCart,data,params?) : Observable<any>{
+  createCheckout(shoppingCart,data,token?,params?) : Observable<any>{
+    let headers:any
+    if(token){
+      headers={'Authorization': token};
+    }
+     
     let parseParams = new HttpParams();
     if (params) {
       Object.keys(params).forEach(p => {
@@ -298,7 +305,7 @@ export class ApiService implements CanActivate{
       });
     }
     return this.http.post(
-      environment.apiUrlCars + "/api/booking/frontend/shopping-cart/"+shoppingCart+"/checkout",data, {params : parseParams})
+      environment.apiUrlCars + "/api/booking/frontend/shopping-cart/"+shoppingCart+"/checkout",data, {params : parseParams, headers: headers})
       .pipe(
         tap(_ => this.log('response received')),
         catchError(this.handleError('carshoraentrega', []))
