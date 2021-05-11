@@ -73,6 +73,13 @@
     "EXTRAS":"EXTRAS",
     "TOTAL":"TOTAL",
     "MODIFICAR_RESERVA":"MODIFICAR RESERVA",
-    "LOCALIZADOR":"LOCALIZADOR"
+    "LOCALIZADOR":"LOCALIZADOR",
+    "NOMBRE_DE_USUARIO_NO_PUEDE_QUEDAR_VACIO":"Nombre de Usuario no puede quedar vacio",
+    "CORREO_NO_PUEDE_QUEDAR_VACIO":"Correo no puede quedar vacio",
+    "PROPORCIONE_UN_CORREO_VALIDO":"Proporcione un correo valido",
+    "CONTRASEÑA_NO_PUEDE_QUEDAR_VACIO":"Contraseña no puede quedar vacio",
+    "CONTRASEÑA_VALIDA":"Prorcione una contraseña valida: tamaño minino 8, una letra minuscula,una letra mayuscula, un digito y un simbolo -!#$%&/()?¡_",
+    "NOMBRE_NO_PUEDE_QUEDAR_VACIO":"Nombre no puede quedar vacio",
+    "APELLIDO_NO_PUEDE_QUEDAR_VACIO":"Apellido no puede quedar vacio"
     
 }
