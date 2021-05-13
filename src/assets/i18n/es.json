@@ -80,6 +80,8 @@
     "CONTRASEÑA_NO_PUEDE_QUEDAR_VACIO":"Contraseña no puede quedar vacio",
     "CONTRASEÑA_VALIDA":"Prorcione una contraseña valida: tamaño minino 8, una letra minuscula,una letra mayuscula, un digito y un simbolo -!#$%&/()?¡_",
     "NOMBRE_NO_PUEDE_QUEDAR_VACIO":"Nombre no puede quedar vacio",
-    "APELLIDO_NO_PUEDE_QUEDAR_VACIO":"Apellido no puede quedar vacio"
+    "APELLIDO_NO_PUEDE_QUEDAR_VACIO":"Apellido no puede quedar vacio",
+    "USUARIO_CONTRASENA_ERROR":"Usuario o contraseña incorrectos",
+    "ESPACIO_VACIO":"Este campo no puede tener espacio en blanco"
     
 }

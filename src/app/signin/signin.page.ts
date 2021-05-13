@@ -89,14 +89,28 @@ export class SigninPage implements OnInit {
           this.service.signup(this.FormularioLogin.value).subscribe((response)=>{
             this.spinnerForm =false
             console.log(response)
-            this.service.presentToast('Usuario Registrado Correctamente!')
+            if(response == true){
+              this.service.presentToast('Usuario Registrado Correctamente!');
              // localStorage.setItem("free_access_id", data.free_access_id)
-             this.navCtrl.navigateForward('login');
-              },(error)=>{
+              this.navCtrl.navigateForward('login');
+            }else{
+              console.log("aqui", response)
+              let err = JSON.parse(JSON.stringify(response.error))
+              let msj1 = err.error;
+              let msj2 = ''
+              console.log(response)
+              err.detail.forEach(element => {
+                msj2 = msj2+', '+element
+              });
+              this.service.presentToast(msj1+msj2);
+            }
+            
+          },(error)=>{
               this.spinnerForm =false
-              console.log(error)
-                  })
-          console.log(this.FormularioLogin);
+              console.log("eeee",error)
+           
+          })
+          // console.log(this.FormularioLogin);
          
           }else{
             console.log('Formulario Incorrecto');

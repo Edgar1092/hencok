@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams, HttpResponse} from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams, HttpResponse} from '@angular/common/http';
 import { merge, observable, Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { CanActivate } from '@angular/router';
@@ -51,29 +51,31 @@ export class ApiService implements CanActivate{
       this.log(`${operation} failed: ${error.message}`);
 
       // Let the app keep running by returning an empty result.
-      return of(result as T);
+      return of(error as T);
     };
   }
 
   /** Log a HeroService message with the MessageService */
   private log(message: string) {
-    console.log(message);
+    // console.log(message);
   }
 
 
   signup(data,params?) : Observable<any>{
     let parseParams = new HttpParams();
-  
+    const header1= {'Content-Type':'application/json',};
     if (params) {
       Object.keys(params).forEach(p => {
         parseParams = parseParams.append(p, params[p]);
       });
     }
     return this.http.post(
-      environment.apiUrlCars + "/api/v1/signup/customer",data, {params : parseParams} )
+      environment.apiUrlCars + "/api/v1/signup/customer",data, {params : parseParams, headers:{},
+      observe: 'response',
+      responseType: 'json'})
       .pipe(
         tap(_ => this.log('response received')),
-        catchError(this.handleError('signup', []))
+        catchError(this.handleError('signup'))
       );
   }
 

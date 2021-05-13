@@ -25,6 +25,10 @@ export class HomePage implements OnInit {
       // this.translateService.setDefaultLang('en');
       // this.translateService.use(this.translateService.currentLang); 
       console.log("lang=>",this.translateService.currentLang)
+      this.service.currentEvent.subscribe(data=>{
+        this.usuario = data;
+        
+       });
     }
 
   ngOnInit() {

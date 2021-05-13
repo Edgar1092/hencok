@@ -19,6 +19,7 @@ export class LoginPage implements OnInit {
 
    usuario
    nombreUsuario
+   usuarioError = false
  @Output() enviarUsuario = new EventEmitter<any>();
 
 /*Formulario*/
@@ -55,6 +56,7 @@ password = ''
  
 
   Login(){
+    this.usuarioError = false
     if(this.username !=''  && this.password !='' ){
       this.spinnerForm = true
      let data = {
@@ -66,17 +68,21 @@ password = ''
            this.spinnerForm =false
            let bearer = response;
            this.usuario = response;
-           console.log(response) 
-           console.log(bearer.headers.get('Authorization'));
+           console.log(response)
            this.usuario = response['body']
            this.usuario = JSON.stringify(this.usuario)
-           this.usuario = JSON.parse(this.usuario);
-           this.nombreUsuario= this.usuario.user.full_name
-           localStorage.setItem("token" ,bearer.headers.get('Authorization'));
-           localStorage.setItem("user", this.nombreUsuario)
-           this.updatePost();
-           this.navCtrl.navigateForward('');
-           this.service.presentToast("Bienvenido " + this.nombreUsuario); 
+            this.usuario = JSON.parse(this.usuario);
+          if(this.usuario.connected) {
+              console.log(bearer.headers.get('Authorization'));
+              this.nombreUsuario= this.usuario.user.full_name
+              localStorage.setItem("token" ,bearer.headers.get('Authorization'));
+              localStorage.setItem("user", this.nombreUsuario)
+              this.updatePost();
+              this.navCtrl.navigateForward('');
+              this.service.presentToast("Bienvenido " + this.nombreUsuario); 
+          }else{
+            this.usuarioError = true;
+          }
              },(error)=>{
              this.spinnerForm =false
              console.log(error)
