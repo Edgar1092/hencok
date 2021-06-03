@@ -38,7 +38,7 @@ export class HomePage implements OnInit {
   
   ionViewWillEnter(){
     // this.ping();
-    if(localStorage.getItem('token') && localStorage.getItem('user')){
+    if(localStorage.getItem('tokenCars') && localStorage.getItem('user')){
       this.usuario =  localStorage.getItem('user');
       this.service.publish(this.usuario);
     } else{

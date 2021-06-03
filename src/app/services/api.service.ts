@@ -80,7 +80,7 @@ export class ApiService implements CanActivate{
   }
 
 
-  login(data,params?) : Observable<any>{
+  loginCars(data,params?) : Observable<any>{
     let parseParams = new HttpParams();
     const header1= {'Content-Type':'application/json',};
     if (params) {
@@ -90,6 +90,24 @@ export class ApiService implements CanActivate{
     }
     return this.http.post(
       environment.apiUrlCars + "/api/v1/login",data, {params : parseParams, headers: header1,
+        observe: 'response',
+        responseType: 'json'})
+      .pipe(
+        tap(_ => this.log('response received')),
+        catchError(this.handleError('signup', []))
+      );
+  }
+  
+  loginBoats(data,params?) : Observable<any>{
+    let parseParams = new HttpParams();
+    const header1= {'Content-Type':'application/json',};
+    if (params) {
+      Object.keys(params).forEach(p => {
+        parseParams = parseParams.append(p, params[p]);
+      });
+    }
+    return this.http.post(
+      environment.apiUrlBoat + "/api/v1/login",data, {params : parseParams, headers: header1,
         observe: 'response',
         responseType: 'json'})
       .pipe(
@@ -143,6 +161,25 @@ export class ApiService implements CanActivate{
       .pipe(
         tap(_ => this.log('response received')),
         catchError(this.handleError('ping', []))
+      );
+  }
+
+  
+  password(data,params?) : Observable<any>{
+    let parseParams = new HttpParams();
+    const header1= {'Content-Type':'application/json',};
+    if (params) {
+      Object.keys(params).forEach(p => {
+        parseParams = parseParams.append(p, params[p]);
+      });
+    }
+    return this.http.post(
+      environment.apiUrlCars + "/api/v1/web-customer/password-forgotten",data, {params : parseParams, headers: header1,
+        observe: 'response',
+        responseType: 'json'})
+      .pipe(
+        tap(_ => this.log('response received')),
+        catchError(this.handleError('password', []))
       );
   }
 
@@ -512,19 +549,23 @@ export class ApiService implements CanActivate{
       );
   }
 
-  createCheckoutYate(shoppingYate,data,params?) : Observable<any>{
+  createCheckoutYate(shoppingCart,data,token?,params?) : Observable<any>{
+    let headers:any
+    if(token){
+      headers={'Authorization': token};
+    }
+     
     let parseParams = new HttpParams();
     if (params) {
       Object.keys(params).forEach(p => {
         parseParams = parseParams.append(p, params[p]);
       });
     }
-    parseParams = parseParams.append("api_key", environment.apiKey);
     return this.http.post(
-      environment.apiUrlBoat + "/api/booking/frontend/shopping-cart/"+shoppingYate+"/checkout",data, {params : parseParams})
+      environment.apiUrlBoat + "/api/booking/frontend/shopping-cart/"+shoppingCart+"/checkout",data, {params : parseParams, headers: headers})
       .pipe(
         tap(_ => this.log('response received')),
-        catchError(this.handleError('createCheckoutYate', []))
+        catchError(this.handleError('carshoraentrega', []))
       );
   }
 

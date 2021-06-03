@@ -27,11 +27,11 @@ export class AppComponent {
       url: '',
       icon: 'chevron-forward'
     },
-    {
-      title: 'PERFIL',
-      url: '/perfil',
-      icon: 'chevron-forward'
-    },
+    // {
+    //   title: 'PERFIL',
+    //   url: '/perfil',
+    //   icon: 'chevron-forward'
+    // },
     {
       title: 'BARCOS',
       url: '/rentaryates',
@@ -76,14 +76,15 @@ export class AppComponent {
 
 
   ping(){
-    let data     =  localStorage.getItem('token');
+    let data     =  localStorage.getItem('tokenCars');
     this.usuario =  localStorage.getItem('user');
     if(data){
        this.service.ping(data).subscribe((response)=>{
        console.log('Usuario', this.usuario)
        console.log(response)
        if(!response){
-        localStorage.removeItem("token");
+        localStorage.removeItem("tokenCars");
+        localStorage.removeItem("tokenBoats");
       }
          },(error)=>{
          this.spinnerForm =false
@@ -97,7 +98,8 @@ export class AppComponent {
   }
 
   logout(){
-    let data =  localStorage.getItem('token');
+    let data =  localStorage.getItem('tokenCars');
+    localStorage.getItem('tokenBoats');
     localStorage.getItem('user');
     if(data){
     //    this.service.logout(data).subscribe((response)=>{
@@ -110,11 +112,12 @@ export class AppComponent {
     //      console.log(error)
     //          })
     //  console.log(data);
-      localStorage.removeItem('token');
+      localStorage.removeItem('tokenCars');
+      localStorage.removeItem('tokenBoats');
       localStorage.removeItem('user');
       this.usuario= '';
       this.service.publish('');
-      
+      this.service.presentToast("Sesion Cerrada");
     }
     else{
      this.service.presentToast("Inicie sesion");

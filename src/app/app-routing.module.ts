@@ -43,6 +43,10 @@ const routes: Routes = [
     loadChildren: () => import('./perfil/perfil.module').then( m => m.PerfilPageModule)
   },
   {
+    path: 'cambiarclave',
+    loadChildren: () => import('./cambiarclave/cambiarclave.module').then( m => m.CambiarclavePageModule)
+  },
+  {
     path: 'reserva/:id',
     loadChildren: () => import('./reserva/reserva.module').then( m => m.ReservaPageModule)
   },

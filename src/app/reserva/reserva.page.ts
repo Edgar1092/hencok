@@ -43,7 +43,7 @@ export class ReservaPage implements OnInit {
       this.obetenerDetalleSC();
     }
 
-    if(localStorage.getItem('token') && localStorage.getItem('user')){
+    if(localStorage.getItem('tokenCars') && localStorage.getItem('user')){
       this.usuarioLog = true
       console.log("logueado")
     } else{
@@ -58,7 +58,7 @@ export class ReservaPage implements OnInit {
   }
   ionViewWillEnter(){
     // this.ping();
-    if(localStorage.getItem('token') && localStorage.getItem('user')){
+    if(localStorage.getItem('tokenCars') && localStorage.getItem('user')){
       this.usuarioLog = true
     } else{
       this.usuarioLog =  false;
@@ -116,7 +116,7 @@ export class ReservaPage implements OnInit {
   }
 
   pagar(){
-    if(localStorage.getItem('token')){
+    if(localStorage.getItem('tokenCars')){
       let pay ="none"
       if(this.tipoPago=='solicitud_reserva'){
         pay ="none"
@@ -131,7 +131,7 @@ export class ReservaPage implements OnInit {
         "comments" : this.comentarios
       }
       if(this.detail && this.detail.sales_process.can_pay){
-      this.service.createCheckout(this.free_access_id, data,localStorage.getItem('token')).subscribe(
+      this.service.createCheckout(this.free_access_id, data,localStorage.getItem('tokenCars')).subscribe(
         (response: any) => {
           this.spinner = false
           console.log("res",response.free_access_id);
