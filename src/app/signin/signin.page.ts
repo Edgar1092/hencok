@@ -58,7 +58,7 @@ export class SigninPage implements OnInit {
     this.FormularioLogin = this.formBuilder.group({
       username: ['', Validators.required],
       email: ['', [Validators.required, Validators.pattern(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]],
-      password : ['', [Validators.required, Validators.pattern('^(?=.*[-!#$%&/()?¡_])(?=.*[A-Z])(?=.*[a-z]).{8,}$')]],
+      password : ['', [Validators.required, Validators.pattern('^(?=.*[-!#$%&/()?¡_.])(?=.*[A-Z])(?=.*[a-z]).{8,}$')]],
       name : ['',Validators.required],
       surname : ['',Validators.required],
     })
@@ -83,17 +83,18 @@ export class SigninPage implements OnInit {
 
       Registro(){
         this.isSubmitted = true;
-        this.spinnerForm =false
+        this.spinnerForm =true
         if(this.FormularioLogin.valid){
           console.log('Formulario correcto')
           this.service.signup(this.FormularioLogin.value).subscribe((response)=>{
             this.spinnerForm =false
             console.log(response)
-            if(response == true){
+            if(response && response.body == true){
               this.service.presentToast('Usuario Registrado Correctamente!');
              // localStorage.setItem("free_access_id", data.free_access_id)
               this.navCtrl.navigateForward('login');
             }else{
+              this.spinnerForm =false
               console.log("aqui", response)
               let err = JSON.parse(JSON.stringify(response.error))
               let msj1 = err.error;
