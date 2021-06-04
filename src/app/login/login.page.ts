@@ -68,7 +68,7 @@ export class LoginPage implements OnInit {
       }
       let params = { username: this.username, password: this.password }
       this.service.loginCars(data, params).subscribe((response) => {
-        this.spinnerForm = false
+        // this.spinnerForm = false
         let bearer = response;
         this.usuario = response;
         console.log(response)
@@ -76,38 +76,16 @@ export class LoginPage implements OnInit {
         this.usuario = JSON.stringify(this.usuario)
         this.usuario = JSON.parse(this.usuario);
         if (this.usuario.connected) {
-          console.log(bearer.headers.get('Authorization'));
+          console.log("CCCC",bearer.headers.get('Authorization'));
           this.nombreUsuario = this.usuario.user.full_name
           localStorage.setItem("tokenCars", bearer.headers.get('Authorization'));
           localStorage.setItem("user", this.nombreUsuario)
-          this.updatePost();
-          this.navCtrl.navigateForward('');
-          this.service.presentToast("Bienvenido " + this.nombreUsuario);
+          // this.updatePost();
+          // this.navCtrl.navigateForward('');
+          // this.service.presentToast("Bienvenido " + this.nombreUsuario);
+          this.loginBoat(data,params);
         } else {
-          this.usuarioError = true;
-        }
-      }, (error) => {
-        this.spinnerForm = false
-        console.log(error)
-      })
-
-      this.service.loginBoats(data, params).subscribe((response) => {
-        this.spinnerForm = false
-        let bearer = response;
-        this.usuario = response;
-        console.log(response)
-        this.usuario = response['body']
-        this.usuario = JSON.stringify(this.usuario)
-        this.usuario = JSON.parse(this.usuario);
-        if (this.usuario.connected) {
-          console.log(bearer.headers.get('Authorization'));
-          this.nombreUsuario = this.usuario.user.full_name
-          localStorage.setItem("tokenBoats", bearer.headers.get('Authorization'));
-          localStorage.setItem("user", this.nombreUsuario)
-          this.updatePost();
-          this.navCtrl.navigateForward('');
-          this.service.presentToast("Bienvenido " + this.nombreUsuario);
-        } else {
+          this.spinnerForm = false
           this.usuarioError = true;
         }
       }, (error) => {
@@ -164,7 +142,35 @@ export class LoginPage implements OnInit {
       //  this.service.presentToast("Inicie sesion");
     }
   }
-
+  loginBoat(data,params){
+    this.service.loginBoats(data, params).subscribe((response) => {
+      this.spinnerForm = false
+      let bearer = response;
+      let usuario = response;
+      console.log(response)
+      usuario = response['body']
+      usuario = JSON.stringify(usuario)
+      usuario = JSON.parse(usuario);
+      if (usuario.connected) {
+        console.log("BBBB",bearer.headers.get('Authorization'));
+        this.nombreUsuario = this.usuario.user.full_name
+        localStorage.setItem("tokenBoats", bearer.headers.get('Authorization'));
+        // localStorage.setItem("user", this.nombreUsuario)
+        this.updatePost();
+        this.navCtrl.navigateForward('');
+        this.service.presentToast("Bienvenido " + this.nombreUsuario);
+      } else {
+        localStorage.removeItem("tokenCars");
+        localStorage.removeItem("user")
+        this.usuarioError = true;
+      }
+    }, (error) => {
+      this.spinnerForm = false
+      localStorage.removeItem("tokenCars");
+      localStorage.removeItem("user")
+      console.log(error)
+    })
+  }
 
 
 }

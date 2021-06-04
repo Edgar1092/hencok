@@ -32,9 +32,10 @@ export class ApiService implements CanActivate{
     
   canActivate() {
     //Validamos que existe un usuario en el localstorage almacenado
-    let token = localStorage.getItem('token');
+    let tokenB = localStorage.getItem('tokenBoats');
+    let tokenC = localStorage.getItem('tokenCars');
     let usuario = localStorage.getItem('user'); 
-    if (token && usuario) {
+    if (tokenB && tokenC && usuario) {
         return true;
     } else {
       this.navCtrl.navigateRoot('/login');
@@ -106,6 +107,7 @@ export class ApiService implements CanActivate{
         parseParams = parseParams.append(p, params[p]);
       });
     }
+    parseParams = parseParams.append("api_key", environment.apiKey);
     return this.http.post(
       environment.apiUrlBoat + "/api/v1/login",data, {params : parseParams, headers: header1,
         observe: 'response',
@@ -351,7 +353,11 @@ export class ApiService implements CanActivate{
       );
   }
 
-  createCheckoutYates(shoppingCart,data,params?) : Observable<any>{
+  createCheckoutYates(shoppingCart,data,token?,params?) : Observable<any>{
+    let headers:any
+    if(token){
+      headers={'Authorization': token};
+    }
     let parseParams = new HttpParams();
     if (params) {
       Object.keys(params).forEach(p => {
@@ -360,7 +366,7 @@ export class ApiService implements CanActivate{
     }
     parseParams = parseParams.append("api_key", environment.apiKey);
     return this.http.post(
-      environment.apiUrlBoat + "/api/booking/frontend/shopping-cart/"+shoppingCart+"/checkout",data, {params : parseParams})
+      environment.apiUrlBoat + "/api/booking/frontend/shopping-cart/"+shoppingCart+"/checkout",data, {params : parseParams,headers: headers})
       .pipe(
         tap(_ => this.log('response received')),
         catchError(this.handleError('carshoraentrega', []))
@@ -561,6 +567,7 @@ export class ApiService implements CanActivate{
         parseParams = parseParams.append(p, params[p]);
       });
     }
+    parseParams = parseParams.append("api_key", environment.apiKey);
     return this.http.post(
       environment.apiUrlBoat + "/api/booking/frontend/shopping-cart/"+shoppingCart+"/checkout",data, {params : parseParams, headers: headers})
       .pipe(
