@@ -185,6 +185,47 @@ export class ApiService implements CanActivate{
       );
   }
 
+  
+  reservationCars(token,params?) : Observable<any>{
+    let headers:any
+    if(token){
+      headers={'Authorization': token};
+    }
+     
+    let parseParams = new HttpParams();
+    if (params) {
+      Object.keys(params).forEach(p => {
+        parseParams = parseParams.append(p, params[p]);
+      });
+    }
+    return this.http.get(
+      environment.apiUrlCars + "/api/v1/web-customer/renting-reservations", {params : parseParams, headers: headers})
+      .pipe(
+        tap(_ => this.log('response received')),
+        catchError(this.handleError('carshoraentrega', []))
+      );
+  }
+  reservationBoats(token,params?) : Observable<any>{
+    let headers:any
+    if(token){
+      headers={'Authorization': token};
+    }
+     
+    let parseParams = new HttpParams();
+    if (params) {
+      Object.keys(params).forEach(p => {
+        parseParams = parseParams.append(p, params[p]);
+      });
+    }
+    parseParams = parseParams.append("api_key", environment.apiKey);
+    return this.http.get(
+      environment.apiUrlBoat + "/api/v1/web-customer/renting-reservations", {params : parseParams, headers: headers})
+      .pipe(
+        tap(_ => this.log('response received')),
+        catchError(this.handleError('carshoraentrega', []))
+      );
+  }
+
   cars(params?) : Observable<any>{
     let parseParams = new HttpParams();
     if (params) {

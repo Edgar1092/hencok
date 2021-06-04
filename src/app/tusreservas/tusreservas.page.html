@@ -22,61 +22,103 @@
         <h1 class="ion-text-left text-bold margin-t-10 margin-b-0">
           <ion-text>Tus Reservas</ion-text>
         </h1>
+        <h3 class="ion-text-left text-bold margin-t-10 margin-b-0">
+          <ion-text>Carros</ion-text>
+        </h3>
+
         <ion-col size="12">
-         
-          <ion-item class="color-fondo">
+          <ion-item class="color-fondo" *ngFor="let reserva of datosCars">
             <ul>
               <li>
                 <input type="checkbox" checked>
                 <i></i>
-                <h5 class="ion-text-left text-bold margin-b-0">
-                  <ion-text color="vino">Mercedez G63</ion-text><br>
+                <h5 class="ion-text-left text-bold margin">
+                  <ion-text color="vino">{{reserva.item_description}}</ion-text><br>
                 </h5>
                 <h5 class="ion-text-left text-bold">
-                  <ion-text>12/03/2021 - 15/03/2021</ion-text>
+                  <ion-text>{{reserva.date_from}} - {{reserva.date_to}}</ion-text>
                 </h5>
                 <p>
-                 <label class="text-bold">
-                   Lugar de recogida
-                 </label><br>
-                 <label>Ibiza - Polígono Industrial Can Frigole</label><br>
-                 <label class="text-bold">
-                 Fecha y hora de recogida
-                </label><br>
-                <label>
-                  Viernes, 12 Marzo 2021 10:00
-                </label><br>
-                <label class="text-bold">
-                  Lugar de devolucíon
-                </label><br>
-                <label>
-                  Ibiza - Polígono Industrial Can Frigole
-                </label><br>
-                <label class="text-bold">
-                  Fecha y hora de devolución
-                 </label><br>
-                <label>
-                  Viernes, 12 Marzo 2021 10:00
-                </label><br>
-                <label class="text-bold">
-                  Duración de Alquiler
-                 </label><br>
-                 <label>Nada </label>
-                <br>
-                <ion-button size="default" color="vino" class="btn1">Modificar</ion-button>
-                <ion-button size="default" class="btn2">Cancelar</ion-button>
+                  <label class="text-bold">
+                    Lugar de recogida
+                  </label><br>
+                  <label>{{reserva.pickup_place}}</label><br>
+                  <label class="text-bold">
+                    Fecha y hora de recogida
+                  </label><br>
+                  <label>
+                    {{reserva.date_from}} - {{reserva.time_from}}
+                  </label><br>
+                  <label class="text-bold">
+                    Lugar de devolucíon
+                  </label><br>
+                  <label>
+                    {{reserva.return_place}}
+                  </label><br>
+                  <label class="text-bold">
+                    Fecha y hora de devolución
+                  </label><br>
+                  <label>
+                    {{reserva.date_to}} - {{reserva.time_to}}
+                  </label><br>
+                  <label class="text-bold">
+                    Duración de Alquiler
+                  </label><br>
+                  <label>?? </label>
+                  <br>
+                  <ion-button size="default" color="vino" class="btn1">Modificar</ion-button>
+                  <ion-button size="default" class="btn2">Cancelar</ion-button>
                 </p>
               </li>
             </ul>
           </ion-item>
+        </ion-col>
 
-
-
+        <h3 class="ion-text-left text-bold margin-t-10 margin-b-0">
+          <ion-text>Barcos</ion-text>
+        </h3>
+        
+        <ion-col size="12">
+          <ion-item class="color-fondo" *ngFor="let reservab of datosBoats">
+            <ul>
+              <li>
+                <input type="checkbox" checked>
+                <i></i>
+                <h5 class="ion-text-left text-bold margin">
+                  <ion-text color="vino">{{reservab.item_description}}</ion-text><br>
+                </h5>
+                <h5 class="ion-text-left text-bold">
+                  <ion-text>{{reservab.date_from}} - {{reservab.date_to}}</ion-text>
+                </h5>
+                <p>
+                  <label class="text-bold">
+                    Fecha y hora de recogida
+                  </label><br>
+                  <label>
+                    {{reservab.date_from}} - {{reservab.time_from}}
+                  </label><br>
+                  <label class="text-bold">
+                    Fecha y hora de devolución
+                  </label><br>
+                  <label>
+                    {{reservab.date_to}} - {{reservab.time_to}}
+                  </label><br>
+                  <label class="text-bold">
+                    Duración de Alquiler
+                  </label><br>
+                  <label>?? </label>
+                  <br>
+                  <ion-button size="default" color="vino" class="btn1">Modificar</ion-button>
+                  <ion-button size="default" class="btn2">Cancelar</ion-button>
+                </p>
+              </li>
+            </ul>
+          </ion-item>
         </ion-col>
 
       </ion-col>
 
-      
+
     </ion-row>
   </ion-grid>
 

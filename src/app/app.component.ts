@@ -41,7 +41,12 @@ export class AppComponent {
       title: 'COCHES',
       url: '/rentarcars',
       icon: 'chevron-forward'
-    } 
+    },
+       {
+      title: 'Reservas',
+      url: '/tusreservas',
+      icon: 'chevron-forward'
+    }  
 
   ];
   lang = 'es'

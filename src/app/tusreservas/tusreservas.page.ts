@@ -11,8 +11,10 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./tusreservas.page.scss'],
 })
 export class TusreservasPage implements OnInit {
+  token
   spinner = false;
-  reserva:[]
+  datosCars:[]
+  datosBoats:[]
   constructor(
    private menu: MenuController,
    private navCtrl: NavController,
@@ -22,21 +24,38 @@ export class TusreservasPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.obtenerreserva();
+    this.reservasCars();
+    this.reservasBoats();
+ 
   }
 
-  async obtenerreserva(){
-    this.spinner = true;
-    this.service.reservaGet(this.route.snapshot.paramMap.get('shoppingCart'))
-      .subscribe(res => {
-        this.spinner = false
-        console.log('reserva',res);
-        this.reserva = res;
-      }, err => {
-        this.spinner = false
-        console.log(err);
+  reservasCars(){
+    this.token = localStorage.getItem('tokenCars')
+
+    this.service.reservationCars(this.token).subscribe(
+      (response: any) => {
+        this.datosCars = response.data
+        console.log("resCarros",this.datosCars);
+      },
+      (error) => {
+        console.log('error')
       });
-  }
+}
+
+reservasBoats(){
+  this.token = localStorage.getItem('tokenBoats')
+
+  this.service.reservationBoats(this.token).subscribe(
+    (response: any) => {
+      this.datosBoats = response.data
+      console.log("resBarcos",this.datosBoats);
+    },
+    (error) => {
+      console.log('error')
+    });
+}
+
+ 
 
   openMenu(){
     this.menu.open('menu');
@@ -47,3 +66,4 @@ export class TusreservasPage implements OnInit {
   }
   
 }
+
