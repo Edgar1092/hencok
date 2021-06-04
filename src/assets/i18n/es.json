@@ -82,6 +82,8 @@
     "NOMBRE_NO_PUEDE_QUEDAR_VACIO":"Nombre no puede quedar vacio",
     "APELLIDO_NO_PUEDE_QUEDAR_VACIO":"Apellido no puede quedar vacio",
     "USUARIO_CONTRASENA_ERROR":"Usuario o contraseña incorrectos",
-    "ESPACIO_VACIO":"Este campo no puede tener espacio en blanco"
+    "ESPACIO_VACIO":"Este campo no puede tener espacio en blanco",
+    "TUS_RESERVAS":"Tus Reservas",
+    "CANCELAR": "Cancelar"
     
 }

@@ -82,6 +82,9 @@
     "NOMBRE_NO_PUEDE_QUEDAR_VACIO":"name cannot be empty",
     "APELLIDO_NO_PUEDE_QUEDAR_VACIO":"surname cannot be left empty",
     "USUARIO_CONTRASENA_ERROR":"Incorrect user or password",
-    "ESPACIO_VACIO":"This field cannot have blank space"
+    "ESPACIO_VACIO":"This field cannot have blank space",
+    "TUS_RESERVAS":"Your Reservations",
+    "CANCELAR": "Cancel"
+    
     
 }

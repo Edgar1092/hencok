@@ -23,7 +23,7 @@
           <ion-text>Tus Reservas</ion-text>
         </h1>
         <h3 class="ion-text-left text-bold margin-t-10 margin-b-0">
-          <ion-text>Carros</ion-text>
+          <ion-text>{{'COCHES' | translate }}</ion-text>
         </h3>
 
         <ion-col size="12">
@@ -40,34 +40,34 @@
                 </h5>
                 <p>
                   <label class="text-bold">
-                    Lugar de recogida
+                    {{'LUGAR_DE_RECOGIDA' | translate}}
                   </label><br>
                   <label>{{reserva.pickup_place}}</label><br>
                   <label class="text-bold">
-                    Fecha y hora de recogida
+                    {{'FECHA_Y_HORA_DE_RECOGIDA' | translate}}
                   </label><br>
                   <label>
                     {{reserva.date_from}} - {{reserva.time_from}}
                   </label><br>
                   <label class="text-bold">
-                    Lugar de devolucíon
+                    {{'LUGAR_DE_DEVOLUCION' | translate}}
                   </label><br>
                   <label>
                     {{reserva.return_place}}
                   </label><br>
                   <label class="text-bold">
-                    Fecha y hora de devolución
+                    {{'FECHA_Y_HORA_DE_DEVOLUCION' | translate}}
                   </label><br>
                   <label>
                     {{reserva.date_to}} - {{reserva.time_to}}
                   </label><br>
                   <label class="text-bold">
-                    Duración de Alquiler
+                    {{'DURACION_DEL_ALQUILER' | translate}}
                   </label><br>
                   <label>?? </label>
                   <br>
-                  <ion-button size="default" color="vino" class="btn1">Modificar</ion-button>
-                  <ion-button size="default" class="btn2">Cancelar</ion-button>
+                  <ion-button size="default" color="vino" class="btn1">{{'MODIFICAR' | translate}}</ion-button>
+                  <ion-button size="default" class="btn2">{{'CANCELAR' | translate}}</ion-button>
                 </p>
               </li>
             </ul>
@@ -75,7 +75,7 @@
         </ion-col>
 
         <h3 class="ion-text-left text-bold margin-t-10 margin-b-0">
-          <ion-text>Barcos</ion-text>
+          <ion-text>{{'BARCOS' | translate}}</ion-text>
         </h3>
         
         <ion-col size="12">
@@ -92,24 +92,24 @@
                 </h5>
                 <p>
                   <label class="text-bold">
-                    Fecha y hora de recogida
+                    {{'FECHA_Y_HORA_DE_RECOGIDA' | translate}}
                   </label><br>
                   <label>
                     {{reservab.date_from}} - {{reservab.time_from}}
                   </label><br>
                   <label class="text-bold">
-                    Fecha y hora de devolución
+                    {{'FECHA_Y_HORA_DE_DEVOLUCION' | translate}}
                   </label><br>
                   <label>
                     {{reservab.date_to}} - {{reservab.time_to}}
                   </label><br>
                   <label class="text-bold">
-                    Duración de Alquiler
+                    {{'DURACION_DEL_ALQUILER' | translate}}
                   </label><br>
                   <label>?? </label>
                   <br>
-                  <ion-button size="default" color="vino" class="btn1">Modificar</ion-button>
-                  <ion-button size="default" class="btn2">Cancelar</ion-button>
+                  <ion-button size="default" color="vino" class="btn1">{{'MODIFICAR' | translate}}</ion-button>
+                  <ion-button size="default" class="btn2">{{'CANCELAR' | translate}}</ion-button>
                 </p>
               </li>
             </ul>
@@ -124,9 +124,9 @@
 
   <ion-grid>
     <h6 class="ion-text-center footer">
-      <ion-text class="texto-footer" color="vino" (click)="gotopoliticas()">Politica de Privacidad</ion-text>
+      <ion-text class="texto-footer" color="vino" (click)="gotopoliticas()">{{'POLITICA_PRIVACIDAD' | translate}}</ion-text>
       <ion-text color="vino"> | </ion-text>
-      <ion-text class="texto-footer" color="vino" (click)="gotopoliticas()">Aviso Legal</ion-text>
+      <ion-text class="texto-footer" color="vino" (click)="gotopoliticas()">{{'AVISO_LEGAL' | translate}}</ion-text>
     </h6>
   </ion-grid>
 
