@@ -12,7 +12,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class TusreservasPage implements OnInit {
   token
-  spinner = false;
+ 
+  spinnerForm = true;
   datosCars:[]
   datosBoats:[]
   constructor(
@@ -26,31 +27,35 @@ export class TusreservasPage implements OnInit {
   ngOnInit() {
     this.reservasCars();
     this.reservasBoats();
- 
+    this.spinnerForm = true;
   }
 
   reservasCars(){
     this.token = localStorage.getItem('tokenCars')
-
+    this.spinnerForm = true
     this.service.reservationCars(this.token).subscribe(
       (response: any) => {
         this.datosCars = response.data
         console.log("resCarros",this.datosCars);
+        this.spinnerForm = false
       },
       (error) => {
+        this.spinnerForm = false
         console.log('error')
       });
 }
 
 reservasBoats(){
   this.token = localStorage.getItem('tokenBoats')
-
+  this.spinnerForm = true
   this.service.reservationBoats(this.token).subscribe(
     (response: any) => {
       this.datosBoats = response.data
       console.log("resBarcos",this.datosBoats);
+      this.spinnerForm = false
     },
     (error) => {
+       this.spinnerForm = false
       console.log('error')
     });
 }
