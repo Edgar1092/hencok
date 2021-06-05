@@ -107,7 +107,7 @@ export class ApiService implements CanActivate{
         parseParams = parseParams.append(p, params[p]);
       });
     }
-    parseParams = parseParams.append("api_key", environment.apiKey);
+    // parseParams = parseParams.append("api_key", environment.apiKey);
     return this.http.post(
       environment.apiUrlBoat + "/api/v1/login",data, {params : parseParams, headers: header1,
         observe: 'response',
@@ -118,7 +118,7 @@ export class ApiService implements CanActivate{
       );
   }
 
-  logout(data,params?) : Observable<any>{
+  logoutCars(data,params?) : Observable<any>{
     let parseParams = new HttpParams();
     const headers1= {'Authorization':data};
     const headers = new HttpHeaders()
@@ -133,6 +133,30 @@ export class ApiService implements CanActivate{
     }
     return this.http.delete(
       environment.apiUrlCars + "/api/v1/logout", {params : parseParams, headers: headers,
+        observe: 'response',
+        responseType: 'json'
+        })
+      .pipe(
+        tap(_ => this.log('response received')),
+        catchError(this.handleError('logout', []))
+      );
+  }
+  logoutBoats(data,params?) : Observable<any>{
+    let parseParams = new HttpParams();
+    const headers1= {'Authorization':data};
+    const headers = new HttpHeaders()
+    .set('Access-Control-Allow-Origin' , '*')
+    .set('Accept', '*/*')
+    .set('Content-type', '*/*')
+    .set('Authorization', data);
+    if (params) {
+      Object.keys(params).forEach(p => {
+        parseParams = parseParams.append(p, params[p]);
+      });
+    }
+    // parseParams = parseParams.append("api_key", environment.apiKey);
+    return this.http.delete(
+      environment.apiUrlBoat + "/api/v1/logout", {params : parseParams, headers: headers,
         observe: 'response',
         responseType: 'json'
         })

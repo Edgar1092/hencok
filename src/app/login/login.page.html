@@ -33,8 +33,7 @@
               <ion-spinner *ngIf="spinnerForm" color="vino" name="crescent"></ion-spinner>
               <p *ngIf="usuarioError"><ion-text color="vino">{{'USUARIO_CONTRASENA_ERROR' | translate}}</ion-text></p>
             </div>
-            <ion-button [disabled]="spinnerForm" expand="block" color="vino" class="btn" (click)="Login()">{{'ENTRAR' | translate}}</ion-button>
-           </ion-col>
+            <ion-button [disabled]="spinnerForm" expand="block" color="vino" class="btn" (click)="Login()">{{'ENTRAR' | translate}}</ion-button>           </ion-col>
         </ion-row>
         
       </ion-col>

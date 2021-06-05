@@ -83,7 +83,12 @@ export class LoginPage implements OnInit {
           // this.updatePost();
           // this.navCtrl.navigateForward('');
           // this.service.presentToast("Bienvenido " + this.nombreUsuario);
-          this.loginBoat(data,params);
+
+          // this.loginBoat(data,params);
+          setTimeout(() => {
+            this.loginBoat(data,params)
+           }, 1500);
+
         } else {
           this.spinnerForm = false
           this.usuarioError = true;
@@ -105,44 +110,28 @@ export class LoginPage implements OnInit {
   //   this.service.obtenerUsuario(nomUsuario);
   // }
 
-  logout() {
-    let data = localStorage.getItem('token');
-    localStorage.getItem('usuario');
-    if (data) {
-      this.service.logout(data).subscribe((response) => {
-        console.log(response)
-      }, (error) => {
-        this.spinnerForm = false
-        console.log(error)
-      })
-      console.log(data);
-      localStorage.removeItem('token');
-      localStorage.removeItem('usuario');
-    }
-    else {
-      this.service.presentToast("Inicie sesion");
-    }
-  }
-
   ping() {
-    let data = localStorage.getItem('token');
+
+    let data = localStorage.getItem('tokenCars');
     if (data) {
       this.service.ping(data).subscribe((response) => {
-        console.log(response)
-        if (!response) {
-          localStorage.removeItem("token");
-        }
+        console.log('Probando Ping=>',response)
+        // if (!response) {
+        //   localStorage.removeItem("tokenCars");
+        //   localStorage.removeItem("tokenBoats");
+        // }
       }, (error) => {
         this.spinnerForm = false
         console.log(error)
       })
-      console.log(data);
+ 
     }
     else {
       //  this.service.presentToast("Inicie sesion");
     }
   }
-  loginBoat(data,params){
+ loginBoat(data,params){
+ 
     this.service.loginBoats(data, params).subscribe((response) => {
       this.spinnerForm = false
       let bearer = response;
