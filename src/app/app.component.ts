@@ -129,6 +129,7 @@ export class AppComponent {
       localStorage.removeItem('user');
       this.usuario = '';
       this.service.publish('');
+      this.navCtrl.navigateForward('');
       this.service.presentToast("Sesion Cerrada");
     }
     else {

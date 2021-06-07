@@ -25,9 +25,19 @@ export class TusreservasPage implements OnInit {
   ) { }
 
   ngOnInit() {
+ 
+  }
+
+  ionViewWillEnter(){
+       let data = localStorage.getItem('tokenCars');
+
+    if(data){
     this.reservasCars();
     this.reservasBoats();
-    this.spinnerForm = true;
+    }else{
+      this.service.presentToast("Debe iniciar sesion para ver tus Reservas");
+      this.navCtrl.navigateForward('/login');
+    }
   }
 
   reservasCars(){
