@@ -14,8 +14,8 @@ export class TusreservasPage implements OnInit {
   token
  
   spinnerForm = true;
-  datosCars:[]
-  datosBoats:[]
+  datosCars=[]
+  datosBoats=[]
   constructor(
    private menu: MenuController,
    private navCtrl: NavController,
