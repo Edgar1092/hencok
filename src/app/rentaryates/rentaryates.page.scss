@@ -1,3 +1,18 @@
+
+
+   .formulario{
+    margin-bottom: 10px;
+    --border-color:black;
+    --border-radius: 10px 10px 10px 10px;
+    --border-width: 1px;
+   }
+
+ion-select::part(icon) {
+
+  display: none !important;
+  
+}
+
 .ico1{
     
   float: left;
