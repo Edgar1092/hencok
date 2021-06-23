@@ -132,7 +132,11 @@ export class RentaryatesPage implements OnInit {
   }
 
   doInfinite(event) {
+    if(this.plazaBuscar=='' || this.banoBuscar=='' || this.dormirBuscar=='' || this.camaroteBuscar=='' || this.patronBuscar=='' || this.tripulacionBuscar==''){
+        
+  
     if (this.free_access_id == '') {
+
       if (this.yates.length < this.total) {
         this.offset += 10;
         let params = { limit: this.limit, offset: this.offset };
@@ -177,6 +181,7 @@ export class RentaryatesPage implements OnInit {
         event.target.complete();
       }
     }
+  }
   }
 
   openMenu() {
@@ -256,8 +261,8 @@ export class RentaryatesPage implements OnInit {
       (response: any) => {
         this.spinner = false
         console.log("res", response);
-        if (response && response.products) {
-          this.yates = response.products;
+        if (response && response.data) {
+          this.yates = response.data;
           this.total = response.total
         }
         console.log("cars", this.yates);
