@@ -33,12 +33,12 @@
   </ion-grid>
 
   <!-- Buscador -->
-  <ion-grid class="padding-rl">
+  <!-- <ion-grid class="padding-rl">
     <ion-row>
       <ion-col size="12" class="ion-padding">
         <ion-item class="color-fondo formulario">
           <ion-label class="color-label">Plazas</ion-label>
-          <ion-select [(ngModel)]="plazas" doneText="Ok" cancelText="Cancelar" icon="chevron-down-outline">
+          <ion-select [(ngModel)]="plazaBuscar" doneText="Ok" cancelText="Cancelar" icon="chevron-down-outline">
             <ion-select-option *ngFor="let plaza of plazas">
               {{plaza.description}}
             </ion-select-option>
@@ -48,8 +48,8 @@
         <ion-item class="color-fondo formulario">
           <ion-label class="color-label">Baños</ion-label>
 
-          <ion-select doneText="Ok" cancelText="Cancelar" icon="chevron-down-outline">
-            <ion-select-option *ngFor="let ba of toilets">
+          <ion-select doneText="Ok" [(ngModel)]="banoBuscar"    cancelText="Cancelar" icon="chevron-down-outline">
+            <ion-select-option  *ngFor="let ba of toilets">
               {{ba.description}}
             </ion-select-option>
           </ion-select>
@@ -59,7 +59,7 @@
 
         <ion-item class="color-fondo formulario">
           <ion-label class="color-label">Plazas para Dormir</ion-label>
-          <ion-select doneText="Ok" cancelText="Cancelar" icon="chevron-down-outline">
+          <ion-select [(ngModel)]="dormirBuscar"  doneText="Ok" cancelText="Cancelar" icon="chevron-down-outline">
             <ion-select-option *ngFor="let pla of plaDormir">
               {{pla.description}}
             </ion-select-option>
@@ -69,7 +69,7 @@
 
         <ion-item class="color-fondo formulario">
           <ion-label class="color-label">Camarotes</ion-label>
-          <ion-select doneText="Ok" cancelText="Cancelar">
+          <ion-select [(ngModel)]="camaroteBuscar" doneText="Ok" cancelText="Cancelar">
             <ion-select-option *ngFor="let  camarote of camarotes">
               {{camarote.description}}
             </ion-select-option>
@@ -79,7 +79,7 @@
 
         <ion-item class="color-fondo formulario">
           <ion-label class="color-label">Patron</ion-label>
-          <ion-select doneText="Ok" cancelText="Cancelar" icon="chevron-down-outline">
+          <ion-select [(ngModel)]="patronBuscar"  doneText="Ok" cancelText="Cancelar" icon="chevron-down-outline">
             <ion-select-option *ngFor="let pat of patron">
               {{pat.description}}
             </ion-select-option>
@@ -89,7 +89,7 @@
 
         <ion-item class="color-fondo formulario">
           <ion-label class="color-label">Tripulacion</ion-label>
-          <ion-select doneText="Ok" cancelText="Cancelar" icon="chevron-down-outline">
+          <ion-select [(ngModel)]="tripulacionBuscar" doneText="Ok" cancelText="Cancelar" icon="chevron-down-outline">
             <ion-select-option *ngFor="let tri of tripulacion">
               {{tri.description}}
             </ion-select-option>
@@ -100,11 +100,11 @@
         <div class="ion-text-center width-100">
           <ion-spinner *ngIf="spinnerForm" color="vino" name="crescent"></ion-spinner>
         </div>
-        <ion-button [disabled]="spinnerForm" expand="block" class="btn" (click)="search()">{{'BUSCAR' | translate}}
+        <ion-button [disabled]="spinnerForm" expand="block" class="btn" (click)="searchPage()">{{'BUSCAR' | translate}}
         </ion-button>
       </ion-col>
     </ion-row>
-  </ion-grid>
+  </ion-grid> -->
   <!-- EndBuscador -->
 
   <ion-grid>

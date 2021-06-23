@@ -26,6 +26,14 @@ export class RentaryatesPage implements OnInit {
   patron
   tripulacion
 
+  plazaBuscar=''
+  banoBuscar=''
+  dormirBuscar=''
+  camaroteBuscar=''
+  patronBuscar=''
+  tripulacionBuscar=''
+
+
   constructor(
     private navCtrl: NavController,
     private service: ApiService,
@@ -211,6 +219,7 @@ export class RentaryatesPage implements OnInit {
         let ba = []
         ba = this.buscar[2].values
         this.toilets = Object.values(ba)
+        console.log('toiles',this.toilets)
         let dor = []
         dor = this.buscar[3].values
         this.plaDormir = Object.values(dor)
@@ -229,6 +238,34 @@ export class RentaryatesPage implements OnInit {
         console.log(error)
       });
 
+  }
+
+
+  searchPage(){
+    this.spinner = true;
+      let key_characteristic_1=this.plazaBuscar
+
+    let key_characteristic_2=this.banoBuscar
+    let key_characteristic_3=this.dormirBuscar
+    let key_characteristic_4=this.camaroteBuscar
+    let key_characteristic_5=this.patronBuscar
+    let key_characteristic_6=this.tripulacionBuscar
+
+    let params={key_characteristic_1:key_characteristic_1,key_characteristic_2:key_characteristic_2,key_characteristic_3:key_characteristic_3,key_characteristic_4:key_characteristic_4,key_characteristic_5:key_characteristic_5,key_characteristic_6:key_characteristic_6}
+    this.service.yates(params).subscribe(
+      (response: any) => {
+        this.spinner = false
+        console.log("res", response);
+        if (response && response.products) {
+          this.yates = response.products;
+          this.total = response.total
+        }
+        console.log("cars", this.yates);
+      },
+      (error) => {
+        this.spinner = false
+        console.log('error')
+      });
   }
 
 }
