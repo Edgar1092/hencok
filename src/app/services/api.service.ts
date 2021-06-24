@@ -560,6 +560,26 @@ export class ApiService implements CanActivate{
         catchError(this.handleError('yatesOcupacion', []))
       );
   }
+  yatesSearch(params?) : Observable<any>{
+    let parseParams = new HttpParams();
+    const headers = new HttpHeaders()
+    .set('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT')
+    .set('Access-Control-Allow-Origin' , '*')
+    .set('Accept', '*/*');
+    if (params) {
+      Object.keys(params).forEach(p => {
+        parseParams = parseParams.append(p, params[p]);
+      });
+    }
+    parseParams = parseParams.append("api_key", environment.apiKey);
+    return this.http.get(
+      environment.apiUrlBoat + "/api/booking/frontend/products-key-characteristics", {params : parseParams, headers:headers})
+      .pipe(
+        tap(_ => this.log('response received')),
+        catchError(this.handleError('yates', []))
+      );
+  }
+  
 
   shoppingYate(data,params?) : Observable<any>{
     let parseParams = new HttpParams();
