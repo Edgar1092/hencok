@@ -30,8 +30,9 @@ export class TusreservasPage implements OnInit {
 
   ionViewWillEnter(){
        let data = localStorage.getItem('tokenCars');
+       let datab = localStorage.getItem('tokenBoats');
 
-    if(data){
+    if(data && datab){
     this.reservasCars();
     this.reservasBoats();
     }else{
