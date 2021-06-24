@@ -17,6 +17,7 @@ export class RentaryatesPage implements OnInit {
   limit = 10
   total = 0
   free_access_id = ''
+  spinnerForm=false
 
   buscar
   plazas
@@ -247,7 +248,7 @@ export class RentaryatesPage implements OnInit {
 
 
   searchPage(){
-    this.spinner = true;
+    this.spinnerForm = true;
       let key_characteristic_1=this.plazaBuscar
 
     let key_characteristic_2=this.banoBuscar
@@ -259,7 +260,7 @@ export class RentaryatesPage implements OnInit {
     let params={key_characteristic_1:key_characteristic_1,key_characteristic_2:key_characteristic_2,key_characteristic_3:key_characteristic_3,key_characteristic_4:key_characteristic_4,key_characteristic_5:key_characteristic_5,key_characteristic_6:key_characteristic_6}
     this.service.yates(params).subscribe(
       (response: any) => {
-        this.spinner = false
+        this.spinnerForm = false
         console.log("res", response);
         if (response && response.data) {
           this.yates = response.data;
@@ -268,7 +269,7 @@ export class RentaryatesPage implements OnInit {
         console.log("cars", this.yates);
       },
       (error) => {
-        this.spinner = false
+        this.spinnerForm = false
         console.log('error')
       });
   }
