@@ -73,7 +73,7 @@ export class DetallesyatesPage implements OnInit {
   async obteneryate(){
     this.spinner = true;
     this.service.yatesdetail(this.route.snapshot.paramMap.get('code'))
-      .subscribe(res => {
+      .then(res => {
         this.spinner = false
         console.log(res);
         this.yates = res;
@@ -143,7 +143,7 @@ export class DetallesyatesPage implements OnInit {
     console.log('fecha inicial',this.fechaD,this.fechaH)
     this.idYate=this.route.snapshot.paramMap.get('code')
       let params = {from:this.fechaD, to:this.fechaH};
-      this.service.yatesOcupacion(this.idYate,params).subscribe(
+      this.service.yatesOcupacion(this.idYate,params).then(
         (response: any) => {
           console.log("res",JSON.parse(JSON.stringify(response)).occupation);
           arregloFechas=response.occupation;
@@ -183,14 +183,14 @@ console.log('posicion final ',Moment(arregloFinal[arregloFinal.length-1]).endOf(
     // obtenerHoras(){
     //   if(this.fecha1!='' && this.pickup_place!=''){
     //     let params = {date:this.fecha1,action:'deliveries',place:this.pickup_place};
-    //     this.service.yatesHoras(params).subscribe(
+    //     this.service.yatesHoras(params).then(
     //       (response: any) => {
     //         console.log('hora de entrega1 ',response);
     //         this.horaMinEntrega=response[0]
     //         this.horaMaxEntrega=response[response.length-1]
 
     //         let params2 = {date:this.fecha2,action:'collections',place:this.return_place};
-    //         this.service.yatesHoras(params2).subscribe(
+    //         this.service.yatesHoras(params2).then(
     //           (response: any) => {
     //             console.log('hora de entrega2 ',response);
     //             this.horaMinDevolucion=response[0]
@@ -209,7 +209,7 @@ console.log('posicion final ',Moment(arregloFinal[arregloFinal.length-1]).endOf(
        "date_to": Moment(this.date_to).format("DD/MM/YYYY"),
      }
      let params = {include_products:true,limit:this.limit, offset:0}
-     this.service.shoppingYate(data, params).subscribe((response)=>{
+     this.service.shoppingYate(data, params).then((response)=>{
        
        console.log(response)
        let shopping_cart = response.shopping_cart
@@ -231,7 +231,7 @@ console.log('posicion final ',Moment(arregloFinal[arregloFinal.length-1]).endOf(
     addProduct(product){
       if(this.free_access_id != ""){
         let data = { "product": product }
-        this.service.setProductYate(this.free_access_id, data).subscribe((response)=>{
+        this.service.setProductYate(this.free_access_id, data).then((response)=>{
           console.log(response)
           this.router.navigate(['/reservayates/',  this.free_access_id ]);
         },(error)=>{

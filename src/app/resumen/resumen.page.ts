@@ -26,7 +26,7 @@ export class ResumenPage implements OnInit {
   async obtenerreserva(){
     this.spinner = true;
     this.service.reservaGet(this.route.snapshot.paramMap.get('shoppingCart'))
-      .subscribe(res => {
+      .then(res => {
         this.spinner = false
         console.log('reserva',res);
         this.detail = res;

@@ -16,6 +16,7 @@ import { HttpConfigInterceptor } from './services/httpConfig.interceptor';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HTTP } from '@ionic-native/http/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -41,7 +42,8 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
       useClass: HttpConfigInterceptor,
       multi: true
     },
-    InAppBrowser
+    InAppBrowser,
+    HTTP
   ],
   bootstrap: [AppComponent],
 })

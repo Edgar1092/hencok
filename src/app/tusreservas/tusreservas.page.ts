@@ -44,7 +44,7 @@ export class TusreservasPage implements OnInit {
   reservasCars(){
     this.token = localStorage.getItem('tokenCars')
     this.spinnerForm = true
-    this.service.reservationCars(this.token).subscribe(
+    this.service.reservationCars(this.token).then(
       (response: any) => {
         this.datosCars = response.data
         console.log("resCarros",this.datosCars);
@@ -59,7 +59,7 @@ export class TusreservasPage implements OnInit {
 reservasBoats(){
   this.token = localStorage.getItem('tokenBoats')
   this.spinnerForm = true
-  this.service.reservationBoats(this.token).subscribe(
+  this.service.reservationBoats(this.token).then(
     (response: any) => {
       this.datosBoats = response.data
       console.log("resBarcos",this.datosBoats);

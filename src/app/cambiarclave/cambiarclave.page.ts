@@ -45,7 +45,7 @@ export class CambiarclavePage implements OnInit {
       }
       this.isSubmitted = true;
       this.spinnerForm =true
-      this.service.password(data).subscribe((response) => {
+      this.service.password(data).then((response) => {
         console.log(response)
         this.spinnerForm =false
         this.valor = response.body

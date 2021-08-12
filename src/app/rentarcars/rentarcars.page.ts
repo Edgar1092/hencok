@@ -42,7 +42,7 @@ export class RentarcarsPage implements OnInit {
     this.spinner = true;
     this.offset=0
     let params = {limit:this.limit, offset:0};
-    this.service.cars(params).subscribe(
+    this.service.cars(params).then(
       (response: any) => {
         this.spinner = false
         console.log("res",response);
@@ -62,7 +62,7 @@ export class RentarcarsPage implements OnInit {
     this.spinner = true;
     this.offset=0
     let params = {include_products:true,limit:this.limit, offset:0};
-    this.service.shoppingCartGet(this.free_access_id, params).subscribe(
+    this.service.shoppingCartGet(this.free_access_id, params).then(
       (response: any) => {
         this.spinner = false
         console.log("res",response);
@@ -85,7 +85,7 @@ export class RentarcarsPage implements OnInit {
     if(this.free_access_id != ''){
       this.offset=0
     let params = {include_products:true,limit:this.limit, offset:0};
-    this.service.shoppingCartGet(this.free_access_id, params).subscribe(
+    this.service.shoppingCartGet(this.free_access_id, params).then(
       (response: any) => {
         event.target.complete();
         
@@ -104,7 +104,7 @@ export class RentarcarsPage implements OnInit {
       console.log('Begin async operation');
       this.offset=0
       let params = {limit:this.limit, offset:0};
-      this.service.cars(params).subscribe(
+      this.service.cars(params).then(
         (response: any) => {
           event.target.complete();
           console.log(response);
@@ -125,7 +125,7 @@ export class RentarcarsPage implements OnInit {
         this.offset+=10;
         let params = {limit:this.limit, offset:this.offset};
         setTimeout(() => {
-          this.service.cars(params).subscribe(
+          this.service.cars(params).then(
             (response: any) => {
               let d = JSON.parse(JSON.stringify(response.data)) 
               console.log(d);
@@ -146,7 +146,7 @@ export class RentarcarsPage implements OnInit {
         this.offset+=10;
         let params = {include_products:true,limit:this.limit, offset:this.offset};
         setTimeout(() => {
-          this.service.shoppingCartGet(this.free_access_id,params).subscribe(
+          this.service.shoppingCartGet(this.free_access_id,params).then(
             (response: any) => {
               let d = JSON.parse(JSON.stringify(response.products)) 
               console.log(d);
@@ -167,7 +167,7 @@ export class RentarcarsPage implements OnInit {
   addProduct(product){
     if(this.free_access_id != ""){
       let data = { "product": product }
-      this.service.setProduct(this.free_access_id, data).subscribe((response)=>{
+      this.service.setProduct(this.free_access_id, data).then((response)=>{
         console.log(response)
         this.router.navigate(['/reserva/',  this.free_access_id ]);
       },(error)=>{

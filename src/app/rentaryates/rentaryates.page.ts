@@ -57,7 +57,7 @@ export class RentaryatesPage implements OnInit {
     this.spinner = true;
     this.offset = 0
     let params = { limit: this.limit, offset: 0 };
-    this.service.yates(params).subscribe(
+    this.service.yates(params).then(
       (response: any) => {
         this.spinner = false
         console.log(response);
@@ -75,7 +75,7 @@ export class RentaryatesPage implements OnInit {
     this.spinner = true;
     this.offset = 0
     let params = { include_products: true, limit: this.limit, offset: 0 };
-    this.service.shoppingYateGet(this.free_access_id, params).subscribe(
+    this.service.shoppingYateGet(this.free_access_id, params).then(
       (response: any) => {
         this.spinner = false
         console.log("res", response);
@@ -98,7 +98,7 @@ export class RentaryatesPage implements OnInit {
   doRefresh(event) {
     if (this.free_access_id != '') {
       let params = { include_products: true, limit: this.limit, offset: 0 };
-      this.service.shoppingYateGet(this.free_access_id, params).subscribe(
+      this.service.shoppingYateGet(this.free_access_id, params).then(
         (response: any) => {
           event.target.complete();
 
@@ -117,7 +117,7 @@ export class RentaryatesPage implements OnInit {
       console.log('Begin async operation');
       this.offset = 0
       let params = { limit: this.limit, offset: 0 };
-      this.service.yates(params).subscribe(
+      this.service.yates(params).then(
         (response: any) => {
           event.target.complete();
           console.log(response);
@@ -142,7 +142,7 @@ export class RentaryatesPage implements OnInit {
         this.offset += 10;
         let params = { limit: this.limit, offset: this.offset };
         setTimeout(() => {
-          this.service.yates(params).subscribe(
+          this.service.yates(params).then(
             (response: any) => {
               let d = JSON.parse(JSON.stringify(response.data))
               console.log(d);
@@ -164,7 +164,7 @@ export class RentaryatesPage implements OnInit {
         this.offset += 10;
         let params = { include_products: true, limit: this.limit, offset: this.offset };
         setTimeout(() => {
-          this.service.shoppingYateGet(this.free_access_id, params).subscribe(
+          this.service.shoppingYateGet(this.free_access_id, params).then(
             (response: any) => {
               let d = JSON.parse(JSON.stringify(response.products))
               console.log(d);
@@ -198,7 +198,7 @@ export class RentaryatesPage implements OnInit {
   addProduct(product) {
     if (this.free_access_id != "") {
       let data = { "product": product }
-      this.service.setProductYate(this.free_access_id, data).subscribe((response) => {
+      this.service.setProductYate(this.free_access_id, data).then((response) => {
         console.log(response)
         this.router.navigate(['/reservayates/', this.free_access_id]);
       }, (error) => {
@@ -214,7 +214,7 @@ export class RentaryatesPage implements OnInit {
 
     this.spinner = true;
     this.offset = 0
-    this.service.yatesSearch().subscribe(
+    this.service.yatesSearch().then(
       (response: any) => {
         this.spinner = false
         this.buscar = response;
@@ -258,7 +258,7 @@ export class RentaryatesPage implements OnInit {
     let key_characteristic_6=this.tripulacionBuscar
 
     let params={key_characteristic_1:key_characteristic_1,key_characteristic_2:key_characteristic_2,key_characteristic_3:key_characteristic_3,key_characteristic_4:key_characteristic_4,key_characteristic_5:key_characteristic_5,key_characteristic_6:key_characteristic_6}
-    this.service.yates(params).subscribe(
+    this.service.yates(params).then(
       (response: any) => {
         this.spinnerForm = false
         console.log("res", response);

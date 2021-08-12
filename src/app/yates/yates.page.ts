@@ -83,7 +83,7 @@ export class YatesPage implements OnInit {
       this.fechaH = Moment(this.fechaD).add(2, 'months').format('YYYY-MM-DD');
 
         let params = {from:this.fechaD, to:this.fechaH, action:'deliveries'};
-        this.service.yatesFechas(params).subscribe(
+        this.service.yatesFechas(params).then(
           (response: any) => {
             console.log("res",response);
               this.fechaD = response;
@@ -103,7 +103,7 @@ export class YatesPage implements OnInit {
         this.fechaMaxDe =Moment(this.fechaSeleccionada).add(2, 'months').format('YYYY-MM-DD');
           this.fechaSeleccionada = Moment(this.date_from).format("YYYY-MM-DD");
           let params = {from:this.fechaSeleccionada, to:this.fechaMaxDe, action:'collections'};
-          this.service.yatesFechas(params).subscribe(
+          this.service.yatesFechas(params).then(
             (response: any) => {
             console.log("res",response);
             this.fechaMinDe = response;
@@ -138,7 +138,7 @@ export class YatesPage implements OnInit {
        }
     let params = {include_products:true,limit:10, offset:0}
                 
-   this.service.shoppingYate(data, params).subscribe((response)=>{
+   this.service.shoppingYate(data, params).then((response)=>{
      this.spinnerForm =false
      console.log(response)
         let shopping_cart = response.shopping_cart
@@ -160,7 +160,7 @@ export class YatesPage implements OnInit {
   this.spinner = true;
   this.offset=0
   let params = {limit:this.limit, offset:0};
-  this.service.yates(params).subscribe(
+  this.service.yates(params).then(
     (response: any) => {
       this.spinner = false
       console.log("res",response);

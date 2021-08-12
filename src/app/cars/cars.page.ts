@@ -87,7 +87,7 @@ export class CarsPage implements OnInit {
 
   obtenerentrega(){
   this.service.carsentrega()
-      .subscribe(res => {
+      .then(res => {
         console.log(res);
         this.cars = res;
       }, err => {
@@ -99,7 +99,7 @@ export class CarsPage implements OnInit {
   obtenerdevolucion(){
     this.entregaSelecionada = this.pickup_place;
     let params = {pickup_place:this.entregaSelecionada};
-    this.service.carsdevolucion(params).subscribe(
+    this.service.carsdevolucion(params).then(
       (response: any) => {
         console.log("res",response);
           this.cars2 = response; 
@@ -118,7 +118,7 @@ export class CarsPage implements OnInit {
   this.fechaD = fechaInicio;
   this.fechaH = Moment(this.fechaD).add(2, 'months').format('YYYY-MM-DD');
     let params = {from:this.fechaD, to:this.fechaH, place:this.entregaSelecionada};
-    this.service.carsdateentrega(params).subscribe(
+    this.service.carsdateentrega(params).then(
       (response: any) => {
         console.log("res",response);
           this.fechaD = response;
@@ -139,7 +139,7 @@ export class CarsPage implements OnInit {
     this.fechaMaxDe =Moment(this.fechaSeleccionada).add(2, 'months').format('YYYY-MM-DD');
       this.fechaSeleccionada = Moment(this.date_from).format("YYYY-MM-DD");
       let params = {from:this.fechaSeleccionada, to:this.fechaMaxDe, place:this.entregaSelecionada};
-      this.service.carsdateentrega(params).subscribe(
+      this.service.carsdateentrega(params).then(
         (response: any) => {
         console.log("res",response);
         this.fechaMinDe = response;
@@ -166,7 +166,7 @@ export class CarsPage implements OnInit {
 
   horaEntrega(){
     let params = {date:this.fechaSeleccionada , place:this.entregaSelecionada};
-    this.service.carsHoraEntrega(params).subscribe(
+    this.service.carsHoraEntrega(params).then(
       (response: any) => {
         console.log("res",response);
         this.horas= response;
@@ -186,7 +186,7 @@ export class CarsPage implements OnInit {
   horaDevolucion(){
     this.fechaSeleccionada = this.date_to;
     let params = {date:this.fechaSeleccionada , place:this.entregaSelecionada};
-    this.service.carsHoraEntrega(params).subscribe(
+    this.service.carsHoraEntrega(params).then(
       (response: any) => {
         console.log("res",response);
         this.horas= response;
@@ -220,7 +220,7 @@ export class CarsPage implements OnInit {
   }
   let params = {include_products:true,limit:10, offset:0}
 
-  this.service.shoppingCart(data, params).subscribe((response)=>{
+  this.service.shoppingCart(data, params).then((response)=>{
     this.spinnerForm =false
     console.log(response)
     let shopping_cart = response.shopping_cart
@@ -242,7 +242,7 @@ export class CarsPage implements OnInit {
   this.spinner = true;
   this.offset=0
   let params = {limit:this.limit, offset:0};
-  this.service.cars(params).subscribe(
+  this.service.cars(params).then(
     (response: any) => {
       this.spinner = false
       console.log("res",response);

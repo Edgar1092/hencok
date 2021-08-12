@@ -63,7 +63,7 @@ export class HomePage implements OnInit {
     let data    =   localStorage.getItem('token');
     this.usuario =  localStorage.getItem('user');
     if(data){
-       this.service.ping(data).subscribe((response)=>{
+       this.service.ping(data).then((response)=>{
        console.log('Usuario recibido', this.usuario)
        console.log(response) 
        if(!response){

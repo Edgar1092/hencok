@@ -88,7 +88,7 @@ idCarro
   async obtenercarro(){
     this.spinner = true;
     this.service.carsdetail(this.route.snapshot.paramMap.get('code'))
-      .subscribe(res => {
+      .then(res => {
         this.spinner = false
         console.log('carrote',res);
         this.cars = res;
@@ -122,7 +122,7 @@ idCarro
 
   obtenerentrega(){
     this.service.carsentrega()
-        .subscribe(res => {
+        .then(res => {
           console.log(res);
           this.cars2 = res;
         }, err => {
@@ -135,7 +135,7 @@ idCarro
       console.log('ver value',this.pickup_place)
       this.entregaSelecionada = this.pickup_place;
       let params = {pickup_place:this.entregaSelecionada};
-      this.service.carsdevolucion(params).subscribe(
+      this.service.carsdevolucion(params).then(
         (response: any) => {
           console.log("res",response);
             this.cars3 = response; 
@@ -157,7 +157,7 @@ idCarro
     console.log('fecha inicial',this.fechaD,this.fechaH)
     this.idCarro=this.route.snapshot.paramMap.get('code')
       let params = {from:this.fechaD, to:this.fechaH};
-      this.service.carsocupacionentrega(this.idCarro,params).subscribe(
+      this.service.carsocupacionentrega(this.idCarro,params).then(
         (response: any) => {
           console.log("res",JSON.parse(JSON.stringify(response)).occupation);
           arregloFechas=response.occupation;
@@ -198,14 +198,14 @@ console.log('posicion final ',Moment(arregloFinal[arregloFinal.length-1]).endOf(
     obtenerHoras(){
       if(this.fecha1!='' && this.pickup_place!=''){
         let params = {date:this.fecha1,action:'deliveries',place:this.pickup_place};
-        this.service.carsHoraEntrega(params).subscribe(
+        this.service.carsHoraEntrega(params).then(
           (response: any) => {
             console.log('hora de entrega1 ',response);
             this.horaMinEntrega=response[0]
             this.horaMaxEntrega=response[response.length-1]
 
             let params2 = {date:this.fecha2,action:'collections',place:this.return_place};
-            this.service.carsHoraEntrega(params2).subscribe(
+            this.service.carsHoraEntrega(params2).then(
               (response: any) => {
                 console.log('hora de entrega2 ',response);
                 this.horaMinDevolucion=response[0]
@@ -228,7 +228,7 @@ console.log('posicion final ',Moment(arregloFinal[arregloFinal.length-1]).endOf(
      }
      let params = {include_products:true,limit:this.limit, offset:0}
    
-     this.service.shoppingCart(data, params).subscribe((response)=>{
+     this.service.shoppingCart(data, params).then((response)=>{
        
        console.log(response)
        let shopping_cart = response.shopping_cart
@@ -251,7 +251,7 @@ console.log('posicion final ',Moment(arregloFinal[arregloFinal.length-1]).endOf(
     addProduct(product){
       if(this.free_access_id != ""){
         let data = { "product": product }
-        this.service.setProduct(this.free_access_id, data).subscribe((response)=>{
+        this.service.setProduct(this.free_access_id, data).then((response)=>{
           console.log(response)
           this.router.navigate(['/reserva/',  this.free_access_id ]);
         },(error)=>{

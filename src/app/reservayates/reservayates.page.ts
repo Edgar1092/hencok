@@ -98,7 +98,7 @@ export class ReservayatesPage implements OnInit {
     this.spinner = true;
     // this.offset=0
     let params = {include_extras: true,include_coverage: true};
-    this.service.shoppingYateGet(this.free_access_id, params).subscribe(
+    this.service.shoppingYateGet(this.free_access_id, params).then(
       (response: any) => {
         this.spinner = false
         console.log("res",response);
@@ -131,7 +131,7 @@ export class ReservayatesPage implements OnInit {
         "comments" : this.comentarios
       }
       if(this.detail && this.detail.sales_process.can_pay){
-      this.service.createCheckoutYate(this.free_access_id, data,localStorage.getItem('tokenBoats')).subscribe(
+      this.service.createCheckoutYate(this.free_access_id, data,localStorage.getItem('tokenBoats')).then(
         (response: any) => {
           this.spinner = false
           console.log("res",response.free_access_id);
@@ -186,7 +186,7 @@ export class ReservayatesPage implements OnInit {
         "comments" : this.comentarios
       }
       if(this.detail && this.detail.sales_process.can_pay){
-      this.service.createCheckoutYate(this.free_access_id, data).subscribe(
+      this.service.createCheckoutYate(this.free_access_id, data).then(
         (response: any) => {
           this.spinner = false
           console.log("res",response.free_access_id);

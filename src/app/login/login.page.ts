@@ -67,7 +67,7 @@ export class LoginPage implements OnInit {
         'password': this.password,
       }
       let params = { username: this.username, password: this.password }
-      this.service.loginCars(data, params).subscribe((response) => {
+      this.service.loginCars(data, params).then((response) => {
         // this.spinnerForm = false
         let bearer = response;
         this.usuario = response;
@@ -114,7 +114,7 @@ export class LoginPage implements OnInit {
 
     let data = localStorage.getItem('tokenCars');
     if (data) {
-      this.service.ping(data).subscribe((response) => {
+      this.service.ping(data).then((response) => {
         console.log('Probando Ping=>',response)
         // if (!response) {
         //   localStorage.removeItem("tokenCars");
@@ -132,7 +132,7 @@ export class LoginPage implements OnInit {
   }
  loginBoat(data,params){
  
-    this.service.loginBoats(data, params).subscribe((response) => {
+    this.service.loginBoats(data, params).then((response) => {
       this.spinnerForm = false
       let bearer = response;
       let usuario = response;

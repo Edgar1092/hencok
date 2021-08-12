@@ -86,7 +86,7 @@ export class AppComponent {
     let data = localStorage.getItem('tokenCars');
     this.usuario = localStorage.getItem('user');
     if (data) {
-      this.service.ping(data).subscribe((response) => {
+      this.service.ping(data).then((response) => {
         console.log('Usuario', this.usuario)
         console.log(response)
         console.log('Probando Ping=>',response)

@@ -86,7 +86,7 @@ export class SigninPage implements OnInit {
         this.spinnerForm =true
         if(this.FormularioLogin.valid){
           console.log('Formulario correcto')
-          this.service.signup(this.FormularioLogin.value).subscribe((response)=>{
+          this.service.signup(this.FormularioLogin.value).then((response)=>{
             this.spinnerForm =false
             console.log(response)
             if(response && response.body == true){

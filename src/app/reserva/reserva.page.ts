@@ -99,7 +99,7 @@ export class ReservaPage implements OnInit {
     this.spinner = true;
     // this.offset=0
     let params = {include_extras: true,include_coverage: true};
-    this.service.shoppingCartGet(this.free_access_id, params).subscribe(
+    this.service.shoppingCartGet(this.free_access_id, params).then(
       (response: any) => {
         this.spinner = false
         console.log("res",response);
@@ -131,7 +131,7 @@ export class ReservaPage implements OnInit {
         "comments" : this.comentarios
       }
       if(this.detail && this.detail.sales_process.can_pay){
-      this.service.createCheckout(this.free_access_id, data,localStorage.getItem('tokenCars')).subscribe(
+      this.service.createCheckout(this.free_access_id, data,localStorage.getItem('tokenCars')).then(
         (response: any) => {
           this.spinner = false
           console.log("res",response.free_access_id);
@@ -186,7 +186,7 @@ export class ReservaPage implements OnInit {
         "comments" : this.comentarios
       }
       if(this.detail && this.detail.sales_process.can_pay){
-      this.service.createCheckout(this.free_access_id, data).subscribe(
+      this.service.createCheckout(this.free_access_id, data).then(
         (response: any) => {
           this.spinner = false
           console.log("res",response.free_access_id);
